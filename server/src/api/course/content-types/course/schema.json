@@ -30,6 +30,21 @@
       "relation": "manyToMany",
       "target": "api::category.category",
       "mappedBy": "courses"
+    },
+    "picture": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "is_approve": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

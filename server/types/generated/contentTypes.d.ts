@@ -421,6 +421,8 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'manyToMany',
       'api::category.category'
     >;
+    picture: Attribute.Media;
+    is_approve: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
