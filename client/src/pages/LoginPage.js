@@ -1,35 +1,78 @@
-import { useEffect, useState } from "react";
-import useLocalState from "../utils/useLocalStorage";
-import { Button, Form, Container } from "react-bootstrap";
-import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
+
+import { AuthContext } from "../utils/auth/Auth.context.js";
+
+const initialState = {
+  username: "",
+  password: "",
+};
 
 function LoginPage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [submitEnabled, setSubmitEnabled] = useState(true);
-  const [auth, setAuth] = useLocalState(null, "auth");
+  const { state: ContextState, login } = useContext(AuthContext);
+  const { isLoginPending, isLoggedIn, loginError } = ContextState;
+  const [state, setState] = useState(initialState);
 
-  const handleSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    const response = axios.post();
+    const { username, password } = state;
     console.log(username, password);
+    login(username, password);
+    setState({
+      username: "",
+      password: "",
+    });
   };
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit}>
-        <Form.Control
-          type="email"
-          onChange={(e) => setUsername(e.target.value)}
-        ></Form.Control>
-        <Form.Control
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        ></Form.Control>
-        <Button type="submit">Submit</Button>
-      </Form>
-    </Container>
+    <form name="loginForm" onSubmit={onSubmit}>
+      <div className="row">
+        <div className="col-sm-3 col-md-6">
+          <label htmlFor="username">Username</label>
+        </div>
+
+        <div className="col-sm-9 col-md-6">
+          <input
+            type="text"
+            name="username"
+            onChange={(e) =>
+              setState((prevState) => ({
+                ...prevState,
+                username: e.target.value,
+              }))
+            }
+            value={state.username}
+            placeholder="admin"
+          />
+        </div>
+
+        <div className="col-sm-3 col-md-6">
+          <label htmlFor="password">Password</label>
+        </div>
+        <div className="col-sm-9 col-md-6">
+          <input
+            type="password"
+            name="password"
+            onChange={(e) =>
+              setState((prevState) => ({
+                ...prevState,
+                password: e.target.value,
+              }))
+            }
+            value={state.password}
+            placeholder="admin"
+          />
+        </div>
+
+        <div className="col-sm-3 col-md-6"></div>
+        <div className="col-sm-9 col-md-6">
+          <input className="primary" type="submit" value="Login" />
+        </div>
+      </div>
+
+      {isLoginPending && <div>Please wait...</div>}
+      {isLoggedIn && <div>Success.</div>}
+      {loginError && <div>{loginError.message}</div>}
+    </form>
   );
 }
 
