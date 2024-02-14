@@ -45,6 +45,18 @@
     "is_approve": {
       "type": "boolean",
       "default": false
+    },
+    "material": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::material.material",
+      "inversedBy": "courses"
+    },
+    "booking": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::booking.booking",
+      "inversedBy": "courses"
     }
   }
 }
