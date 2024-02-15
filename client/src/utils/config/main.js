@@ -3,7 +3,8 @@ const conf = {
     loginEndpoint: '/auth/local',
     getUserInfomation: '/users/me?populate=role',
     jwtUserEndpoint: '/users/me?populate=*',
-    jwtSessionStorageKey: 'auth.jwt'
+    jwtSessionStorageKey: 'auth.jwt',
+    getCategoriesEndpoint: '/categories'
   }
   
-  export default conf;
+  export default conf; 

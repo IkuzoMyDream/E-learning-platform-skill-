@@ -6,35 +6,38 @@ import { AuthContext } from "./utils/auth/Auth.context";
 // page
 import LoginPage from "./pages/LoginPage";
 import CategoryPage from "./pages/student/CategoryPage";
-import StudentNavbar from "./components/student/student-navbar";
-import AdminNavbar from "./components/admin/admin-navbar";
 import CoursesPage from "./pages/student/CoursesPage";
 import CourseDetailPage from "./pages/student/CourseDetailPage";
+import PrivateRoutes from "./utils/private-routes";
+import MenuBar from "./components/student/menu-bar";
 
 function App() {
-  const { state } = useContext(AuthContext)
-  const role = state?.user?.role
-  console.log(role)
+  const { state } = useContext(AuthContext);
+  const role = state?.user?.role;
   return (
     <>
-    {role === "Student" && (<StudentNavbar/>)}
-    {role === "Admin" && (<AdminNavbar/>)}
-    <Router>
-      <Routes>
-        {/* public */}
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/category" element={<CategoryPage />}></Route>
-        <Route path="/category/:categoryName" element={<CoursesPage/>}></Route>
-        <Route path="/category/:categoryName/:courseName" element={<CourseDetailPage/>}></Route>
+      <MenuBar />
+      <Router>
+        <Routes>
+          {/* public */}
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/category" element={<CategoryPage />}></Route>
+          <Route
+            path="/category/:categoryName"
+            element={<CoursesPage />}
+          ></Route>
+          <Route
+            path="/category/:categoryName/:courseName"
+            element={<CourseDetailPage />}
+          ></Route>
 
-        {/* role === std */}
+          {/* role === std */}
+          <Route element={<PrivateRoutes />}></Route>
 
-        {/* role == admin */}
-        
-      </Routes>
-    </Router>
+          {/* role == admin */}
+        </Routes>
+      </Router>
     </>
-
   );
 }
 
