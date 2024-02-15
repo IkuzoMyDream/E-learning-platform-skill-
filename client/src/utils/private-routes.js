@@ -6,10 +6,9 @@ export default function PrivateRoutes({
   allowedRole,
   dataprovider: DataProvider,
 }) {
-
-  const { state } = useContext(AuthContext)
+  const { state } = useContext(AuthContext);
   const location = useLocation();
-  console.log(state)
+  console.log(state);
   return state == allowedRole ? (
     <DataProvider>
       <Outlet />
