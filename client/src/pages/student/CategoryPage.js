@@ -1,17 +1,12 @@
 import MenuBar from "../../components/MenuBar";
 
-
-
 function CategoryPage() {
-    return (
-        <div className="CategoryPage">
-            <MenuBar/>
-        </div>
-    );
-
+  return (
+    <div>
+      <p>category page</p>
+      {/* <MenuBar/> */}
+    </div>
+  );
 }
-
-
-
 
 export default CategoryPage;
