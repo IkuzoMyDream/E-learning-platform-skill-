@@ -37,6 +37,7 @@ export default function CourseList() {
           <div className="col-md-3" key={d.id}>
             <Link style={{ textDecoration: "none" }} to={`/category/${categoryName}/${d.name}`}>
               <Card className="mb-3">
+              <Card.Img variant="top" src="http://localhost:1337/uploads/1678515120746_003f94bbbf.jpg" />
                 <Card.Body>
                   <Card.Title>{d.name}</Card.Title>
                 </Card.Body>
