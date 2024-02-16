@@ -1,7 +1,5 @@
+import CourseDetail from "../../components/student/course-detail";
+
 export default function CourseDetailPage() {
-    return (
-        <>
-            course detail page
-        </>
-    )
+  return <CourseDetail />;
 }

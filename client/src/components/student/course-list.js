@@ -35,7 +35,10 @@ export default function CourseList() {
       <div className="row">
         {courses.map((d) => (
           <div className="col-md-3" key={d.id}>
-            <Link style={{ textDecoration: "none" }} to={`/category/${categoryName}/${d.name}`}>
+            <Link
+              style={{ textDecoration: "none" }}
+              to={`/category/${categoryName}/${d.name}`}
+            >
               <Card className="mb-3">
                 <Card.Body>
                   <Card.Title>{d.name}</Card.Title>
