@@ -12,7 +12,7 @@ export default function CourseList() {
   const fetchItems = async () => {
     const response = await ax.get(`${conf.getCoursesEndpoint}${categoryName}`);
     setCourses(
-      response.data.data[0].attributes.courses.data.map((d) => {
+      response?.data?.data[0]?.attributes?.courses?.data?.map((d) => {
         return {
           id: d.id,
           ...d.attributes,
@@ -26,8 +26,10 @@ export default function CourseList() {
   }, []);
 
   useEffect(() => {
-    console.log(courses);
+    // console.log(courses);
+    courses.forEach(d => console.log(d.picture.data[0]))
   }, [courses]);
+
 
   return (
     <Container>
@@ -40,7 +42,7 @@ export default function CourseList() {
               to={`/category/${categoryName}/${d.name}`}
             >
               <Card className="mb-3">
-              <Card.Img variant="top" src="http://localhost:1337/uploads/1678515120746_003f94bbbf.jpg" />
+                <Card.Img variant="top" src={"http://localhost:1337"+d.picture.data[0].attributes.url} />
                 <Card.Body>
                   <Card.Title>{d.name}</Card.Title>
                 </Card.Body>
