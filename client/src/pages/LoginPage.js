@@ -27,7 +27,7 @@ function LoginPage() {
     <form name="loginForm" onSubmit={onSubmit}>
       <div className="row">
         <div className="col-sm-3 col-md-6">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">email</label>
         </div>
 
         <div className="col-sm-9 col-md-6">
