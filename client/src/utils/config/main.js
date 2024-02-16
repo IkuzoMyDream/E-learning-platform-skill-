@@ -5,13 +5,9 @@ const conf = {
     jwtUserEndpoint: '/users/me?populate=*',
     jwtSessionStorageKey: 'auth.jwt',
     getCategoriesEndpoint: '/categories',
-<<<<<<< HEAD
-    getCoursesEndpoint: '/categories?populate[courses][populate]=*&filters[name][$eq]=',
-    getCourseDetailEndpoint: '/courses?populate=*&filters[name][$eq]='
-=======
-    getCoursesEndpoint: '/categories?populate[courses][populate]=*&filters[name][$eq]='
-    ///categories?populate=*&filters[name][$eq]=
->>>>>>> 7ace677e604aa667a16491af4b194b83734f53a6
+    getCoursesEndpoint: '/categories?populate=*&filters[name][$eq]='
   }
   
   export default conf;     
+
+  //test
