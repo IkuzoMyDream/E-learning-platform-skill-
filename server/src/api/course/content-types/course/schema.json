@@ -42,10 +42,6 @@
         "audios"
       ]
     },
-    "is_approve": {
-      "type": "boolean",
-      "default": false
-    },
     "material": {
       "type": "relation",
       "relation": "manyToOne",

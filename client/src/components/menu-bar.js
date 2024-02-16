@@ -9,7 +9,7 @@ import {
   Dropdown,
 } from "react-bootstrap";
 import { useContext, useState } from "react";
-import { AuthContext } from "../../utils/auth/Auth.context";
+import { AuthContext } from "../utils/auth/Auth.context";
 import { Outlet } from "react-router-dom";
 
 const initialState = {
@@ -19,9 +19,7 @@ const initialState = {
 
 export default function MenuBar() {
   const { state: ContextState, login, logout } = useContext(AuthContext);
-  const { isLoginPending, isLoggedIn, loginError } = ContextState;
   const [state, setState] = useState(initialState);
-  console.log(ContextState);
 
   const onSubmit = (e) => {
     e.preventDefault();

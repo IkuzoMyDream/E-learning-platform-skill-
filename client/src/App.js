@@ -9,7 +9,7 @@ import CategoryPage from "./pages/student/CategoryPage";
 import CoursesPage from "./pages/student/CoursesPage";
 import CourseDetailPage from "./pages/student/CourseDetailPage";
 import PrivateRoutes from "./utils/private-routes";
-import MenuBar from "./components/student/menu-bar";
+import MenuBar from "./components/menu-bar";
 
 function App() {
   const { state } = useContext(AuthContext);

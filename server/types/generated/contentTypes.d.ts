@@ -832,6 +832,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     singularName: 'category';
     pluralName: 'categories';
     displayName: 'Category';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -843,6 +844,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'manyToMany',
       'api::course.course'
     >;
+    svg_path: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -886,7 +888,6 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'api::category.category'
     >;
     picture: Attribute.Media;
-    is_approve: Attribute.Boolean & Attribute.DefaultTo<false>;
     material: Attribute.Relation<
       'api::course.course',
       'manyToOne',

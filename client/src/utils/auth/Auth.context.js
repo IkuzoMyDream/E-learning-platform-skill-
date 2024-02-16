@@ -30,7 +30,7 @@ export const ContextProvider = (props) => {
   const handleLoginResult = (error, result) => {
     setLoginPending(false);
 
-    if (result && result.user) {
+    if (result && result.user) {  
       if (result.jwt) {
         updateJwt(result.jwt);
       }
@@ -65,7 +65,7 @@ export const ContextProvider = (props) => {
       value={{
         state,
         login,
-        logout,
+        logout,  
       }}
     >
       {props.children}
