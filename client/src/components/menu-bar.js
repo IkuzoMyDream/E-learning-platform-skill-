@@ -34,49 +34,10 @@ export default function MenuBar() {
 
   return (
     <>
-      <Navbar style={{ borderBottom: "1px solid #000" }}>
-        <Container>
-          <Navbar.Brand></Navbar.Brand>
-          {ContextState.isLoggedIn && (
-            <>
-              <Nav>
-                <Dropdown>
-                  <Dropdown.Toggle
-                    style={{
-                      backgroundColor: "white",
-                      color: "black",
-                      border: "none",
-                    }}
-                    id="dropdown-basic"
-                  >
-                    {ContextState.user.username}
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      stroke="#212b36"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      fill="none"
-                    >
-                      <circle cx="12" cy="8" r="5" />
-                      <path d="M3,21 h18 C 21,12 3,12 3,21" />
-                    </svg>
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="">Profile</Dropdown.Item>
-                    <Dropdown.Item href="">My Course</Dropdown.Item>
-                    <Dropdown.Item href="" onClick={logout}>
-                      Log Out
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </Nav>
-            </>
-          )}
-
-          {!ContextState.isLoggedIn && (
+      {!ContextState.isLoggedIn && (
+        <Navbar style={{ borderBottom: "1px solid #000" }}>
+          <Container>
+            <Navbar.Brand></Navbar.Brand>
             <>
               <Form className="d-flex" onSubmit={onSubmit}>
                 <Form.Control
@@ -109,17 +70,62 @@ export default function MenuBar() {
                 </Button>
               </Form>
             </>
-          )}
-        </Container>
-      </Navbar>
+          </Container>
+        </Navbar>
+      )}
+
       <Navbar style={{ borderBottom: "1px solid #000" }}>
         <Container>
           <Navbar.Brand>
             <Image src="/logo-skillpp.png" style={{ maxHeight: "60px" }} />
           </Navbar.Brand>
           <Nav>
+            <Form className="d-flex">
+              <Form.Control
+                type="search"
+                placeholder="ค้นหารายวิชา"
+                className="me-2"
+                aria-label="Search"
+                
+              />
+              {/* <Button variant="outline-success">Search</Button> */}
+            </Form>
             <Nav.Link>Home</Nav.Link>
             <Nav.Link>Profile</Nav.Link>
+            {ContextState.isLoggedIn && (
+              <Dropdown>
+                <Dropdown.Toggle
+                  style={{
+                    backgroundColor: "white",
+                    color: "black",
+                    border: "none",
+                  }}
+                >
+                  {ContextState.user.username}
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke="#212b36"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    fill="none"
+                    className="mx-2"
+                  >
+                    <circle cx="12" cy="8" r="5" />
+                    <path d="M3,21 h18 C 21,12 3,12 3,21" />
+                  </svg>
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="">Profile</Dropdown.Item>
+                  <Dropdown.Item href="">My Course</Dropdown.Item>
+                  <Dropdown.Item href="" onClick={logout}>
+                    Log Out
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            )}
           </Nav>
         </Container>
       </Navbar>

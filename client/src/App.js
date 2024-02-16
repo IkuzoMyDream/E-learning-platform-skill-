@@ -22,6 +22,7 @@ function App() {
           {/* public */}
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/category" element={<CategoryPage />}></Route>
+          <Route path="/" element={<CategoryPage />}></Route>
           <Route
             path="/category/:categoryName"
             element={<CoursesPage />}

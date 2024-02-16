@@ -14,12 +14,13 @@ export default function CourseDetail() {
     setCourse(response?.data?.data[0]?.attributes);
   };
 
-  useEffect(() => {
+  useEffect(() => {  
     fetchItems();
   }, []);
 
   return (
     <>
+      <h1>วิชา {courseName}</h1>
       <p>{course.name}</p>
       <p>{course.description}</p>
     </>
