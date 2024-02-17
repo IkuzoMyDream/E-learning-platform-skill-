@@ -845,6 +845,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'api::course.course'
     >;
     picture: Attribute.Media;
+    detailcategory: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
