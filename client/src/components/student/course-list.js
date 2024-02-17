@@ -36,7 +36,7 @@ export default function CourseList() {
   return (
     <Container>
       <h1 className="text-center">รายวิชาสำหรับหมวดหมู่</h1>
-      <h1 style={{ color: '#4A55A2' }} className="text-left">{categoryName}</h1>
+      <h1 style={{ color: '#1B1A55' }} className="text-left">{categoryName}</h1>
       <div className="Container" style={{backgroundColor: '#A0BFE0', padding: '10px'}}>
         <h4 style={{ color: 'white' }}>
           {category.detailcategory} 

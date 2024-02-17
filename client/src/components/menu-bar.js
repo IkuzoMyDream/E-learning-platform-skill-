@@ -35,7 +35,7 @@ export default function MenuBar() {
   return (
     <>
       {!ContextState.isLoggedIn && (
-        <Navbar style={{ borderBottom: "1px solid #000" ,backgroundColor: '#4A55A2'}}>
+        <Navbar style={{ borderBottom: "1px solid #eee" ,backgroundColor: '#4A55A2'}}>
           <Container>
             <Navbar.Brand></Navbar.Brand>
             <>
@@ -65,7 +65,7 @@ export default function MenuBar() {
                     }))
                   }
                 />
-                <Button variant="outline-success" type="submit">
+                <Button  variant="outline-success" type="submit" style={{backgroundColor: "#C8FFE0"}}>
                   Login
                 </Button>
               </Form>
@@ -74,7 +74,7 @@ export default function MenuBar() {
         </Navbar>
       )}
 
-      <Navbar style={{ borderBottom: "1px solid #000" }}>
+      <Navbar  style={{ borderBottom: "2px solid #4A55A2", backgroundColor: "#A0BFE0", opacity:"0.9" }}>
         <Container>
           <Navbar.Brand>
             <Image src="/logo-skillpp.png" style={{ maxHeight: "60px" }} />
