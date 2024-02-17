@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 
 export default function CourseList() {
   const [courses, setCourses] = useState([]);
+  const [category, setCategory] = useState({})
   const { categoryName } = useParams();
 
   const fetchItems = async () => {
@@ -19,12 +20,13 @@ export default function CourseList() {
         };
       })
     );
+    setCategory(response.data.data[0].attributes)
   };
 
   useEffect(() => {
     fetchItems();
   }, []);
-
+  
   useEffect(() => {
     // console.log(courses);
     courses.forEach(d => console.log(d.picture.data[0]))
@@ -34,6 +36,9 @@ export default function CourseList() {
   return (
     <Container>
       <h1 className="text-center">รายวิชาสำหรับหมวดหมู่ {categoryName}</h1>
+      <div className="Container">
+          {category.detailcategory} 
+      </div>
       <div className="row">
         {courses.map((d) => (
           <div className="col-md-3" key={d.id}>
