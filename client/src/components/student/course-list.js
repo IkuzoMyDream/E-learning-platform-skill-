@@ -41,8 +41,8 @@ export default function CourseList() {
               style={{ textDecoration: "none" }}
               to={`/category/${categoryName}/${d.name}`}
             >
-              <Card className="mb-3">
-                <Card.Img variant="top" src={"http://localhost:1337"+d.picture.data[0].attributes.url} />               
+              <Card className="mb-3" style={{ display: "flex", alignItems: "center", }}>
+                <Card.Img variant="top" src={"http://localhost:1337"+d.picture.data[0].attributes.url} style={{maxHeight: "286px", maxWidth: "180px"}}/>               
                 <Card.Body>
                   <Card.Title>{d.name}</Card.Title>
                 </Card.Body>

@@ -35,14 +35,14 @@ export default function CategoryList() {
         {categories.map((d) => (
           <div className="col-md-3" key={d.id}>
             <Link style={{ textDecoration: "none" }} to={`/category/${d.name}`}>
-              <Card className="mb-3">
-                <Card.Body>
-                  <Card.Img
+              <Card className="mb-3" style={{ display: "flex", alignItems: "center"}}>
+                <Card.Img
                     src={
                       "http://localhost:1337" + d.picture.data[0].attributes.url
                     }
-                    style={{maxHeight: "50px", maxWidth: "50px"}}
+                    style={{maxHeight: "100px", maxWidth: "100px", marginTop: "10px"}}
                   />
+                <Card.Body>
                   <Card.Title>{d.name}</Card.Title>
                 </Card.Body>
               </Card>
