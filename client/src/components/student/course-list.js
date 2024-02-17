@@ -26,7 +26,7 @@ export default function CourseList() {
   useEffect(() => {
     fetchItems();
   }, []);
-  
+
   useEffect(() => {
     // console.log(courses);
     courses.forEach(d => console.log(d.picture.data[0]))
@@ -35,10 +35,14 @@ export default function CourseList() {
 
   return (
     <Container>
-      <h1 className="text-center">รายวิชาสำหรับหมวดหมู่ {categoryName}</h1>
-      <div className="Container">
+      <h1 className="text-center">รายวิชาสำหรับหมวดหมู่</h1>
+      <h1 style={{ color: '#4A55A2' }} className="text-left">{categoryName}</h1>
+      <div className="Container" style={{backgroundColor: '#A0BFE0', padding: '10px'}}>
+        <h4 style={{ color: 'white' }}>
           {category.detailcategory} 
+        </h4>
       </div>
+      <div style={{ marginBottom: '50px' }}></div>
       <div className="row">
         {courses.map((d) => (
           <div className="col-md-3" key={d.id}>
