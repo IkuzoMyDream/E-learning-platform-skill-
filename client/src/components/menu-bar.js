@@ -35,7 +35,7 @@ export default function MenuBar() {
   return (
     <>
       {!ContextState.isLoggedIn && (
-        <Navbar style={{ borderBottom: "1px solid #000" ,backgroundColor: '#C5DFF8'}}>
+        <Navbar style={{ borderBottom: "1px solid #000" ,backgroundColor: '#4A55A2'}}>
           <Container>
             <Navbar.Brand></Navbar.Brand>
             <>
@@ -89,8 +89,6 @@ export default function MenuBar() {
               />
               {/* <Button variant="outline-success">Search</Button> */}
             </Form>
-            <Nav.Link>Home</Nav.Link>
-            <Nav.Link>Profile</Nav.Link>
             {ContextState.isLoggedIn && (
               <Dropdown>
                 <Dropdown.Toggle
