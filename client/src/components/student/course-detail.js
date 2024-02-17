@@ -14,15 +14,25 @@ export default function CourseDetail() {
     setCourse(response?.data?.data[0]?.attributes);
   };
 
-  useEffect(() => {  
+  useEffect(() => {
     fetchItems();
   }, []);
 
   return (
     <>
-      <h1>วิชา {courseName}</h1>
-      <p>{course.name}</p>
-      <p>{course.description}</p>
+      <h1 style={{ backgroundColor: "#004AAD", color: "white", textAlign: "center", padding: "20px", fontFamily: "ArchTH", fontSize: "30px", fontWeight: "bold" }}>วิชา {courseName}</h1>
+
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <h1 style={{ backgroundColor: "#004AAD", color: "white", textAlign: "center", padding: "10px", fontFamily: "ArchTH", fontSize: "22px", fontWeight: "bold" }}>
+          คำอธิบายรายวิชา</h1>
+          </div>
+        <div style={{ marginTop: "10px" }}>
+          <div style={{ marginLeft: "50px" }}>
+            <p style={{ whiteSpace: "pre-line", fontFamily: "ArchTH", fontSize: "18px" }}>
+              {course.description}</p>
+          </div>
+        </div>
+     
     </>
   );
 }
