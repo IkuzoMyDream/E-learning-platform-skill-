@@ -899,6 +899,9 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'manyToOne',
       'api::booking.booking'
     >;
+    name_teacher: Attribute.String;
+    phone_number: Attribute.BigInteger;
+    mail_teacher: Attribute.Email;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

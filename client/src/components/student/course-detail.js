@@ -3,6 +3,8 @@ import ax from "../../utils/config/ax";
 import conf from "../../utils/config/main";
 import { useParams } from "react-router-dom";
 
+
+
 export default function CourseDetail() {
   const { courseName } = useParams();
   const [course, setCourse] = useState({});
@@ -25,11 +27,25 @@ export default function CourseDetail() {
       <div style={{ display: "flex", alignItems: "center" }}>
         <h1 style={{ backgroundColor: "#004AAD", color: "white", textAlign: "center", padding: "10px", fontFamily: "ArchTH", fontSize: "22px", fontWeight: "bold" }}>
           คำอธิบายรายวิชา</h1>
-          </div>
+      </div>
         <div style={{ marginTop: "10px" }}>
           <div style={{ marginLeft: "50px" }}>
             <p style={{ whiteSpace: "pre-line", fontFamily: "ArchTH", fontSize: "18px" }}>
               {course.description}</p>
+          </div>
+        </div>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <h1 style={{ backgroundColor: "#004AAD", color: "white", textAlign: "center", padding: "10px", fontFamily: "ArchTH", fontSize: "22px", fontWeight: "bold" }}>
+          พัฒนาวิชาโดย</h1>
+      </div>
+        <div style={{ marginTop: "10px" }}>
+          <div style={{ marginLeft: "50px" }}>
+            <p style={{ whiteSpace: "pre-line", fontFamily: "ArchTH", fontSize: "18px" }}>
+              {course.name_teacher}</p>
+            <p style={{ whiteSpace: "pre-line", fontFamily: "ArchTH", fontSize: "18px" }}>
+              {course.phone_number}</p>
+            <p style={{ whiteSpace: "pre-line", fontFamily: "ArchTH", fontSize: "18px" }}>
+              {course.mail_teacher}</p>
           </div>
         </div>
      
