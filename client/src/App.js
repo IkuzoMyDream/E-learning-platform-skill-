@@ -10,6 +10,7 @@ import CoursesPage from "./pages/student/CoursesPage";
 import CourseDetailPage from "./pages/student/CourseDetailPage";
 import PrivateRoutes from "./utils/private-routes";
 import MenuBar from "./components/menu-bar";
+import ProfilePage from "./pages/student/ProfilePage";
 
 function App() {
   const { state } = useContext(AuthContext);
@@ -33,7 +34,9 @@ function App() {
           ></Route>
 
           {/* role === std */}
-          <Route element={<PrivateRoutes />}></Route>
+          <Route element={<PrivateRoutes allowedRole="Student"/>}>
+            <Route path="/profile" element={<ProfilePage />}></Route>
+          </Route>
 
           {/* role == admin */}
         </Routes>

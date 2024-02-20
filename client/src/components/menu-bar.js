@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { AuthContext } from "../utils/auth/Auth.context";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const initialState = {
   username: "",
@@ -35,7 +35,9 @@ export default function MenuBar() {
   return (
     <>
       {!ContextState.isLoggedIn && (
-        <Navbar style={{ borderBottom: "1px solid #eee" ,backgroundColor: '#4A55A2',}}>
+        <Navbar
+          style={{ borderBottom: "1px solid #eee", backgroundColor: "#4A55A2" }}
+        >
           <Container>
             <Navbar.Brand></Navbar.Brand>
             <>
@@ -65,7 +67,11 @@ export default function MenuBar() {
                     }))
                   }
                 />
-                <Button  variant="outline-success" type="submit" style={{backgroundColor: "#C8FFE0"}}>
+                <Button
+                  variant="outline-success"
+                  type="submit"
+                  style={{ backgroundColor: "#C8FFE0" }}
+                >
                   Login
                 </Button>
               </Form>
@@ -74,7 +80,13 @@ export default function MenuBar() {
         </Navbar>
       )}
 
-      <Navbar  style={{ borderBottom: "2px solid #4A55A2", backgroundColor: "#A0BFE0", opacity:"0.9" }}>
+      <Navbar
+        style={{
+          borderBottom: "2px solid #4A55A2",
+          backgroundColor: "#A0BFE0",
+          opacity: "0.9",
+        }}
+      >
         <Container>
           <Navbar.Brand>
             <Image src="/logo-skillpp.png" style={{ maxHeight: "60px" }} />
@@ -100,15 +112,15 @@ export default function MenuBar() {
                 >
                   {ContextState.user.username}
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"  
+                    xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="#000000"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     className="mx-2"
                   >
                     <path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3" />
@@ -116,6 +128,7 @@ export default function MenuBar() {
                     <circle cx="12" cy="12" r="10" />
                   </svg>
                 </Dropdown.Toggle>
+
                 <Dropdown.Menu>
                   <Dropdown.Item href="">Profile</Dropdown.Item>
                   <Dropdown.Item href="">My Course</Dropdown.Item>

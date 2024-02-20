@@ -27,11 +27,6 @@ export default function CourseList() {
     fetchItems();
   }, []);
 
-  useEffect(() => {
-    // console.log(courses);
-    courses.forEach(d => console.log(d.picture.data[0]))
-  }, [courses]);
-
 
   return (
     <Container>

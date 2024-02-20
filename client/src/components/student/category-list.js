@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 
 import ax from "../../utils/config/ax";
 import conf from "../../utils/config/main";
-import { Card, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
+import { Card, Container, Image } from "react-bootstrap";
 
 export default function CategoryList() {
   const [categories, setCategories] = useState([]);
@@ -35,13 +36,20 @@ export default function CategoryList() {
         {categories.map((d) => (
           <div className="col-md-3" key={d.id}>
             <Link style={{ textDecoration: "none" }} to={`/category/${d.name}`}>
-              <Card className="mb-3" style={{ display: "flex", alignItems: "center"}}>
+              <Card
+                className="mb-3"
+                style={{ display: "flex", alignItems: "center" }}
+              >
                 <Card.Img
-                    src={
-                      "http://localhost:1337" + d.picture.data[0].attributes.url
-                    }
-                    style={{maxHeight: "100px", maxWidth: "100px", marginTop: "10px"}}
-                  />
+                  src={
+                    "http://localhost:1337" + d.picture.data[0].attributes.url
+                  }
+                  style={{
+                    maxHeight: "100px",
+                    maxWidth: "100px",
+                    marginTop: "10px",
+                  }}
+                />
                 <Card.Body>
                   <Card.Title>{d.name}</Card.Title>
                 </Card.Body>
