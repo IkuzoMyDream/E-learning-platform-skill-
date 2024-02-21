@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { AuthContext } from "../utils/auth/Auth.context";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const initialState = {
   username: "",
@@ -21,6 +21,8 @@ export default function MenuBar() {
   const { state: ContextState, login, logout } = useContext(AuthContext);
   const [state, setState] = useState(initialState);
 
+  const navigate = useNavigate();
+
   const onSubmit = (e) => {
     e.preventDefault();
     const { username, password } = state;
@@ -30,6 +32,10 @@ export default function MenuBar() {
       username: "",
       password: "",
     });
+  };
+
+  const onBrandClick = () => {
+    navigate("/");
   };
 
   return (
@@ -88,7 +94,7 @@ export default function MenuBar() {
         }}
       >
         <Container>
-          <Navbar.Brand>
+          <Navbar.Brand onClick={onBrandClick}>
             <Image src="/logo-skillpp.png" style={{ maxHeight: "60px" }} />
           </Navbar.Brand>
           <Nav>
@@ -130,7 +136,9 @@ export default function MenuBar() {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="">Profile</Dropdown.Item>
+                  <Dropdown.Item href="" onClick={() => navigate("/profile")}>
+                    Profile
+                  </Dropdown.Item>
                   <Dropdown.Item href="">My Course</Dropdown.Item>
                   <Dropdown.Item href="" onClick={logout}>
                     Log Out

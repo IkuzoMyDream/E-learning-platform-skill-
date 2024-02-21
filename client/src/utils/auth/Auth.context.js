@@ -30,7 +30,7 @@ export const ContextProvider = (props) => {
   const handleLoginResult = (error, result) => {
     setLoginPending(false);
 
-    if (result && result.user) {  
+    if (result && result.user) {
       if (result.jwt) {
         updateJwt(result.jwt);
       }
@@ -58,6 +58,7 @@ export const ContextProvider = (props) => {
     updateJwt(null);
     setLoginSuccess(false);
     setLoginError(null);
+    sessionStorage.removeItem("auth.role")
   };
 
   return (
@@ -65,7 +66,7 @@ export const ContextProvider = (props) => {
       value={{
         state,
         login,
-        logout,  
+        logout,
       }}
     >
       {props.children}
@@ -81,6 +82,9 @@ const fetchLogin = async (username, password, callback) => {
     });
     if (response.data.jwt && response.data.user.id > 0) {
       callback(null, response.data);
+      const role = await ax.get(conf.getUserRole);
+      sessionStorage.setItem("auth.role", role.data.role.name);
+      // console.log(role?.data?.role?.name);
     } else {
       callback(new Error("Invalid username and password"));
     }
@@ -95,7 +99,7 @@ const loadPersistedJwt = async (callback) => {
     if (persistedJwt) {
       axData.jwt = persistedJwt;
       const response = await ax.get(conf.jwtUserEndpoint);
-      const role = response.data.role.name
+      const role = response.data.role.name;
       if (response.data.id > 0) {
         callback(null, {
           user: { ...response.data, role: role },

@@ -26,10 +26,14 @@ export default function ProfilePage() {
   if (userInfomation) {
     return (
       <Container>
+        <img
+          style={{ maxHeight: "100px", maxWidth: "100px" }}
+          src={"http://localhost:1337" + userInfomation.avatar.url}
+        />
         <p>{userInfomation.username}</p>
         <p>คอร์สทั้งหมด</p>
-        {userInfomation.courses.map(course => (
-            <p>{course.name}</p>
+        {userInfomation.courses.map((course) => (
+          <p key={course.id}>{course.name}</p>
         ))}
       </Container>
     );

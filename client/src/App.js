@@ -14,31 +14,33 @@ import ProfilePage from "./pages/student/ProfilePage";
 
 function App() {
   const { state } = useContext(AuthContext);
-  const role = state?.user?.role;
+  // const role = state?.user?.role;
   return (
     <>
-      <MenuBar />
+      {/* <MenuBar /> */}
       <Router>
         <Routes>
-          {/* public */}
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/category" element={<CategoryPage />}></Route>
-          <Route path="/" element={<CategoryPage />}></Route>
-          <Route
-            path="/category/:categoryName"
-            element={<CoursesPage />}
-          ></Route>
-          <Route
-            path="/category/:categoryName/:courseName"
-            element={<CourseDetailPage />}
-          ></Route>
+          <Route element={<MenuBar />}>
+            {/* public */}
+            <Route path="/login" element={<LoginPage />}></Route>
+            <Route path="/category" element={<CategoryPage />}></Route>
+            <Route path="/" element={<CategoryPage />}></Route>
+            <Route
+              path="/category/:categoryName"
+              element={<CoursesPage />}
+            ></Route>
+            <Route
+              path="/category/:categoryName/:courseName"
+              element={<CourseDetailPage />}
+            ></Route>
 
-          {/* role === std */}
-          <Route element={<PrivateRoutes allowedRole="Student"/>}>
-            <Route path="/profile" element={<ProfilePage />}></Route>
+            {/* role === std */}
+            <Route element={<PrivateRoutes allowedRole="Student" />}>
+              <Route path="/profile" element={<ProfilePage />}></Route>
+            </Route>
+
+            {/* role == admin */}
           </Route>
-
-          {/* role == admin */}
         </Routes>
       </Router>
     </>
