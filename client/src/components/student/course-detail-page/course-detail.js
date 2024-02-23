@@ -6,7 +6,7 @@ import { AuthContext } from "../../../utils/auth/Auth.context";
 
 export default function CourseDetail() {
   const { state } = useContext(AuthContext);
-
+  const [pictureCouse, setpictureCouse] = useState();
   const { courseName } = useParams();
   const [course, setCourse] = useState({});
 
@@ -17,6 +17,7 @@ export default function CourseDetail() {
       `${conf.getCourseDetailEndpoint}${courseName}`
     );
     setCourse(response?.data?.data[0]?.attributes);
+    setpictureCouse(response.data.data[0].attributes.picture.data[0].attributes.url)
   };
 
   useEffect(() => {
@@ -39,7 +40,9 @@ export default function CourseDetail() {
       >
         วิชา {courseName}
       </h1>
-
+      <div class="text-center">
+       <img src={"http://localhost:1337" + pictureCouse} class="rounded mx-auto d-block" alt="Responsive image" style={{maxHeight: "220px"}}/>
+      </div>
       <div style={{ display: "flex", alignItems: "center" }}>
         <h1
           style={{
