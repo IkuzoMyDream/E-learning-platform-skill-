@@ -10,6 +10,8 @@ const conf = {
     "/categories?populate[courses][populate]=*&filters[name][$eq]=",
   getCourseDetailEndpoint: "/courses?populate=*&filters[name][$eq]=",
   getAllCourse: "/courses?populate=*",
+  getMaterial: "/materials?populate=*",
+  getBooking: "/bookings?populate[courses][populate]=*",
 };
 
 export default conf;

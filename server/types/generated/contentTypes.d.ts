@@ -914,6 +914,7 @@ export interface ApiCourseCourse extends Schema.CollectionType {
     name_teacher: Attribute.String;
     phone_number: Attribute.BigInteger;
     mail_teacher: Attribute.Email;
+    Course_price: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

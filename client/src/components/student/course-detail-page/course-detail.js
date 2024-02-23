@@ -3,6 +3,7 @@ import ax from "../../../utils/config/ax";
 import conf from "../../../utils/config/main";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../../utils/auth/Auth.context";
+import { BsFillEnvelopeAtFill,BsFillTelephoneFill,BsPersonCircle } from "react-icons/bs";
 
 export default function CourseDetail() {
   const { state } = useContext(AuthContext);
@@ -92,7 +93,7 @@ export default function CourseDetail() {
               fontSize: "18px",
             }}
           >
-            {course.name_teacher}
+            <BsPersonCircle/>{course.name_teacher}
           </p>
           <p
             style={{
@@ -101,7 +102,7 @@ export default function CourseDetail() {
               fontSize: "18px",
             }}
           >
-            {course.phone_number}
+            <BsFillTelephoneFill/>{course.phone_number}
           </p>
           <p
             style={{
@@ -110,7 +111,7 @@ export default function CourseDetail() {
               fontSize: "18px",
             }}
           >
-            {course.mail_teacher}
+            <BsFillEnvelopeAtFill/>{course.mail_teacher}
           </p>
         </div>
       </div>
