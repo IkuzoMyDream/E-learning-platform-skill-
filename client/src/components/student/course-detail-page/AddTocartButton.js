@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 const AddToCartButton = ({ isLoggedIn, role }) => {
   const navigate = useNavigate();
 
+  console.log(role)
+
   if (!isLoggedIn) {
     return (
       <button onClick={() => navigate('/login')}>

@@ -9,8 +9,8 @@ export default function CarouselSlider() {
     setIndex(selectedIndex);
   };
   return (
-    <Container>
-      <Carousel activeIndex={index} onSelect={handleSelect}>
+    <>
+      <Carousel style={{zIndex:"1 !important"}} activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item>
           <CarouselSliderItems />
         </Carousel.Item>
@@ -21,6 +21,6 @@ export default function CarouselSlider() {
           <CarouselSliderItems />
         </Carousel.Item>
       </Carousel>
-    </Container>
+    </>
   );
 }

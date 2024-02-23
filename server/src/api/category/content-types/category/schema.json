@@ -32,7 +32,7 @@
         "audios"
       ]
     },
-    "detailcategory": {
+    "detail": {
       "type": "text"
     }
   }

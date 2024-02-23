@@ -1,0 +1,8 @@
+.main-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* You can change the background color as needed */
+    padding: 20px 0; /* Adjust padding as needed */
+    text-align: center;
+  }

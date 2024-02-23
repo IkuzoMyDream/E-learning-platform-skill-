@@ -8,7 +8,7 @@ const initialState = {
   isLoggedIn: false,
   user: null,
   isLoginPending: false,
-  loginError: null,
+  loginError: null,  
 };
 
 const updateJwt = (jwt) => {

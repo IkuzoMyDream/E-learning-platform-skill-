@@ -17,7 +17,7 @@ const initialState = {
   password: "",
 };
 
-export default function MenuBar() {
+export default function MenuBarHeader() {
   const { state: ContextState, login, logout } = useContext(AuthContext);
   const [state, setState] = useState(initialState);
 
@@ -107,14 +107,15 @@ export default function MenuBar() {
               />
               {/* <Button variant="outline-success">Search</Button> */}
             </Form>
+            <Nav.Link onClick={() => navigate("/course")}>รายวิชา</Nav.Link>
+
             {ContextState.isLoggedIn && (
-              <Dropdown>
-                <Dropdown.Toggle
-                  style={{
-                    backgroundColor: "white",
-                    color: "black",
-                    border: "none",
-                  }}
+              <Dropdown variant="inherit" style={{ zIndex: "1000 !important" }}>
+                <Dropdown.Toggle variant="inherit"
+                style={{
+                  color: "black",
+                  border: "none",
+                }}
                 >
                   {ContextState.user.username}
                   <svg
@@ -135,7 +136,7 @@ export default function MenuBar() {
                   </svg>
                 </Dropdown.Toggle>
 
-                <Dropdown.Menu>
+                <Dropdown.Menu style={{ zIndex: "1000 !important" }}>
                   <Dropdown.Item href="" onClick={() => navigate("/profile")}>
                     Profile
                   </Dropdown.Item>
@@ -149,7 +150,6 @@ export default function MenuBar() {
           </Nav>
         </Container>
       </Navbar>
-      <Outlet />
     </>
   );
 }
