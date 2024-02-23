@@ -9,8 +9,10 @@ import CoursesPage from "./pages/student/CoursesPage";
 import HomePage from "./pages/student/HomePage";
 import CourseDetailPage from "./pages/student/CourseDetailPage";
 import PrivateRoutes from "./utils/private-routes";
-import MenuBar from "./components/menu-bar";
+import MenuBarHeader from "./components/menu-bar-header";
 import ProfilePage from "./pages/student/ProfilePage";
+import CategoryCoursePage from "./pages/student/CategoryCoursePage";
+import MenuBarFooter from "./components/menu-bar-footer";
 
 function App() {
   const { state } = useContext(AuthContext);
@@ -18,19 +20,17 @@ function App() {
   return (
     <>
       <Router>
-        <MenuBar />
+        <MenuBarHeader />
         <Routes>
           {/* public */}
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/course" element={<CoursesPage />} />
           <Route
             path="/category/:categoryName"
-            element={<CoursesPage />}
-          ></Route>
-          <Route
-            path="/course/:courseName"
-            element={<CourseDetailPage />}
-          ></Route>
+            element={<CategoryCoursePage />}
+          />
+          <Route path="/course/:courseName" element={<CourseDetailPage />} />
 
           {/* role === std */}
           <Route element={<PrivateRoutes allowedRole="Student" />}>
@@ -39,6 +39,7 @@ function App() {
 
           {/* role == admin */}
         </Routes>
+        {/* <MenuBarFooter /> */}
       </Router>
     </>
   );

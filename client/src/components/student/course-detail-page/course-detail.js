@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import ax from "../../utils/config/ax";
-import conf from "../../utils/config/main";
+import ax from "../../../utils/config/ax";
+import conf from "../../../utils/config/main";
 import { useParams } from "react-router-dom";
-import AddToCartButton from "./AddTocartButton";
-import { AuthContext } from "../../utils/auth/Auth.context";
+import { AuthContext } from "../../../utils/auth/Auth.context";
 
 export default function CourseDetail() {
   const { state } = useContext(AuthContext);
@@ -115,7 +114,6 @@ export default function CourseDetail() {
           </p>
         </div>
       </div>
-      <AddToCartButton isLoggedIn={state?.isLoggedIn} role={state?.user?.role} />
     </>
   );
 }

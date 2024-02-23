@@ -15,7 +15,7 @@ export default function CategoryList() {
       response?.data?.data?.map((d) => {
         return {
           id: d.id,
-          ...d.attributes,  
+          ...d.attributes,
         };
       })
     );

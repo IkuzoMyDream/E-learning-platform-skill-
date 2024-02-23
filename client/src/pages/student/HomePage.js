@@ -2,12 +2,18 @@ import CategoryList from "../../components/student/home-page/category-list";
 import CarouselSlider from "../../components/student/home-page/carousel-slider";
 import CourseRecommended from "../../components/student/home-page/course-recommended";
 import CourseNewest from "../../components/student/home-page/course-newest";
+
 import ax from "../../utils/config/ax";
 import conf from "../../utils/config/main";
+
 import { useState } from "react";
+import { Button, Container } from "react-bootstrap";
+
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
   const [courses, setCourses] = useState([]);
+  const navigate = useNavigate();
 
   const fetchItems = async () => {
     try {
@@ -30,12 +36,13 @@ function HomePage() {
   }, []);
 
   return (
-    <>
+    <Container>
       <CarouselSlider />
       <CategoryList />
       <CourseRecommended courses={courses} />
       <CourseNewest courses={courses} />
-    </>
+      <Button className="mb-3" variant="secondary" onClick={() => navigate("/course")}>ดูเพิ่มเติม</Button>
+    </Container>
   );
 }
 
