@@ -724,6 +724,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     firstname: Attribute.String;
     lastname: Attribute.String;
     avatar: Attribute.Media;
+    bookings: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::booking.booking'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -793,7 +798,8 @@ export interface ApiBookingBooking extends Schema.CollectionType {
   info: {
     singularName: 'booking';
     pluralName: 'bookings';
-    displayName: 'Booking';
+    displayName: 'Cart';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -803,6 +809,11 @@ export interface ApiBookingBooking extends Schema.CollectionType {
       'api::booking.booking',
       'oneToMany',
       'api::course.course'
+    >;
+    owner: Attribute.Relation<
+      'api::booking.booking',
+      'manyToOne',
+      'plugin::users-permissions.user'
     >;
     payment: Attribute.Relation<
       'api::booking.booking',
@@ -963,12 +974,13 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
     singularName: 'payment';
     pluralName: 'payments';
     displayName: 'Payment';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    bookings: Attribute.Relation<
+    carts: Attribute.Relation<
       'api::payment.payment',
       'oneToMany',
       'api::booking.booking'

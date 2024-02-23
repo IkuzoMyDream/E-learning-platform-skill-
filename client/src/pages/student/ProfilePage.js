@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+
 import ax from "../../utils/config/ax";
 import conf from "../../utils/config/main";
-import { Card, Container } from "react-bootstrap";
 
-import { Image } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
+
 
 export default function ProfilePage() {
   const [userInfomation, setUserInfomation] = useState(null);
@@ -38,18 +39,21 @@ export default function ProfilePage() {
               }}
               src={"http://localhost:1337" + userInfomation.avatar.url}
             />
-            <p>{userInfomation.username}</p>
-            <h1>Email Address</h1>
-            <p>{userInfomation.email}</p>
+            <Card.Title>{userInfomation.username}</Card.Title>
+            <Card.Title>Email Address</Card.Title>
+            <Card.Text>{userInfomation.email}</Card.Text>
+            <Button variant="secondary">แก้ไขข้อมูลส่วนตัว</Button>
           </Card.Body>
         </Card>
-        <Card>
-          <Card.Body>ประวัติการซื้อ</Card.Body>
+        <Card className="mb-3">
+          <Card.Header>ประวัติการซื้อ</Card.Header>
         </Card>
-        <p>คอร์สทั้งหมด</p>
-        {userInfomation.courses.map((course) => (
-          <p key={course.id}>{course.name}</p>
-        ))}
+        <Card>
+          <Card.Header>คอร์สทั้งหมด</Card.Header>
+          {userInfomation.courses.map((course) => (
+            <Card.Body key={course.id}>{course.name}</Card.Body>
+          ))}
+        </Card>
       </Container>
     );
   }

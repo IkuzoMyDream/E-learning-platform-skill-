@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import ax from "../../utils/config/ax";
-import conf from "../../utils/config/main";
+import ax from "../../../utils/config/ax";
+import conf from "../../../utils/config/main";
 import { Link } from "react-router-dom";
 
 import { Card, Container, Image } from "react-bootstrap";
@@ -15,7 +15,7 @@ export default function CategoryList() {
       response?.data?.data?.map((d) => {
         return {
           id: d.id,
-          ...d.attributes,
+          ...d.attributes,  
         };
       })
     );
@@ -25,9 +25,9 @@ export default function CategoryList() {
     fetchItems();
   }, []);
 
-  useEffect(() => {
-    console.log(categories);
-  }, [categories]);
+  // useEffect(() => {
+  //   console.log(categories);
+  // }, [categories]);
 
   return (
     <Container>

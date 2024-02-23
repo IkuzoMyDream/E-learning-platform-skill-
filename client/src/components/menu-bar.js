@@ -108,7 +108,7 @@ export default function MenuBar() {
               {/* <Button variant="outline-success">Search</Button> */}
             </Form>
             {ContextState.isLoggedIn && (
-              <Dropdown>
+              <Dropdown style={{ zIndex: "1000 !important" }}>
                 <Dropdown.Toggle
                   style={{
                     backgroundColor: "white",
@@ -135,7 +135,7 @@ export default function MenuBar() {
                   </svg>
                 </Dropdown.Toggle>
 
-                <Dropdown.Menu>
+                <Dropdown.Menu style={{zIndex: "1000 !important"}}>
                   <Dropdown.Item href="" onClick={() => navigate("/profile")}>
                     Profile
                   </Dropdown.Item>
@@ -149,7 +149,6 @@ export default function MenuBar() {
           </Nav>
         </Container>
       </Navbar>
-      <Outlet />
     </>
   );
 }
