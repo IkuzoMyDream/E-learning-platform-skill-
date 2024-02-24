@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Container, Card, Row, Col } from "react-bootstrap";
 
+
 export default function TrolleyList({ courses }) {
   console.log(courses);
   return (
@@ -10,6 +11,7 @@ export default function TrolleyList({ courses }) {
         {courses &&
           courses.map((course) => (
             <Col lg="3" key={course.id}>
+              
               <Link to={`/course/${course.name}`}>
                 <Card key={course.id}>
                   <Card.Img
@@ -24,7 +26,9 @@ export default function TrolleyList({ courses }) {
               </Link>
             </Col>
           ))}
+          <h1>test</h1>
       </Row>
+      
     </Container>
   );
 }

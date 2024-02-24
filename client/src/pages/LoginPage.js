@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import { AuthContext } from "../utils/auth/Auth.context.js";
+import { Route } from "react-router-dom";
 
 const initialState = {
   username: "",
@@ -70,7 +71,7 @@ function LoginPage() {
       </div>
 
       {isLoginPending && <div>Please wait...</div>}
-      {isLoggedIn && <div>Success.</div>}
+      {isLoggedIn && <div>Success.</div> }
       {loginError && <div>{loginError.message}</div>}
     </form>
   );

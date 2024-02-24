@@ -25,6 +25,6 @@ export default function TrolleyPage() {
   useEffect(() => {
     fetchItems();
   }, []);
-
+  console.log({trolley});
   return <TrolleyList trolley={trolley} />;
 }
