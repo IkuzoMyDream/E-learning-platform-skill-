@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { Container, Card, Row, Col } from "react-bootstrap";
 
-export default function TrolleyList({ trolleise }) {
-  console.log(trolleise);
+export default function TrolleyList({ courses }) {
+  console.log(courses);
   return (
     <Container>
       <h1>ตะกร้า</h1>
       <Row>
-        {trolleise &&
-          trolleise.map((course) => (
+        {courses &&
+          courses.map((course) => (
             <Col lg="3" key={course.id}>
               <Link to={`/course/${course.name}`}>
                 <Card key={course.id}>
