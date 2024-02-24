@@ -27,7 +27,6 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/course" element={<CoursesPage />} />
-          <Route path="/trolley" element={<TrolleyPage />} />
           <Route
             path="/category/:categoryName"
             element={<CategoryCoursePage />}
@@ -36,6 +35,7 @@ function App() {
 
           {/* role === std */}
           <Route element={<PrivateRoutes allowedRole="Student" />}>
+            <Route path="/trolley" element={<TrolleyPage />} />
             <Route path="/profile" element={<ProfilePage />}></Route>
           </Route>
 
