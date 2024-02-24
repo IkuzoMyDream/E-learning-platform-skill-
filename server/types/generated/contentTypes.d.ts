@@ -724,10 +724,10 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     firstname: Attribute.String;
     lastname: Attribute.String;
     avatar: Attribute.Media;
-    bookings: Attribute.Relation<
+    carts: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
-      'api::booking.booking'
+      'api::cart.cart'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -793,47 +793,38 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
-export interface ApiBookingBooking extends Schema.CollectionType {
-  collectionName: 'bookings';
+export interface ApiCartCart extends Schema.CollectionType {
+  collectionName: 'carts';
   info: {
-    singularName: 'booking';
-    pluralName: 'bookings';
+    singularName: 'cart';
+    pluralName: 'carts';
     displayName: 'Cart';
-    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    courses: Attribute.Relation<
-      'api::booking.booking',
-      'oneToMany',
-      'api::course.course'
-    >;
     owner: Attribute.Relation<
-      'api::booking.booking',
+      'api::cart.cart',
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    course: Attribute.Relation<
+      'api::cart.cart',
+      'manyToOne',
+      'api::course.course'
+    >;
     payment: Attribute.Relation<
-      'api::booking.booking',
+      'api::cart.cart',
       'manyToOne',
       'api::payment.payment'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::booking.booking',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::booking.booking',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -906,15 +897,15 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'manyToOne',
       'api::material.material'
     >;
-    booking: Attribute.Relation<
-      'api::course.course',
-      'manyToOne',
-      'api::booking.booking'
-    >;
     name_teacher: Attribute.String;
     phone_number: Attribute.BigInteger;
     mail_teacher: Attribute.Email;
     Course_price: Attribute.BigInteger;
+    carts: Attribute.Relation<
+      'api::course.course',
+      'oneToMany',
+      'api::cart.cart'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -984,7 +975,7 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
     carts: Attribute.Relation<
       'api::payment.payment',
       'oneToMany',
-      'api::booking.booking'
+      'api::cart.cart'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1022,7 +1013,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
-      'api::booking.booking': ApiBookingBooking;
+      'api::cart.cart': ApiCartCart;
       'api::category.category': ApiCategoryCategory;
       'api::course.course': ApiCourseCourse;
       'api::material.material': ApiMaterialMaterial;

@@ -87,10 +87,10 @@
       "type": "media",
       "multiple": false
     },
-    "bookings": {
+    "carts": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::booking.booking",
+      "target": "api::cart.cart",
       "mappedBy": "owner"
     }
   }

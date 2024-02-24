@@ -1,28 +1,27 @@
 {
   "kind": "collectionType",
-  "collectionName": "bookings",
+  "collectionName": "carts",
   "info": {
-    "singularName": "booking",
-    "pluralName": "bookings",
-    "displayName": "Cart",
-    "description": ""
+    "singularName": "cart",
+    "pluralName": "carts",
+    "displayName": "Cart"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "courses": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::course.course",
-      "mappedBy": "booking"
-    },
     "owner": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "bookings"
+      "inversedBy": "carts"
+    },
+    "course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course.course",
+      "inversedBy": "carts"
     },
     "payment": {
       "type": "relation",
