@@ -17,6 +17,7 @@ const conf = {
   getCourseDetailEndpoint: "/courses?populate=*&filters[name][$eq]=",
   getAllCourse: "/courses?populate=*",
   getMaterial: "/materials?populate=*",
+
 };
 
 export default conf;
