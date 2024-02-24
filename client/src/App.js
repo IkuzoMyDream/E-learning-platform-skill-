@@ -26,6 +26,7 @@ function App() {
           {/* public */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
+          <Route path="/category" element={<HomePage/>}/>
           <Route path="/course" element={<CoursesPage />} />
           <Route
             path="/category/:categoryName"
