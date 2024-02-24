@@ -62,6 +62,9 @@
     },
     "mail_teacher": {
       "type": "email"
+    },
+    "Course_price": {
+      "type": "biginteger"
     }
   }
 }

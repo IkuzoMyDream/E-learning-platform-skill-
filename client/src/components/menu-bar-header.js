@@ -8,6 +8,7 @@ import {
   NavDropdown,
   Dropdown,
 } from "react-bootstrap";
+import { BsCart3 } from "react-icons/bs";
 import { useContext, useState } from "react";
 import { AuthContext } from "../utils/auth/Auth.context";
 import { Link, Outlet, useNavigate } from "react-router-dom";
@@ -107,6 +108,7 @@ export default function MenuBarHeader() {
               />
               {/* <Button variant="outline-success">Search</Button> */}
             </Form>
+            <Nav.Link onClick={() => navigate("/trolley")}><BsCart3/></Nav.Link>
             <Nav.Link onClick={() => navigate("/course")}>รายวิชา</Nav.Link>
 
             {ContextState.isLoggedIn && (
