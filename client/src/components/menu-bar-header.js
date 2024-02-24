@@ -108,7 +108,7 @@ export default function MenuBarHeader() {
               />
               {/* <Button variant="outline-success">Search</Button> */}
             </Form>
-            {ContextState.isLoggedIn && (<Nav.Link onClick={() => navigate("/trolley")}><BsCart3/></Nav.Link>)}
+            {ContextState.isLoggedIn && (<Nav.Link onClick={() => navigate("/cart")}><BsCart3/></Nav.Link>)}
             
             <Nav.Link onClick={() => navigate("/course")}>รายวิชา</Nav.Link>
 

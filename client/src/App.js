@@ -12,8 +12,8 @@ import PrivateRoutes from "./utils/private-routes";
 import MenuBarHeader from "./components/menu-bar-header";
 import ProfilePage from "./pages/student/ProfilePage";
 import CategoryCoursePage from "./pages/student/CategoryCoursePage";
-import MenuBarFooter from "./components/menu-bar-footer";
-import TrolleyPage from "./pages/student/TrolleyPage";
+import CartPage from "./pages/student/CartPage";
+// import MenuBarFooter from "./components/menu-bar-footer";
 
 function App() {
   const { state } = useContext(AuthContext);
@@ -32,10 +32,10 @@ function App() {
             element={<CategoryCoursePage />}
           />
           <Route path="/course/:courseName" element={<CourseDetailPage />} />
+          <Route path="/cart" element={<CartPage />} />
 
           {/* role === std */}
           <Route element={<PrivateRoutes allowedRole="Student" />}>
-            <Route path="/trolley" element={<TrolleyPage />} />
             <Route path="/profile" element={<ProfilePage />}></Route>
           </Route>
 
