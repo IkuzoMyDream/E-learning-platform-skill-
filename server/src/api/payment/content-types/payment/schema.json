@@ -15,7 +15,7 @@
     "carts": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::booking.booking",
+      "target": "api::cart.cart",
       "mappedBy": "payment"
     }
   }
