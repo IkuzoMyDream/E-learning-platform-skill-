@@ -12,6 +12,7 @@ const conf = {
   getAllCourse: "/courses?populate=*",
   getMaterial: "/materials?populate=*",
   getBooking: "/bookings?populate[courses][populate]=*",
+  getUserCourseEnrollments: "/users/me?populate[courses][populate]=*"
 };
 
 export default conf;
