@@ -729,6 +729,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::cart.cart'
     >;
+    payments: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::payment.payment'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -804,15 +809,15 @@ export interface ApiCartCart extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    owner: Attribute.Relation<
-      'api::cart.cart',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
     course: Attribute.Relation<
       'api::cart.cart',
       'manyToOne',
       'api::course.course'
+    >;
+    owner: Attribute.Relation<
+      'api::cart.cart',
+      'manyToOne',
+      'plugin::users-permissions.user'
     >;
     payment: Attribute.Relation<
       'api::cart.cart',
@@ -906,6 +911,11 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'oneToMany',
       'api::cart.cart'
     >;
+    payments: Attribute.Relation<
+      'api::course.course',
+      'oneToMany',
+      'api::payment.payment'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -966,12 +976,21 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
     singularName: 'payment';
     pluralName: 'payments';
     displayName: 'Payment';
-    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    owner: Attribute.Relation<
+      'api::payment.payment',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    course: Attribute.Relation<
+      'api::payment.payment',
+      'manyToOne',
+      'api::course.course'
+    >;
     carts: Attribute.Relation<
       'api::payment.payment',
       'oneToMany',

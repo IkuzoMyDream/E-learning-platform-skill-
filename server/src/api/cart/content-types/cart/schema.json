@@ -11,16 +11,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "owner": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "carts"
-    },
     "course": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::course.course",
+      "inversedBy": "carts"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
       "inversedBy": "carts"
     },
     "payment": {

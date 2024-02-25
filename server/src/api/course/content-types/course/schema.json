@@ -65,6 +65,12 @@
       "relation": "oneToMany",
       "target": "api::cart.cart",
       "mappedBy": "course"
+    },
+    "payments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payment.payment",
+      "mappedBy": "course"
     }
   }
 }

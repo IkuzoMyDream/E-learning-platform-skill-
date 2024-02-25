@@ -13,6 +13,7 @@ import MenuBarHeader from "./components/menu-bar-header";
 import ProfilePage from "./pages/student/ProfilePage";
 import CategoryCoursePage from "./pages/student/CategoryCoursePage";
 import CartPage from "./pages/student/CartPage";
+import StudyPage from "./pages/student/StudyPage";
 // import MenuBarFooter from "./components/menu-bar-footer";
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           {/* role === std */}
           <Route element={<PrivateRoutes allowedRole="Student" />}>
             <Route path="/profile" element={<ProfilePage />}></Route>
+            <Route path="/course/:courseName/study" element={<StudyPage />}></Route>
           </Route>
 
           {/* role == admin */}

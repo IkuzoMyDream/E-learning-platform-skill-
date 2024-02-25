@@ -92,6 +92,12 @@
       "relation": "oneToMany",
       "target": "api::cart.cart",
       "mappedBy": "owner"
+    },
+    "payments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payment.payment",
+      "mappedBy": "owner"
     }
   }
 }

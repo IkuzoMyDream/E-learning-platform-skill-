@@ -9,12 +9,15 @@ import { AuthContext } from "../../utils/auth/Auth.context";
 
 export default function CartPage() {
   const [carts, setCarts] = useState([]);
-  const { state } = useContext(AuthContext);
 
   const fetchItems = async () => {
     try {
       const response = await ax.get(conf.getUserCartBookingList);
-      setCarts(response.data.courses);
+      setCarts(
+        response.data.carts.map((cart) => {
+          return { ...cart.course };
+        })
+      );
     } catch (err) {
       console.log(err);
     }
@@ -24,10 +27,14 @@ export default function CartPage() {
     fetchItems();
   }, []);
 
-  // return <TrolleyList carts={carts} />;
+  useEffect(() => {
+    console.log(carts);
+  }, [carts]);
+
   return (
     <Container>
-      <CartList carts={carts} />
+      {" "}
+      <CartList carts={carts} />{" "}
     </Container>
   );
 }
