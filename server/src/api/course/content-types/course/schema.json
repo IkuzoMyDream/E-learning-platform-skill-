@@ -57,8 +57,8 @@
     "mail_teacher": {
       "type": "email"
     },
-    "Course_price": {
-      "type": "biginteger"
+    "price": {
+      "type": "integer"
     },
     "carts": {
       "type": "relation",

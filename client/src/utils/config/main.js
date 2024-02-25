@@ -25,6 +25,10 @@ const conf = {
 
   // post
   postCart: "/carts",
+  postEnrollWithUserId: "/courses/",
+
+  // delete
+  deleteCartById: "/carts/",
 };
 
 export default conf;

@@ -905,7 +905,7 @@ export interface ApiCourseCourse extends Schema.CollectionType {
     name_teacher: Attribute.String;
     phone_number: Attribute.BigInteger;
     mail_teacher: Attribute.Email;
-    Course_price: Attribute.BigInteger;
+    price: Attribute.Integer;
     carts: Attribute.Relation<
       'api::course.course',
       'oneToMany',
