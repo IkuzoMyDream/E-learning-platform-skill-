@@ -8,7 +8,10 @@ const conf = {
   getUserRole: "/users/me?populate=role",
   jwtUserEndpoint: "/users/me?populate=*",
   getUserCourseEnrollments: "/users/me?populate[courses][populate]=*",
-  getUserCartBookingList: "/users/me?populate[carts][populate][course][populate]=*",
+  getUserCartsFilteredByCourseName:
+    "/users/me?populate[carts][populate][course][filters][name][$eq]=",
+  getUserCartBookingList:
+    "/users/me?populate[carts][populate][course][populate]=*",
 
   getCategoriesEndpoint: "/categories?populate=*",
   getCoursesEndpoint:
@@ -16,7 +19,8 @@ const conf = {
   getCourseDetailEndpoint: "/courses?populate=*&filters[name][$eq]=",
   getAllCourse: "/courses?populate=*",
   getCarts: "/carts?populate=*",
-  getCartsFilteredByCourseName: "/carts?populate[course][filters][name][$eq]=",
+  getCartsFilteredByCourseName:
+    "/carts?populate[owner][populate]=*&populate[course][filters][name][$eq]=",
   getMaterial: "/materials?populate=*",
 
   // post

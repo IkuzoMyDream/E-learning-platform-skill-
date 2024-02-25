@@ -7,6 +7,7 @@ import conf from "../../../utils/config/main";
 export default function TransactionButton({
   isLoggedIn,
   isPurchased,
+  isCarted,
   userId,
   courseId,
 }) {
@@ -61,10 +62,12 @@ export default function TransactionButton({
         >
           เรียน
         </Button>
-      ) : (
-        <Button variant="secondary" onClick={handleAddCart}>
-          เพิ่มลงตะกร้า
+      ) : isCarted ? (
+        <Button variant="secondary" onClick={() => navigate("/cart")}>
+          ชำระเงิน
         </Button>
+      ) : (
+        <Button onClick={handleAddCart}>เพิ่มลงตะกร้า</Button>
       )}
     </>
   );

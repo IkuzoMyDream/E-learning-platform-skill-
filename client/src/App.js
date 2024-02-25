@@ -33,12 +33,15 @@ function App() {
             element={<CategoryCoursePage />}
           />
           <Route path="/course/:courseName" element={<CourseDetailPage />} />
-          <Route path="/cart" element={<CartPage />} />
 
           {/* role === std */}
           <Route element={<PrivateRoutes allowedRole="Student" />}>
             <Route path="/profile" element={<ProfilePage />}></Route>
-            <Route path="/course/:courseName/study" element={<StudyPage />}></Route>
+            <Route path="/cart" element={<CartPage />} />
+            <Route
+              path="/course/:courseName/study"
+              element={<StudyPage />}
+            ></Route>
           </Route>
 
           {/* role == admin */}

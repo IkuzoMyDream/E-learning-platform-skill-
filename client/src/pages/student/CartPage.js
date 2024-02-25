@@ -1,11 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import CartList from "../../components/student/trolley-booking-page/cart-booking-list";
+import { useEffect, useState } from "react";
+
 import ax from "../../utils/config/ax";
 import conf from "../../utils/config/main";
 
 import { Container } from "react-bootstrap";
 
-import { AuthContext } from "../../utils/auth/Auth.context";
+import CartList from "../../components/student/cart-page/cart-list";
+import CartProgressBar from "../../components/student/cart-page/cart-progress-bar";
 
 export default function CartPage() {
   const [carts, setCarts] = useState([]);
@@ -33,7 +34,7 @@ export default function CartPage() {
 
   return (
     <Container>
-      {" "}
+      <CartProgressBar></CartProgressBar>
       <CartList carts={carts} />{" "}
     </Container>
   );
