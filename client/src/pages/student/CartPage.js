@@ -12,11 +12,19 @@ export default function CartPage() {
   const [carts, setCarts] = useState([]);
   const [selectedCoursesId, setSelectedCoursesId] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState([]);
+  const [enrollers, setEnrollers] = useState([]);
+
   const [isShowTransactionModal, setIsShowTransactionModal] = useState(false);
 
   const fetchItems = async () => {
     try {
       const response = await ax.get(conf.getUserCartBookingList);
+      // console.log(response);
+      // setEnrollers(
+      //   response.data.carts.map((cart) => {
+      //     return { ...cart.enrollers };
+      //   })
+      // );
       setCarts(
         response.data.carts.map((cart) => {
           return { ...cart.course };
@@ -36,6 +44,10 @@ export default function CartPage() {
       carts.filter((course) => selectedCoursesId.includes(course.id))
     );
   }, [selectedCoursesId]);
+
+  useEffect(() => {
+    console.log(enrollers);
+  }, [enrollers]);
 
   return (
     <Container>

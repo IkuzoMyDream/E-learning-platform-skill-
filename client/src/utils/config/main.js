@@ -29,6 +29,7 @@ const conf = {
 
   // delete
   deleteCartById: "/carts/",
+
 };
 
 export default conf;
