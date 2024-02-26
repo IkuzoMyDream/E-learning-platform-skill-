@@ -940,6 +940,7 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
     singularName: 'material';
     pluralName: 'materials';
     displayName: 'Material';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -952,6 +953,8 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
       'api::course.course'
     >;
     title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    duration: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

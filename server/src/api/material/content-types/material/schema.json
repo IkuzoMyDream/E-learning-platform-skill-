@@ -4,7 +4,8 @@
   "info": {
     "singularName": "material",
     "pluralName": "materials",
-    "displayName": "Material"
+    "displayName": "Material",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,14 +13,15 @@
   "pluginOptions": {},
   "attributes": {
     "video": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "courses": {
       "type": "relation",
@@ -30,6 +32,12 @@
     "title": {
       "type": "string",
       "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "duration": {
+      "type": "integer"
     }
   }
 }
