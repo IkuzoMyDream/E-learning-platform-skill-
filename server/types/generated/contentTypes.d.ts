@@ -903,7 +903,6 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'api::material.material'
     >;
     name_teacher: Attribute.String;
-    phone_number: Attribute.BigInteger;
     mail_teacher: Attribute.Email;
     price: Attribute.Integer;
     carts: Attribute.Relation<
@@ -916,6 +915,7 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'oneToMany',
       'api::payment.payment'
     >;
+    phone_number: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

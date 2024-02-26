@@ -51,9 +51,6 @@
     "name_teacher": {
       "type": "string"
     },
-    "phone_number": {
-      "type": "biginteger"
-    },
     "mail_teacher": {
       "type": "email"
     },
@@ -71,6 +68,9 @@
       "relation": "oneToMany",
       "target": "api::payment.payment",
       "mappedBy": "course"
+    },
+    "phone_number": {
+      "type": "string"
     }
   }
 }
