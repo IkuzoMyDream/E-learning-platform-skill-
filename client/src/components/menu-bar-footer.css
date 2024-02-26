@@ -1,8 +1,16 @@
 .main-footer {
-    position: fixed;
-    bottom: 0;
+  position: relative;
+    bottom: auto;
     width: 100%;
-    background-color: #f8f9fa; /* You can change the background color as needed */
+    background-color: #dcdcdd; /* You can change the background color as needed */
     padding: 20px 0; /* Adjust padding as needed */
     text-align: center;
+  }
+.footer-contrack {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #f1f1f1; /* You can change the background color as needed */
+    padding: 20px 0; /* Adjust padding as needed */
+    text-align: left;
   }

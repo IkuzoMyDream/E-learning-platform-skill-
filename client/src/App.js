@@ -10,17 +10,17 @@ import HomePage from "./pages/student/HomePage";
 import CourseDetailPage from "./pages/student/CourseDetailPage";
 import PrivateRoutes from "./utils/private-routes";
 import MenuBarHeader from "./components/menu-bar-header";
+import MenuBarFooter from "./components/menu-bar-footer";
 import ProfilePage from "./pages/student/ProfilePage";
 import CategoryCoursePage from "./pages/student/CategoryCoursePage";
 import CartPage from "./pages/student/CartPage";
 import StudyPage from "./pages/student/StudyPage";
-// import MenuBarFooter from "./components/menu-bar-footer";
 
 function App() {
   const { state } = useContext(AuthContext);
   // const role = state?.user?.role;
   return (
-    <>
+    <><body>
       <Router>
         <MenuBarHeader />
         <Routes>
@@ -46,8 +46,11 @@ function App() {
 
           {/* role == admin */}
         </Routes>
-        {/* <MenuBarFooter /> */}
       </Router>
+      <footer>
+       <MenuBarFooter /> 
+      </footer>
+      </body>
     </>
   );
 }
