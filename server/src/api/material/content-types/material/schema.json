@@ -41,6 +41,12 @@
     },
     "chapter_number": {
       "type": "integer"
+    },
+    "progresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::progress.progress",
+      "mappedBy": "material"
     }
   }
 }

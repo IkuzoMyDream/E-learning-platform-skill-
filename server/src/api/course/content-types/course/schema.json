@@ -71,6 +71,12 @@
       "relation": "oneToMany",
       "target": "api::payment.payment",
       "mappedBy": "course"
+    },
+    "progresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::progress.progress",
+      "mappedBy": "course"
     }
   }
 }

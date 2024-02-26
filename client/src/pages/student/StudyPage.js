@@ -3,6 +3,7 @@ import ax from "../../utils/config/ax";
 import conf from "../../utils/config/main";
 import { useParams } from "react-router-dom";
 import { Card, Container } from "react-bootstrap";
+import ReactPlayer from "react-player";
 
 export default function StudyPage() {
   const [materials, setMaterials] = useState([]);
@@ -35,6 +36,14 @@ export default function StudyPage() {
     setSelectedMaterial(material);
   };
 
+  const updateLearningProgress = async () => {
+    try {
+    } catch (err) {
+      console.log(err);
+    } finally {
+    }
+  };
+
   useEffect(() => {
     fetchItem();
   }, []);
@@ -44,31 +53,24 @@ export default function StudyPage() {
     fetchItem();
   }, [selectedMaterial]);
 
-  useEffect(() => {}, [materials]);
-
   return (
     <Container>
       {selectedMaterial && !isLoading && (
-        <video
-          className="text-center"
+        <ReactPlayer
+          url={
+            "http://localhost:1337" +
+            selectedMaterial.video.data[0].attributes.url
+          }
           controls
-          contextMenu="nodownload"
-          width="300"
-          height="300"
-        >
-          <source
-            src={
-              "http://localhost:1337" +
-              selectedMaterial?.video?.data[0]?.attributes?.url
-            }
-          ></source>
-        </video>
+          onProgress={() => console.log("test")}
+          config={{ file: { attributes: { controlsList: "nodownload" } } }}
+        ></ReactPlayer>
       )}
       {materials.map((material) => (
         <Card
           className="text-center my-3"
           style={{ cursor: "pointer" }}
-          onClick={() => handleSelectMaterial(material)} // ส่งพารามิเตอร์ material ไปยังฟังก์ชัน handleSelectMaterial
+          onClick={() => handleSelectMaterial(material)}
           key={material.id}
         >
           <Card.Body>
