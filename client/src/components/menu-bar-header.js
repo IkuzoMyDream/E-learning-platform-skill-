@@ -43,7 +43,7 @@ export default function MenuBarHeader() {
     <>
       {!ContextState.isLoggedIn && (
         <Navbar
-          style={{ borderBottom: "1px solid #eee", backgroundColor: "#4A55A2" }}
+          style={{ borderBottom: "1px solid #eee", backgroundColor: "#A0BFE0" }}
         >
           <Container>
             <Navbar.Brand></Navbar.Brand>
