@@ -897,9 +897,9 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'api::category.category'
     >;
     picture: Attribute.Media;
-    material: Attribute.Relation<
+    materials: Attribute.Relation<
       'api::course.course',
-      'manyToOne',
+      'oneToMany',
       'api::material.material'
     >;
     name_teacher: Attribute.String;
@@ -947,14 +947,15 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
   };
   attributes: {
     video: Attribute.Media;
-    courses: Attribute.Relation<
-      'api::material.material',
-      'oneToMany',
-      'api::course.course'
-    >;
     title: Attribute.String & Attribute.Required;
     description: Attribute.Text;
     duration: Attribute.Integer;
+    course: Attribute.Relation<
+      'api::material.material',
+      'manyToOne',
+      'api::course.course'
+    >;
+    chapter_number: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

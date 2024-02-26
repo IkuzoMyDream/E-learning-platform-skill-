@@ -9,6 +9,5 @@ export default function PrivateRoutes({ allowedRole }) {
 
   const location = useLocation();
 
-
   return userRole === allowedRole ? <Outlet /> : <Navigate to={"/"}/>;
 }
