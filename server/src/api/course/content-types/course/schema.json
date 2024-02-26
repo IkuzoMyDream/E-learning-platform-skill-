@@ -51,9 +51,6 @@
     "name_teacher": {
       "type": "string"
     },
-    "phone_number": {
-      "type": "biginteger"
-    },
     "mail_teacher": {
       "type": "email"
     },
@@ -77,6 +74,8 @@
       "relation": "oneToMany",
       "target": "api::progress.progress",
       "mappedBy": "course"
+    "phone_number": {
+      "type": "string"
     }
   }
 }
