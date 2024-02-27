@@ -1079,6 +1079,36 @@ export interface ApiProgressProgress extends Schema.CollectionType {
   };
 }
 
+export interface ApiSliderSlider extends Schema.CollectionType {
+  collectionName: 'sliders';
+  info: {
+    singularName: 'slider';
+    pluralName: 'sliders';
+    displayName: 'slider';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    IMG: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::slider.slider',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::slider.slider',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1103,6 +1133,7 @@ declare module '@strapi/types' {
       'api::material.material': ApiMaterialMaterial;
       'api::payment.payment': ApiPaymentPayment;
       'api::progress.progress': ApiProgressProgress;
+      'api::slider.slider': ApiSliderSlider;
     }
   }
 }
