@@ -41,7 +41,7 @@ function HomePage() {
       <CategoryList />
       <CourseRecommended courses={courses} />
       <CourseNewest courses={courses} />
-      <Button className="mb-3" variant="secondary" onClick={() => navigate("/course")}>ดูเพิ่มเติม</Button>
+      <Button className="my-3" variant="secondary" onClick={() => navigate("/course")}>ดูเพิ่มเติม</Button>
     </Container>
   );
 }

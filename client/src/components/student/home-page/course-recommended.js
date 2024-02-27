@@ -4,13 +4,17 @@ import { Link } from "react-router-dom";
 import { Card, Col, Container, Row } from "react-bootstrap";
 
 export default function CourseRecommended({ courses }) {
-  if (courses) {
+  if (courses.length) {
+    const recommendedCourses = courses.sort(
+      (a, b) => a.enrollers.data.length - b.enrollers.data.length
+    );
+
     return (
       <Container>
         <h1 className="text-center">รายวิชาแนะนำ</h1>
         <Row>
           {courses &&
-            courses.map((course) => (
+            recommendedCourses.map((course) => (
               <Col lg="3" key={course.id}>
                 <Link to={`/course/${course.name}`}>
                   <Card key={course.id}>

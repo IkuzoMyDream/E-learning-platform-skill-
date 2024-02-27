@@ -8,18 +8,16 @@ import {
 export default function CourseDetail({ course, picturecourse }) {
   return (
     <>
-
-      <Row 
+      <Row
         style={{
-          backgroundColor:"rgba(181, 192, 208, 0.5)",
-
+          backgroundColor: "rgba(181, 192, 208, 0.5)",
         }}
-        >
+      >
         <Col>
           <h1
-            style = {{
-              marginLeft : "auto",
-              marginRight : "auto",
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
               fontSize: "50px",
               textAlign: "center",
             }}
@@ -28,10 +26,13 @@ export default function CourseDetail({ course, picturecourse }) {
           </h1>
         </Col>
         <Col>
-          <Image src={"http://localhost:1337" + picturecourse}
+          <Image
+            src={"http://localhost:1337" + picturecourse}
             class="rounded mx-auto d-block"
             alt="Responsive image"
-            style={{ maxHeight: "220px" }}></Image></Col>
+            style={{ maxHeight: "220px" }}
+          ></Image>
+        </Col>
       </Row>
       <div style={{ display: "flex", alignItems: "center" }}>
         <h1
@@ -129,6 +130,5 @@ export default function CourseDetail({ course, picturecourse }) {
         </h1>
       </div>
     </>
-
   );
 }

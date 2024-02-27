@@ -77,9 +77,6 @@
       "phone_number": {
         "type": "string"
       }
-    },
-    "phone_number": {
-      "type": "string"
     }
   }
 }
