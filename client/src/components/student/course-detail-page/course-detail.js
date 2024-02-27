@@ -38,6 +38,7 @@ export default function CourseDetail({ course, picturecourse }) {
             fontFamily: "ArchTH",
             fontSize: "22px",
             fontWeight: "bold",
+            width : "450px",
           }}
         >
           คำอธิบายรายวิชา
@@ -66,6 +67,7 @@ export default function CourseDetail({ course, picturecourse }) {
             fontFamily: "ArchTH",
             fontSize: "22px",
             fontWeight: "bold",
+            width : "450px",
           }}
         >
           พัฒนาวิชาโดย
@@ -104,6 +106,22 @@ export default function CourseDetail({ course, picturecourse }) {
             {course.mail_teacher}
           </p>
         </div>
+      </div>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <h1
+          style={{
+            backgroundColor: "#004AAD",
+            color: "white",
+            textAlign: "center",
+            padding: "10px",
+            fontFamily: "ArchTH",
+            fontSize: "22px",
+            fontWeight: "bold",
+            width : "450px",
+          }}
+        >
+          ฿ {course.price}
+        </h1>
       </div>
     </>
   );
