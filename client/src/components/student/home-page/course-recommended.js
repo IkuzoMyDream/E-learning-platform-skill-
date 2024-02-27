@@ -8,9 +8,9 @@ export default function CourseRecommended({ courses }) {
 
   useEffect(() => {
     setRecommendedCourses(
-      [...courses].sort(
-        (a, b) => a.enrollers.data.length - b.enrollers.data.length
-      ).slice(0,4)
+      [...courses]
+        .sort((a, b) => b.enrollers.data.length - a.enrollers.data.length)
+        .slice(0, 4)
     );
   }, [courses]);
 
