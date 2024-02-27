@@ -115,14 +115,15 @@ export default function CourseDetail({ course, picturecourse }) {
             textAlign: "center",
             padding: "10px",
             fontFamily: "ArchTH",
-            fontSize: "22px",
-            fontWeight: "bold",
+            fontSize: "30px",
+            //fontWeight: "bold",
             width : "450px",
           }}
         >
           ฿ {course.price}
         </h1>
       </div>
+
     </>
   );
 }
