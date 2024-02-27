@@ -1,9 +1,13 @@
-import { Col, Row, Image } from "react-bootstrap";
+import { Col, Row, Image, Container } from "react-bootstrap";
 import {
   BsFillEnvelopeAtFill,
   BsFillTelephoneFill,
   BsPersonCircle,
 } from "react-icons/bs";
+import TransactionButton from "./transaction-button";
+
+
+
 
 export default function CourseDetail({ course, picturecourse }) {
   return (
@@ -21,6 +25,7 @@ export default function CourseDetail({ course, picturecourse }) {
               marginRight: "auto",
               marginTop: "100px",
               fontSize: "50px",
+              fontFamily: "ArchTH",
               textAlign: "center",
               color: "#FAF0E6",
 
@@ -32,6 +37,7 @@ export default function CourseDetail({ course, picturecourse }) {
             style={{
               textAlign: "center",
               color: "#FAF0E6",
+              fontFamily: "ArchTH",
             }}
           >
             ผู้สอน : {course.name_teacher}
@@ -62,13 +68,53 @@ export default function CourseDetail({ course, picturecourse }) {
           <h2
             style={{
               color: "#FAF0E6",
+              marginTop: "15px",
+              marginBottom: "5px",
+              fontFamily: "ArchTH",
             }}
           >
             เกี่ยวกับ
           </h2>
+          <h4
+            style={{
+              color: "#FAF0E6",
+              marginBottom: "30px",
+              marginLeft: "15px",
+            }}
+          >
+            {course.description}
+          </h4>
+          <h2
+            style={{
+              color: "#FAF0E6",
+              marginBottom: "5px",
+              fontFamily: "ArchTH",
+            }}
+          >
+            เนื้อหาภายในคอร์ส
+          </h2>
+          <h4>
 
-      </Col>
-    </Row >
+          </h4>
+        </Col>
+        <Col>
+          <h2
+            style={{
+              color: "#FAF0E6",
+              fontSize: "40px",
+              marginTop: "15px",
+              marginBottom: "5px",
+              fontFamily: "ArchTH",
+              textAlign: "center",
+            }}
+          >
+            ฿ {course.price}
+          </h2>
+          <Container>
+            <TransactionButton />
+          </Container>
+        </Col>
+      </Row >
       <div style={{ display: "flex", alignItems: "center" }}>
         <h1
           style={{
@@ -151,14 +197,11 @@ export default function CourseDetail({ course, picturecourse }) {
       <div style={{ display: "flex", alignItems: "center" }}>
         <h1
           style={{
-            backgroundColor: "#004AAD",
-            color: "white",
-            textAlign: "center",
-            padding: "10px",
+            color: "#FAF0E6",
+            marginTop: "15px",
+            marginBottom: "5px",
             fontFamily: "ArchTH",
-            fontSize: "30px",
-            //fontWeight: "bold",
-            width: "450px",
+            textAlign: "center",
           }}
         >
           {course.price} ฿

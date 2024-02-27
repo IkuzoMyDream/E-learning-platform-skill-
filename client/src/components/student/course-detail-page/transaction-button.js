@@ -64,7 +64,9 @@ export default function TransactionButton({
         </Button>
       ) : isCarted ? (
         <Button variant="secondary" onClick={() => navigate("/cart")}>
-          ชำระเงิน
+          <span>
+            ชำระเงิน
+          </span>
         </Button>
       ) : (
         <Button onClick={handleAddCart}>เพิ่มลงตะกร้า</Button>
