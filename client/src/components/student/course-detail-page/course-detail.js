@@ -1,3 +1,4 @@
+import { Col, Row, Image } from "react-bootstrap";
 import {
   BsFillEnvelopeAtFill,
   BsFillTelephoneFill,
@@ -7,27 +8,31 @@ import {
 export default function CourseDetail({ course, picturecourse }) {
   return (
     <>
-      <h1
+
+      <Row 
         style={{
-          backgroundColor: "#004AAD",
-          color: "white",
-          textAlign: "center",
-          padding: "20px",
-          fontFamily: "ArchTH",
-          fontSize: "30px",
-          fontWeight: "bold",
+          backgroundColor:"rgba(181, 192, 208, 0.5)",
+
         }}
-      >
-        วิชา {course.name}
-      </h1>
-      <div class="text-center">
-        <img
-          src={"http://localhost:1337" + picturecourse}
-          class="rounded mx-auto d-block"
-          alt="Responsive image"
-          style={{ maxHeight: "220px" }}
-        />
-      </div>
+        >
+        <Col>
+          <h1
+            style = {{
+              marginLeft : "auto",
+              marginRight : "auto",
+              fontSize: "50px",
+              textAlign: "center",
+            }}
+          >
+            วิชา {course.name}
+          </h1>
+        </Col>
+        <Col>
+          <Image src={"http://localhost:1337" + picturecourse}
+            class="rounded mx-auto d-block"
+            alt="Responsive image"
+            style={{ maxHeight: "220px" }}></Image></Col>
+      </Row>
       <div style={{ display: "flex", alignItems: "center" }}>
         <h1
           style={{
@@ -38,7 +43,7 @@ export default function CourseDetail({ course, picturecourse }) {
             fontFamily: "ArchTH",
             fontSize: "22px",
             fontWeight: "bold",
-            width : "450px",
+            width: "450px",
           }}
         >
           คำอธิบายรายวิชา
@@ -67,7 +72,7 @@ export default function CourseDetail({ course, picturecourse }) {
             fontFamily: "ArchTH",
             fontSize: "22px",
             fontWeight: "bold",
-            width : "450px",
+            width: "450px",
           }}
         >
           พัฒนาวิชาโดย
@@ -117,13 +122,13 @@ export default function CourseDetail({ course, picturecourse }) {
             fontFamily: "ArchTH",
             fontSize: "30px",
             //fontWeight: "bold",
-            width : "450px",
+            width: "450px",
           }}
         >
           ฿ {course.price}
         </h1>
       </div>
-
     </>
+
   );
 }
