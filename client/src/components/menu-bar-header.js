@@ -122,17 +122,22 @@ export default function MenuBarHeader() {
               />
               <Button onClick={() => navigate(`/course/${searchCourse}`)} variant="outline-success">Search</Button>
             </Form>
-            {ContextState.isLoggedIn && (<Nav.Link onClick={() => navigate("/cart")}><BsCart3/></Nav.Link>)}
-            
+            {ContextState.isLoggedIn && (
+              <Nav.Link onClick={() => navigate("/cart")}>
+                <BsCart3 />
+              </Nav.Link>
+            )}
+
             <Nav.Link onClick={() => navigate("/course")}>รายวิชา</Nav.Link>
 
             {ContextState.isLoggedIn && (
               <Dropdown variant="inherit" style={{ zIndex: "1000 !important" }}>
-                <Dropdown.Toggle variant="inherit"
-                style={{
-                  color: "black",
-                  border: "none",
-                }}
+                <Dropdown.Toggle
+                  variant="inherit"
+                  style={{
+                    color: "black",
+                    border: "none",
+                  }}
                 >
                   {ContextState.user.username}
                   <svg

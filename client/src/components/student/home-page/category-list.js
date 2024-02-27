@@ -30,11 +30,15 @@ export default function CategoryList() {
       <h1 className="text-center">หมวดหมู่รายวิชา</h1>
       <div className="my-5 row">
         {categories.map((d) => (
-          <div className="col-md-3" key={d.id}>
+          <div className="col-sm-3 " key={d.id}>
             <Link style={{ textDecoration: "none" }} to={`/category/${d.name}`}>
               <Card
                 className="mb-3"
-                style={{ display: "flex", alignItems: "center" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  border: "none",
+                }}
               >
                 <Card.Img
                   src={
@@ -46,8 +50,8 @@ export default function CategoryList() {
                     marginTop: "10px",
                   }}
                 />
-                <Card.Body>
-                  <Card.Title>{d.name}</Card.Title>
+                <Card.Body className="text-center">
+                  <Card.Subtitle as="h5">{d.name}</Card.Subtitle>
                 </Card.Body>
               </Card>
             </Link>
