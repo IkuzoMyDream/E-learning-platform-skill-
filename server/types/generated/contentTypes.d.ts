@@ -920,11 +920,14 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'oneToMany',
       'api::payment.payment'
     >;
+
     progresses: Attribute.Relation<
       'api::course.course',
       'oneToMany',
       'api::progress.progress'
     >;
+
+    phone_number: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
