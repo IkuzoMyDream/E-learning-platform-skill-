@@ -25,6 +25,7 @@ const conf = {
   getMaterial: "/materials?populate=*",
   getMaterialFilteredByCourseName:
     "/courses?populate[materials][populate]=*&filters[name][$eq]=",
+  getSearchcourse: "/courses?populate=*&filters[name][$eq]=",
 
   // post
   postCart: "/carts",
