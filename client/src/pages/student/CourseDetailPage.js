@@ -25,11 +25,13 @@ export default function CourseDetailPage() {
 
   const fetchItems = async () => {
     let response = await ax.get(`${conf.getCourseDetailEndpoint}${courseName}`);
-    let response2 = await ax.get(
-      `${conf.getUserCartsFilteredByCourseName}${courseName}`
-    );
-    response2 = response2.data.carts.filter((cart) => cart.course);
-    setIsCarted(response2.length);
+    if (state.isLoggedIn) {
+      var response2 = await ax.get(
+        `${conf.getUserCartsFilteredByCourseName}${courseName}`
+      );
+      response2 = response2.data.carts.filter((cart) => cart.course);
+      setIsCarted(response2.length);
+    }
     setCourseId(response?.data?.data[0]?.id);
     response = response?.data?.data[0]?.attributes;
     setCourse(response);
@@ -44,7 +46,7 @@ export default function CourseDetailPage() {
 
   useEffect(() => {
     fetchItems();
-  }, []);
+  }, [state]);
 
   useEffect(() => {
     setUserId(state?.user?.id);

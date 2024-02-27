@@ -8,12 +8,10 @@ import {
 export default function CourseDetail({ course, picturecourse }) {
   return (
     <>
-
       <Row
         style={{
           backgroundColor: "rgba(7, 15, 43, 0.7)",
           height: "300px",
-
         }}
       >
         <Col>
@@ -62,15 +60,15 @@ export default function CourseDetail({ course, picturecourse }) {
       >
         <Col>
           <h2
-          style={{
-            color:"#FAF0E6",
-          }}
+            style={{
+              color: "#FAF0E6",
+            }}
           >
             เกี่ยวกับ
           </h2>
-          
-        </Col>
-      </Row>
+
+      </Col>
+    </Row >
       <div style={{ display: "flex", alignItems: "center" }}>
         <h1
           style={{
@@ -163,10 +161,9 @@ export default function CourseDetail({ course, picturecourse }) {
             width: "450px",
           }}
         >
-          ฿ {course.price}
+          {course.price} ฿
         </h1>
       </div>
     </>
-
   );
 }

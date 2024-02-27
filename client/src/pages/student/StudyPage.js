@@ -28,7 +28,7 @@ export default function StudyPage() {
           (material) => ({ id: material.id, ...material.attributes })
         );
 
-      // Fetch learning progresses
+
       const userLearningProgressesResponse = await ax.get(
         "/users/me?populate[learning_progresses][populate]=*"
       );
@@ -39,13 +39,16 @@ export default function StudyPage() {
             (a, b) => a.material.chapter_number - b.material.chapter_number
           );
 
-      // Merge materials with learning progresses
+      
+
       const mergedData = materialsData.map((material) => {
         const correspondingProgress = learningProgressesData.find(
           (progress) => progress.material.id === material.id
         );
         return { ...material, progress: correspondingProgress };
       });
+
+      console.log(mergedData)
 
       setMaterials(mergedData);
     } catch (err) {
@@ -205,7 +208,7 @@ export default function StudyPage() {
             <Card.Subtitle>{material.description}</Card.Subtitle>
             <Card.Text>
               เรียนไปแล้ว{" "}
-              {material?.progresses?.data[0]?.attributes?.progress || 0} วินาที
+              {material?.progress?.progress || 0} วินาที
             </Card.Text>
           </Card.Body>
         </Card>
