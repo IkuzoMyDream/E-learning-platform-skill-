@@ -63,7 +63,26 @@ export default function TransactionButton({
           เรียน
         </Button>
       ) : isCarted ? (
-        <Button variant="secondary" onClick={() => navigate("/cart")}>
+        <Button variant="secondary" onClick={() => navigate("/cart")}
+          /*style={{
+            outline:"none",
+            cursor:"pointer",
+            border:"none",
+            padding:"0.9rem 2rem",
+            margin:"0",
+            fontFamily:"inherit",
+            fontSize:"inherit",
+            position:"relative",
+            display:"inline-block",
+            letterSpacing:"0.5rem",
+            fontWeight:"700",
+            fontSize:"17px",
+            borderRadius:"500px",
+            overflow:"hidden",
+            background:"#66ff66",
+            color: "ghostwhite",
+          }}*/
+        >
           <span>
             ชำระเงิน
           </span>
