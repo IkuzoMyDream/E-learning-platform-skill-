@@ -1,16 +1,23 @@
+import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function CourseNewest({ courses }) {
-  if (courses.length) {
-    const newestCourses = courses.sort(
-      (a, b) => new Date(a.publishAt) - new Date(b.publishAt)
+  const [newestCourses, setNewestCourses] = useState([]);
+
+  useEffect(() => {
+    setNewestCourses(
+      [...courses]
+        .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+        .slice(0, 8)
     );
-    console.log(newestCourses);
+  }, [courses]);
+
+  if (newestCourses.length) {
     return (
-      <Container>
+      <Container className="my-5">
         <h1 className="text-center">รายวิชาล่าสุด</h1>
-        <Row>
+        <Row className="my-5">
           {courses &&
             newestCourses.map((course) => (
               <Col lg="3" key={course.id}>
