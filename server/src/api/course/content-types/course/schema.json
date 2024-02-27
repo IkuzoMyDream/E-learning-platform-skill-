@@ -74,8 +74,12 @@
       "relation": "oneToMany",
       "target": "api::progress.progress",
       "mappedBy": "course",
+      "phone_number": {
+        "type": "string"
+      }
+    },
     "phone_number": {
       "type": "string"
     }
   }
-}}
+}
