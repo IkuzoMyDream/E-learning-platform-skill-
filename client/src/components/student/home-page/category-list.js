@@ -25,14 +25,10 @@ export default function CategoryList() {
     fetchItems();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(categories);
-  // }, [categories]);
-
   return (
-    <Container>
+    <Container className="my-5">
       <h1 className="text-center">หมวดหมู่รายวิชา</h1>
-      <div className="row">
+      <div className="my-5 row">
         {categories.map((d) => (
           <div className="col-md-3" key={d.id}>
             <Link style={{ textDecoration: "none" }} to={`/category/${d.name}`}>
