@@ -126,7 +126,7 @@ export default function CourseDetail({ course, picturecourse }) {
             width: "450px",
           }}
         >
-          ฿ {course.price}
+          {course.price} ฿
         </h1>
       </div>
     </>
