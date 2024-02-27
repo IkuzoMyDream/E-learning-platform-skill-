@@ -20,8 +20,11 @@ export default function CourseNewest({ courses }) {
         <Row className="my-5">
           {courses &&
             newestCourses.map((course) => (
-              <Col lg="3" key={course.id}>
-                <Link to={`/course/${course.name}`}>
+              <Col lg="3" key={course.id} className="my-3">
+                <Link
+                  to={`/course/${course.name}`}
+                  style={{ textDecoration: "none" }}
+                >
                   <Card key={course.id}>
                     <Card.Img
                       src={
@@ -30,7 +33,17 @@ export default function CourseNewest({ courses }) {
                       }
                       style={{ maxHeight: "150px" }}
                     />
-                    <Card.Body>{course.name}</Card.Body>
+                    <Card.Body>
+                      <Card.Subtitle style={{ color: "#3BB3B" }} as="h4">
+                        {course.name}
+                      </Card.Subtitle>
+                      <br></br>
+                      <Card.Text>{course.name_teacher}</Card.Text>
+                      <Card.Img
+                        src="/logo-skillpp.png"
+                        style={{ maxHeight: "50px", maxWidth: "50px" }}
+                      />
+                    </Card.Body>
                   </Card>
                 </Link>
               </Col>
