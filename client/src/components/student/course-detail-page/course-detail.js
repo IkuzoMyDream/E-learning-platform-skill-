@@ -9,29 +9,67 @@ export default function CourseDetail({ course, picturecourse }) {
   return (
     <>
 
-      <Row 
+      <Row
         style={{
-          backgroundColor:"rgba(181, 192, 208, 0.5)",
+          backgroundColor: "rgba(7, 15, 43, 0.7)",
+          height: "300px",
 
         }}
-        >
+      >
         <Col>
           <h1
-            style = {{
-              marginLeft : "auto",
-              marginRight : "auto",
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginTop: "100px",
               fontSize: "50px",
               textAlign: "center",
+              color: "#FAF0E6",
+
             }}
           >
             วิชา {course.name}
           </h1>
+          <h4
+            style={{
+              textAlign: "center",
+              color: "#FAF0E6",
+            }}
+          >
+            ผู้สอน : {course.name_teacher}
+          </h4>
         </Col>
         <Col>
-          <Image src={"http://localhost:1337" + picturecourse}
+          <Image
+            src={"http://localhost:1337" + picturecourse}
             class="rounded mx-auto d-block"
             alt="Responsive image"
-            style={{ maxHeight: "220px" }}></Image></Col>
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              maxHeight: "500px",
+              height: "250px",
+              marginTop: "25px",
+            }}
+          >
+          </Image></Col>
+      </Row>
+
+      <Row
+        style={{
+          backgroundColor: "#1B1A55",
+        }}
+      >
+        <Col>
+          <h2
+          style={{
+            color:"#FAF0E6",
+          }}
+          >
+            เกี่ยวกับ
+          </h2>
+          
+        </Col>
       </Row>
       <div style={{ display: "flex", alignItems: "center" }}>
         <h1
