@@ -12,6 +12,8 @@ import { BsCart3 } from "react-icons/bs";
 import { useContext, useState } from "react";
 import { AuthContext } from "../utils/auth/Auth.context";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import ax from "../utils/config/ax";
+import conf from "../utils/config/main";
 
 const initialState = {
   username: "",
@@ -21,8 +23,19 @@ const initialState = {
 export default function MenuBarHeader() {
   const { state: ContextState, login, logout } = useContext(AuthContext);
   const [state, setState] = useState(initialState);
+  const [searchCourse, setSearchCourse] = useState("")
 
   const navigate = useNavigate();
+
+  const onSearchCourse = async () => {
+    try {
+    const response = await ax.get(`${conf.getSearchcourse}${searchCourse}`)
+      console.log(response)
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -43,7 +56,7 @@ export default function MenuBarHeader() {
     <>
       {!ContextState.isLoggedIn && (
         <Navbar
-          style={{ borderBottom: "1px solid #eee", backgroundColor: "#4A55A2" }}
+          style={{ borderBottom: "1px solid #eee", backgroundColor: "#A0BFE0" }}
         >
           <Container>
             <Navbar.Brand></Navbar.Brand>
@@ -105,20 +118,26 @@ export default function MenuBarHeader() {
                 placeholder="ค้นหารายวิชา"
                 className="me-2"
                 aria-label="Search"
+                onChange={(e) => setSearchCourse(e.target.value)}
               />
-              {/* <Button variant="outline-success">Search</Button> */}
+              <Button onClick={() => navigate(`/course/${searchCourse}`)} variant="outline-success">Search</Button>
             </Form>
-            {ContextState.isLoggedIn && (<Nav.Link onClick={() => navigate("/cart")}><BsCart3/></Nav.Link>)}
-            
+            {ContextState.isLoggedIn && (
+              <Nav.Link onClick={() => navigate("/cart")}>
+                <BsCart3 />
+              </Nav.Link>
+            )}
+
             <Nav.Link onClick={() => navigate("/course")}>รายวิชา</Nav.Link>
 
             {ContextState.isLoggedIn && (
               <Dropdown variant="inherit" style={{ zIndex: "1000 !important" }}>
-                <Dropdown.Toggle variant="inherit"
-                style={{
-                  color: "black",
-                  border: "none",
-                }}
+                <Dropdown.Toggle
+                  variant="inherit"
+                  style={{
+                    color: "black",
+                    border: "none",
+                  }}
                 >
                   {ContextState.user.username}
                   <svg

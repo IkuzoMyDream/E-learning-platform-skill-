@@ -42,17 +42,14 @@
         "audios"
       ]
     },
-    "material": {
+    "materials": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
       "target": "api::material.material",
-      "inversedBy": "courses"
+      "mappedBy": "course"
     },
     "name_teacher": {
       "type": "string"
-    },
-    "phone_number": {
-      "type": "biginteger"
     },
     "mail_teacher": {
       "type": "email"
@@ -71,6 +68,18 @@
       "relation": "oneToMany",
       "target": "api::payment.payment",
       "mappedBy": "course"
+    },
+    "progresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::progress.progress",
+      "mappedBy": "course",
+      "phone_number": {
+        "type": "string"
+      }
+    },
+    "phone_number": {
+      "type": "string"
     }
   }
 }

@@ -20,7 +20,7 @@ function App() {
   const { state } = useContext(AuthContext);
   // const role = state?.user?.role;
   return (
-    <><body>
+    <>
       <Router>
         <MenuBarHeader />
         <Routes>
@@ -47,10 +47,8 @@ function App() {
           {/* role == admin */}
         </Routes>
       </Router>
-      <footer>
-       <MenuBarFooter /> 
-      </footer>
-      </body>
+
+      <MenuBarFooter />
     </>
   );
 }

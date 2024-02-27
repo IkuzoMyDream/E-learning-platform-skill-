@@ -23,12 +23,6 @@
         "audios"
       ]
     },
-    "courses": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::course.course",
-      "mappedBy": "material"
-    },
     "title": {
       "type": "string",
       "required": true
@@ -38,6 +32,21 @@
     },
     "duration": {
       "type": "integer"
+    },
+    "course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course.course",
+      "inversedBy": "materials"
+    },
+    "chapter_number": {
+      "type": "integer"
+    },
+    "progresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::progress.progress",
+      "mappedBy": "material"
     }
   }
 }

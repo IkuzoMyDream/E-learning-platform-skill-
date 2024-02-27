@@ -13,6 +13,7 @@ const conf = {
   getUserCartBookingList:
     "/users/me?populate[carts][populate][course][populate]=*",
 
+  // get
   getCategoriesEndpoint: "/categories?populate=*",
   getCoursesEndpoint:
     "/categories?populate[courses][populate]=*&filters[name][$eq]=",
@@ -22,6 +23,9 @@ const conf = {
   getCartsFilteredByCourseName:
     "/carts?populate[owner][populate]=*&populate[course][filters][name][$eq]=",
   getMaterial: "/materials?populate=*",
+  getMaterialFilteredByCourseName:
+    "/courses?populate[materials][populate]=*&filters[name][$eq]=",
+  getSearchcourse: "/courses?populate=*&filters[name][$eq]=",
 
   // post
   postCart: "/carts",
@@ -29,7 +33,6 @@ const conf = {
 
   // delete
   deleteCartById: "/carts/",
-
 };
 
 export default conf;

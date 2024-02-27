@@ -4,13 +4,23 @@ import { Link } from "react-router-dom";
 import { Card, Col, Container, Row } from "react-bootstrap";
 
 export default function CourseRecommended({ courses }) {
-  if (courses) {
+  const [recommendedCourses, setRecommendedCourses] = useState([]);
+
+  useEffect(() => {
+    setRecommendedCourses(
+      [...courses]
+        .sort((a, b) => b.enrollers.data.length - a.enrollers.data.length)
+        .slice(0, 4)
+    );
+  }, [courses]);
+
+  if (recommendedCourses.length) {
     return (
-      <Container>
+      <Container className="my-5">
         <h1 className="text-center">รายวิชาแนะนำ</h1>
-        <Row>
+        <Row className="my-5">
           {courses &&
-            courses.map((course) => (
+            recommendedCourses.map((course) => (
               <Col lg="3" key={course.id}>
                 <Link to={`/course/${course.name}`}>
                   <Card key={course.id}>
@@ -31,3 +41,4 @@ export default function CourseRecommended({ courses }) {
     );
   }
 }
+// test

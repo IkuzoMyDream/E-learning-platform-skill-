@@ -34,7 +34,6 @@ export default function MenuBarFooter() {
       <p> <CiLocationOn /> New York, NY 10012, US</p>
       <p> <CiMail /> info@example.com </p>
       <p> <CiMobile3 /> + 99 234 567 88</p>
-      <p> <CiMobile3 /> + 01 234 567 89</p>
       </Container>
       </div>
       <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
