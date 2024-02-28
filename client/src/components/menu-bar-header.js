@@ -23,19 +23,18 @@ const initialState = {
 export default function MenuBarHeader() {
   const { state: ContextState, login, logout } = useContext(AuthContext);
   const [state, setState] = useState(initialState);
-  const [searchCourse, setSearchCourse] = useState("")
+  const [searchCourse, setSearchCourse] = useState("");
 
   const navigate = useNavigate();
 
   const onSearchCourse = async () => {
     try {
-    const response = await ax.get(`${conf.getSearchcourse}${searchCourse}`)
-      console.log(response)
+      const response = await ax.get(`${conf.getSearchcourse}${searchCourse}`);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
     }
-    catch(err) {
-      console.log(err)
-    }
-  }
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -56,8 +55,10 @@ export default function MenuBarHeader() {
     <>
       {!ContextState.isLoggedIn && (
         <Navbar
-          style={{ borderBottom: "1px solid #eee", 
-                   background: "linear-gradient(to right, #A0BFE0, #B8B2E1, #FFD2D2)",}}
+          style={{
+            borderBottom: "1px solid #eee",
+            background: "linear-gradient(to right, #A0BFE0, #B8B2E1, #FFD2D2)",
+          }}
         >
           <Container>
             <Navbar.Brand></Navbar.Brand>
@@ -121,7 +122,12 @@ export default function MenuBarHeader() {
                 aria-label="Search"
                 onChange={(e) => setSearchCourse(e.target.value)}
               />
-              <Button onClick={() => navigate(`/course/${searchCourse}`)} variant="outline-success">Search</Button>
+              <Button
+                onClick={() => navigate(`/course/${searchCourse}`)}
+                variant="outline-success"
+              >
+                Search
+              </Button>
             </Form>
             {ContextState.isLoggedIn && (
               <Nav.Link onClick={() => navigate("/cart")}>
@@ -163,7 +169,6 @@ export default function MenuBarHeader() {
                   <Dropdown.Item href="" onClick={() => navigate("/profile")}>
                     Profile
                   </Dropdown.Item>
-                  <Dropdown.Item href="">My Course</Dropdown.Item>
                   <Dropdown.Item href="" onClick={logout}>
                     Log Out
                   </Dropdown.Item>

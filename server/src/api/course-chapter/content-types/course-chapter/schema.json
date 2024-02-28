@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "course_chapters",
+  "info": {
+    "singularName": "course-chapter",
+    "pluralName": "course-chapters",
+    "displayName": "CourseChapter",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course.course",
+      "inversedBy": "course_chapters"
+    },
+    "chapter": {
+      "type": "integer"
+    },
+    "course_materials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::material.material",
+      "mappedBy": "course_chapter"
+    },
+    "title": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "learning_progress": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::progress.progress",
+      "mappedBy": "course_chapter"
+    }
+  }
+}

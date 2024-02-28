@@ -2,21 +2,22 @@ import React, { useContext, useEffect, useState } from "react";
 import ax from "../../utils/config/ax";
 import conf from "../../utils/config/main";
 import { useParams } from "react-router-dom";
-import { Card, Container, Dropdown } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import ReactPlayer from "react-player";
 import { AuthContext } from "../../utils/auth/Auth.context";
 
 export default function StudyPage() {
   const { state } = useContext(AuthContext);
-  const [chapters, setChapters] = useState([]);
-  const [progresses, setProgresses] = useState([]);
-
   const [materials, setMaterials] = useState([]);
+  const [chapters, setChapters] = useState([]);
   const [selectedMaterial, setSelectedMaterial] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [progression, setProgression] = useState(0);
+
   const { courseName } = useParams();
+
   const [isReady, setIsReady] = useState(false);
+
   const playerRef = React.useRef();
 
   const onReady = React.useCallback(() => {
@@ -33,18 +34,17 @@ export default function StudyPage() {
     try {
       setIsLoading(true);
 
-      const chaptersResponse = await ax.get(
+      const response = await ax.get(
         `${conf.getMaterialFilteredByCourseName}${courseName}`
       );
-      const chaptersData =
-        chaptersResponse.data.data[0].attributes.course_chapters.data;
-      setChapters(chaptersData);
+      setChapters(response.data.data[0].attributes.course_chapters.data);
+      const materialsData = response.data.data[0].attributes.materials.data.map(
+        (material) => ({ id: material.id, ...material.attributes })
+      );
 
       const userLearningProgressesResponse = await ax.get(
         "/users/me?populate[learning_progresses][populate]=*"
       );
-      setProgresses(userLearningProgressesResponse.data.learning_progresses);
-
       const learningProgressesData =
         userLearningProgressesResponse.data.learning_progresses
           .filter((progress) => progress.course.name === courseName)
@@ -52,29 +52,16 @@ export default function StudyPage() {
             (a, b) => a.material.chapter_number - b.material.chapter_number
           );
 
-      const mappedChaptersWithProgress = chaptersData.map((chapter) => {
-        const correspondingMaterials = chapter.attributes.course_materials.data;
-        const mappedProgressAndMaterial = correspondingMaterials.map(
-          (material) => {
-            const progress = learningProgressesData.find(
-              (progress) => progress.material.id === material.id
-            );
-            return {
-              material: material,
-              progress: progress ? progress.progress : 0,
-            };
-          }
+      const mergedData = materialsData.map((material) => {
+        const correspondingProgress = learningProgressesData.find(
+          (progress) => progress.material.id === material.id
         );
-
-        return {
-          id: chapter.id,
-          ...chapter.attributes,
-          material: mappedProgressAndMaterial,
-        };
+        return { ...material, progress: correspondingProgress };
       });
 
-      setChapters(mappedChaptersWithProgress);
+      setMaterials(mergedData);
     } catch (err) {
+      // console.log(err);
     } finally {
       setIsLoading(false);
     }
@@ -184,10 +171,8 @@ export default function StudyPage() {
   }, []);
 
   useEffect(() => {
-    console.log(chapters, "chapters");
+    console.log(chapters);
   }, [chapters]);
-
-  useEffect(() => {}, [progresses]);
 
   useEffect(() => {
     if (
@@ -222,50 +207,27 @@ export default function StudyPage() {
           config={{ file: { attributes: { controlsList: "nodownload" } } }}
         ></ReactPlayer>
       )}
-
-      {chapters.map((chapter) => (
-        <Dropdown >
-          <Dropdown.Toggle>
-            บทที่ {chapter.chapter} : {chapter.title}
-          </Dropdown.Toggle>
-          <Dropdown.Menu >
-            {chapter?.material?.map((material) => (
-              <Dropdown.Item>
-                {material?.material?.attributes?.title}
-              </Dropdown.Item>
-            ))}
-          </Dropdown.Menu>
-        </Dropdown>
-      ))}
-      {/* {chapters.map((chapter) => (
+      {materials.map((material) => (
         <Card
           className="text-center my-3"
           style={{ cursor: "pointer" }}
-          //   onClick={() => {
-          //     setSelectedMaterial(material);
-          //     handleSelectMaterial(material);
-          //   }}
-          key={chapter.id}
+          onClick={() => {
+            setSelectedMaterial(material);
+            handleSelectMaterial(material);
+          }}
+          key={material.id}
         >
           <Card.Body>
             <Card.Title>
-              บทที่ {chapter.chapter}: {chapter.title}
+              บทที่ {material.chapter_number}: {material.title}
             </Card.Title>
-            <Card.Subtitle>{chapter.description}</Card.Subtitle>
+            <Card.Subtitle>{material.description}</Card.Subtitle>
             <Card.Text>
-              เรียนไปแล้ว{" "}
-              {chapter.material?.reduce(
-                (totalProgress, material) => totalProgress + material.progress,
-                0
-              )}{" "}
-              %
+              เรียนไปแล้ว {material?.progress?.progress || 0} %
             </Card.Text>
-            <Dropdown>
-                <Dropdown.Toggle>{}</Dropdown.Toggle>
-            </Dropdown>
           </Card.Body>
         </Card>
-      ))} */}
+      ))}
     </Container>
   );
 }

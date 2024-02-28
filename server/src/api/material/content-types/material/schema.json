@@ -4,7 +4,7 @@
   "info": {
     "singularName": "material",
     "pluralName": "materials",
-    "displayName": "Material",
+    "displayName": "CourseMaterial",
     "description": ""
   },
   "options": {
@@ -33,20 +33,20 @@
     "duration": {
       "type": "integer"
     },
-    "course": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::course.course",
-      "inversedBy": "materials"
-    },
-    "chapter_number": {
+    "subchapter": {
       "type": "integer"
     },
-    "progresses": {
+    "learning_progress": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::progress.progress",
       "mappedBy": "material"
+    },
+    "course_chapter": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course-chapter.course-chapter",
+      "inversedBy": "course_materials"
     }
   }
 }

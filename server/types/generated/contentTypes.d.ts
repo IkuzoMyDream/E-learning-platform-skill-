@@ -902,11 +902,6 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'api::category.category'
     >;
     picture: Attribute.Media;
-    materials: Attribute.Relation<
-      'api::course.course',
-      'oneToMany',
-      'api::material.material'
-    >;
     name_teacher: Attribute.String;
     mail_teacher: Attribute.Email;
     price: Attribute.Integer;
@@ -926,6 +921,11 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'api::progress.progress'
     >;
     phone_number: Attribute.String;
+    course_chapters: Attribute.Relation<
+      'api::course.course',
+      'oneToMany',
+      'api::course-chapter.course-chapter'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -944,12 +944,61 @@ export interface ApiCourseCourse extends Schema.CollectionType {
   };
 }
 
+export interface ApiCourseChapterCourseChapter extends Schema.CollectionType {
+  collectionName: 'course_chapters';
+  info: {
+    singularName: 'course-chapter';
+    pluralName: 'course-chapters';
+    displayName: 'CourseChapter';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    course: Attribute.Relation<
+      'api::course-chapter.course-chapter',
+      'manyToOne',
+      'api::course.course'
+    >;
+    chapter: Attribute.Integer;
+    course_materials: Attribute.Relation<
+      'api::course-chapter.course-chapter',
+      'oneToMany',
+      'api::material.material'
+    >;
+    title: Attribute.String;
+    duration: Attribute.Integer;
+    description: Attribute.String;
+    learning_progress: Attribute.Relation<
+      'api::course-chapter.course-chapter',
+      'oneToMany',
+      'api::progress.progress'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::course-chapter.course-chapter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::course-chapter.course-chapter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMaterialMaterial extends Schema.CollectionType {
   collectionName: 'materials';
   info: {
     singularName: 'material';
     pluralName: 'materials';
-    displayName: 'Material';
+    displayName: 'CourseMaterial';
     description: '';
   };
   options: {
@@ -960,16 +1009,16 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required;
     description: Attribute.Text;
     duration: Attribute.Integer;
-    course: Attribute.Relation<
-      'api::material.material',
-      'manyToOne',
-      'api::course.course'
-    >;
-    chapter_number: Attribute.Integer;
-    progresses: Attribute.Relation<
+    subchapter: Attribute.Integer;
+    learning_progress: Attribute.Relation<
       'api::material.material',
       'oneToMany',
       'api::progress.progress'
+    >;
+    course_chapter: Attribute.Relation<
+      'api::material.material',
+      'manyToOne',
+      'api::course-chapter.course-chapter'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1051,16 +1100,21 @@ export interface ApiProgressProgress extends Schema.CollectionType {
       'manyToOne',
       'api::course.course'
     >;
-    material: Attribute.Relation<
-      'api::progress.progress',
-      'manyToOne',
-      'api::material.material'
-    >;
     owner: Attribute.Relation<
       'api::progress.progress',
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    material: Attribute.Relation<
+      'api::progress.progress',
+      'manyToOne',
+      'api::material.material'
+    >;
+    course_chapter: Attribute.Relation<
+      'api::progress.progress',
+      'manyToOne',
+      'api::course-chapter.course-chapter'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1072,36 +1126,6 @@ export interface ApiProgressProgress extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::progress.progress',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSliderSlider extends Schema.CollectionType {
-  collectionName: 'sliders';
-  info: {
-    singularName: 'slider';
-    pluralName: 'sliders';
-    displayName: 'slider';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    IMG: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::slider.slider',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::slider.slider',
       'oneToOne',
       'admin::user'
     > &
@@ -1130,10 +1154,10 @@ declare module '@strapi/types' {
       'api::cart.cart': ApiCartCart;
       'api::category.category': ApiCategoryCategory;
       'api::course.course': ApiCourseCourse;
+      'api::course-chapter.course-chapter': ApiCourseChapterCourseChapter;
       'api::material.material': ApiMaterialMaterial;
       'api::payment.payment': ApiPaymentPayment;
       'api::progress.progress': ApiProgressProgress;
-      'api::slider.slider': ApiSliderSlider;
     }
   }
 }

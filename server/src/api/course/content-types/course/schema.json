@@ -42,12 +42,6 @@
         "audios"
       ]
     },
-    "materials": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::material.material",
-      "mappedBy": "course"
-    },
     "name_teacher": {
       "type": "string"
     },
@@ -80,6 +74,12 @@
     },
     "phone_number": {
       "type": "string"
+    },
+    "course_chapters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course-chapter.course-chapter",
+      "mappedBy": "course"
     }
   }
 }

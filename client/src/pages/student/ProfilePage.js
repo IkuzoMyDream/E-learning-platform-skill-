@@ -4,7 +4,7 @@ import ax from "../../utils/config/ax";
 import conf from "../../utils/config/main";
 
 import { Button, Card, Container } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 
 export default function ProfilePage() {
   const [userInfomation, setUserInfomation] = useState(null);
@@ -45,13 +45,24 @@ export default function ProfilePage() {
             <Button variant="secondary">แก้ไขข้อมูลส่วนตัว</Button>
           </Card.Body>
         </Card>
-        <Card className="mb-3">
-          <Card.Header>ประวัติการซื้อ</Card.Header>
-        </Card>
         <Card>
-          <Card.Header>คอร์สทั้งหมด</Card.Header>
+          <Card.Header>คอร์สเรียนของฉัน</Card.Header>
           {userInfomation.courses.map((course) => (
-            <Card.Body key={course.id}>{course.name}</Card.Body>
+            <Card.Body key={course.id}>
+              <Link to={`/course/${course.name}`}>
+                <Card.Text>{course.name}</Card.Text>
+              </Link>
+            </Card.Body>
+          ))}
+        </Card>
+        <Card className="my-3">
+          <Card.Header>คอร์สที่เรียนเสร็จแล้ว</Card.Header>
+          {userInfomation.courses.map((course) => (
+            <Card.Body key={course.id}>
+              <Link to={`/course/${course.name}`}>
+                <Card.Text>{course.name}</Card.Text>
+              </Link>
+            </Card.Body>
           ))}
         </Card>
       </Container>

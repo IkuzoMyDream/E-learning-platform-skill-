@@ -21,17 +21,23 @@
       "target": "api::course.course",
       "inversedBy": "progresses"
     },
-    "material": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::material.material",
-      "inversedBy": "progresses"
-    },
     "owner": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "learning_progresses"
+    },
+    "material": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::material.material",
+      "inversedBy": "learning_progress"
+    },
+    "course_chapter": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course-chapter.course-chapter",
+      "inversedBy": "learning_progress"
     }
   }
 }
