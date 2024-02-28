@@ -15,7 +15,7 @@ export default function CourseDetail({ course, picturecourse }) {
       <Row
         style={{
           backgroundColor: "rgba(7, 15, 43, 0.7)",
-          height: "300px",
+          height: "500px",
         }}
       >
         <Col>
@@ -23,8 +23,8 @@ export default function CourseDetail({ course, picturecourse }) {
             style={{
               marginLeft: "auto",
               marginRight: "auto",
-              marginTop: "100px",
-              fontSize: "50px",
+              marginTop: "30%",
+              fontSize: "400%",
               fontFamily: "ArchTH",
               textAlign: "center",
               color: "#FAF0E6",
@@ -53,7 +53,7 @@ export default function CourseDetail({ course, picturecourse }) {
               marginRight: "auto",
               maxHeight: "500px",
               height: "250px",
-              marginTop: "25px",
+              marginTop: "20%",
             }}
           >
           </Image></Col>
@@ -62,13 +62,14 @@ export default function CourseDetail({ course, picturecourse }) {
       <Row
         style={{
           backgroundColor: "#1B1A55",
+          height: "1000px",
         }}
       >
         <Col>
           <h2
             style={{
               color: "#FAF0E6",
-              marginTop: "15px",
+              marginTop: "3%",
               marginBottom: "5px",
               fontFamily: "ArchTH",
             }}
@@ -102,7 +103,7 @@ export default function CourseDetail({ course, picturecourse }) {
             style={{
               color: "#FAF0E6",
               fontSize: "40px",
-              marginTop: "15px",
+              marginTop: "3%",
               marginBottom: "5px",
               fontFamily: "ArchTH",
               textAlign: "center",
@@ -110,103 +111,94 @@ export default function CourseDetail({ course, picturecourse }) {
           >
             ฿ {course.price}
           </h2>
-          <Container>
-            <TransactionButton />
+          <Container
+            style={{
+              marginTop: "3%",
+              marginLeft: "35%",
+            }}
+          >
+            <button
+              style={{
+                outline: "none",
+                cursor: "pointer",
+                border: "none",
+                padding: "0.9rem 2rem",
+                margin: "0",
+                fontFamily: "inherit",
+                fontSize: "inherit",
+                position: "relative",
+                display: "inline-block",
+                letterSpacing: "0.05rem",
+                fontWeight: "700",
+                fontSize: "17px",
+                borderRadius: "500px",
+                overflow: "hidden",
+                background: "rgba(146, 144, 195, 0.9)",
+                color: "#070F2B",
+              }}
+
+            >
+              <span>
+                dummy button
+              </span>
+            </button>
+            <h2
+              style={{
+                color: "#FAF0E6",
+                marginBottom: "5px",
+                fontFamily: "ArchTH",
+                marginTop: "50px",
+              }}
+            >
+              หมวดหมู่
+            </h2>
+            <h4
+              style={{
+                color: "#FAF0E6",
+                marginBottom: "30px",
+              }}
+            >
+              test
+            </h4>
+            <h2
+              style={{
+                color: "#FAF0E6",
+                marginBottom: "5px",
+                fontFamily: "ArchTH",
+                marginTop: "50px",
+              }}
+            >
+              ผู้สอน
+            </h2>
+            <h4
+              style={{
+                color: "#FAF0E6",
+              }}
+            >
+              <BsPersonCircle />
+              {course.name_teacher}
+            </h4>
+            <h4
+              style={{
+                color: "#FAF0E6",
+              }}
+            >
+              <BsFillEnvelopeAtFill />
+              {course.mail_teacher}
+            </h4>
+            <h4
+              style={{
+                color: "#FAF0E6",
+              }}
+            >
+              <BsFillTelephoneFill />
+              {course.phone_number}
+            </h4>
           </Container>
         </Col>
       </Row >
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <h1
-          style={{
-            backgroundColor: "#004AAD",
-            color: "white",
-            textAlign: "center",
-            padding: "10px",
-            fontFamily: "ArchTH",
-            fontSize: "22px",
-            fontWeight: "bold",
-            width: "450px",
-          }}
-        >
-          คำอธิบายรายวิชา
-        </h1>
-      </div>
-      <div style={{ marginTop: "10px" }}>
-        <div style={{ marginLeft: "50px" }}>
-          <p
-            style={{
-              whiteSpace: "pre-line",
-              fontFamily: "ArchTH",
-              fontSize: "18px",
-            }}
-          >
-            {course.description}
-          </p>
-        </div>
-      </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <h1
-          style={{
-            backgroundColor: "#004AAD",
-            color: "white",
-            textAlign: "center",
-            padding: "10px",
-            fontFamily: "ArchTH",
-            fontSize: "22px",
-            fontWeight: "bold",
-            width: "450px",
-          }}
-        >
-          พัฒนาวิชาโดย
-        </h1>
-      </div>
-      <div style={{ marginTop: "10px" }}>
-        <div style={{ marginLeft: "50px" }}>
-          <p
-            style={{
-              whiteSpace: "pre-line",
-              fontFamily: "ArchTH",
-              fontSize: "18px",
-            }}
-          >
-            <BsPersonCircle />
-            {course.name_teacher}
-          </p>
-          <p
-            style={{
-              whiteSpace: "pre-line",
-              fontFamily: "ArchTH",
-              fontSize: "18px",
-            }}
-          >
-            <BsFillTelephoneFill />
-            {course.phone_number}
-          </p>
-          <p
-            style={{
-              whiteSpace: "pre-line",
-              fontFamily: "ArchTH",
-              fontSize: "18px",
-            }}
-          >
-            <BsFillEnvelopeAtFill />
-            {course.mail_teacher}
-          </p>
-        </div>
-      </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <h1
-          style={{
-            color: "#FAF0E6",
-            marginTop: "15px",
-            marginBottom: "5px",
-            fontFamily: "ArchTH",
-            textAlign: "center",
-          }}
-        >
-          {course.price} ฿
-        </h1>
-      </div>
+
+
     </>
   );
 }
