@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ax from "../../utils/config/ax";
 import conf from "../../utils/config/main";
 import { useParams } from "react-router-dom";
@@ -15,11 +15,24 @@ export default function StudyPage() {
 
   const { courseName } = useParams();
 
+  const [isReady, setIsReady] = useState(false);
+
+  const playerRef = React.useRef();
+
+  const onReady = React.useCallback(() => {
+    if (!isReady && selectedMaterial) {
+      const timeToStart =
+        (selectedMaterial.progress.progress / 100) * selectedMaterial.duration;
+      console.log(timeToStart);
+      playerRef.current.seekTo(timeToStart, "seconds");
+      setIsReady(true);
+    }
+  }, [isReady, selectedMaterial]);
+
   const fetchItem = async () => {
     try {
       setIsLoading(true);
 
-      // Fetch materials
       const materialsResponse = await ax.get(
         `${conf.getMaterialFilteredByCourseName}${courseName}`
       );
@@ -27,7 +40,6 @@ export default function StudyPage() {
         materialsResponse.data.data[0].attributes.materials.data.map(
           (material) => ({ id: material.id, ...material.attributes })
         );
-
 
       const userLearningProgressesResponse = await ax.get(
         "/users/me?populate[learning_progresses][populate]=*"
@@ -39,16 +51,12 @@ export default function StudyPage() {
             (a, b) => a.material.chapter_number - b.material.chapter_number
           );
 
-      
-
       const mergedData = materialsData.map((material) => {
         const correspondingProgress = learningProgressesData.find(
           (progress) => progress.material.id === material.id
         );
         return { ...material, progress: correspondingProgress };
       });
-
-      console.log(mergedData)
 
       setMaterials(mergedData);
     } catch (err) {
@@ -88,18 +96,9 @@ export default function StudyPage() {
         } catch (err) {
           console.log(err);
         } finally {
-          // console.log(post_progress_response);
         }
       } else {
         try {
-          var put_progress_response = await ax.put(
-            `/progresses/${is_has_progress.id}`,
-            {
-              data: {
-                progress: progression,
-              },
-            }
-          );
         } catch (err) {
           console.log(err);
         } finally {
@@ -140,18 +139,27 @@ export default function StudyPage() {
           }
         } else {
           try {
-            var put_progress_response = await ax.put(
-              `/progresses/${is_has_progress.id}`,
-              {
-                data: {
-                  progress: progression,
-                },
-              }
-            );
+            if (
+              selectedMaterial.progress.progress <
+              (progression / selectedMaterial.duration) * 100
+            ) {
+              var put_progress_response = await ax.put(
+                `/progresses/${is_has_progress.id}`,
+                {
+                  data: {
+                    progress: Math.min(
+                      Math.round(
+                        (progression / selectedMaterial.duration) * 100
+                      ),
+                      100
+                    ),
+                  },
+                }
+              );
+            }
           } catch (err) {
             console.log(err);
           } finally {
-            // console.log(put_progress_response);
           }
         }
       }
@@ -162,24 +170,28 @@ export default function StudyPage() {
     fetchItem();
   }, []);
 
-  useEffect(() => {}, [materials]);
-
   useEffect(() => {
-    // console.log(progression);
+    if (
+      (progression % 5 === 0 ||
+        Math.round((progression / selectedMaterial.duration) * 100) > 80) &&
+      selectedMaterial &&
+      selectedMaterial?.progress.progress !== 100
+    ) {
+      updateLearningProgress();
+    }
   }, [progression]);
 
   useEffect(() => {
-    updateLearningProgress();
-  }, [progression]);
-
-  useEffect(() => {
-    // console.log(materials);
-  }, [materials]);
+    console.log(selectedMaterial);
+  }, [selectedMaterial]);
 
   return (
     <Container>
       {selectedMaterial && !isLoading && (
         <ReactPlayer
+          ref={playerRef}
+          playing={true}
+          onReady={onReady}
           url={
             "http://localhost:1337" +
             selectedMaterial.video.data[0].attributes.url
@@ -207,8 +219,7 @@ export default function StudyPage() {
             </Card.Title>
             <Card.Subtitle>{material.description}</Card.Subtitle>
             <Card.Text>
-              เรียนไปแล้ว{" "}
-              {material?.progress?.progress || 0} วินาที
+              เรียนไปแล้ว {material?.progress?.progress || 0} %
             </Card.Text>
           </Card.Body>
         </Card>

@@ -12,7 +12,7 @@ const conf = {
     "/users/me?populate[carts][populate][course][filters][name][$eq]=",
   getUserCartBookingList:
     "/users/me?populate[carts][populate][course][populate]=*",
-
+  
   // get
   getCategoriesEndpoint: "/categories?populate=*",
   getCoursesEndpoint:
