@@ -78,14 +78,15 @@
       "type": "string"
     },
     "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "carts": {
       "type": "relation",
@@ -104,6 +105,12 @@
       "relation": "oneToMany",
       "target": "api::progress.progress",
       "mappedBy": "owner"
+    },
+    "phone_number": {
+      "type": "string"
+    },
+    "about_me": {
+      "type": "string"
     }
   }
 }

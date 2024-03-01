@@ -4,12 +4,24 @@ import {
   ProgressBar,
   Dropdown,
   Button,
-  Col,
   Row,
+  Col,
 } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-import { BsList } from "react-icons/bs";
+import {
+  BsCheck,
+  BsImage,
+  BsList,
+  BsPersonVideo,
+  BsUpload,
+} from "react-icons/bs";
+import { BsCameraVideo } from "react-icons/bs";
+import { useEffect, useState } from "react";
+
+import { BsChatRight } from "react-icons/bs";
+
+// import "./accordion.css";
 
 export default function StudyMaterialsOffcanvas({
   state: ContextState,
@@ -20,7 +32,36 @@ export default function StudyMaterialsOffcanvas({
   isMaterialOffcanvasOpen,
   setIsMaterialOffcanvasOpen,
 }) {
+  const [courseProgress, setCourseProgress] = useState(0);
+  const [userProgress, setUserProgress] = useState(0);
   const navigate = useNavigate();
+  const { courseName } = useParams();
+
+  useEffect(() => {
+    console.log(chapters);
+    setCourseProgress(
+      chapters.reduce((acc, chapter) => acc + chapter.duration, 0)
+    );
+    setUserProgress(
+      chapters.reduce(
+        (total, item) =>
+          total +
+          item.material.reduce(
+            (acc, materialItem) =>
+              acc +
+              (materialItem.progress *
+                materialItem.material.attributes.duration) /
+                100,
+            0
+          ),
+        0
+      )
+    );
+  }, [chapters]);
+
+  useEffect(() => {
+    console.log(userProgress, courseProgress);
+  }, [courseProgress, userProgress]);
 
   return (
     <>
@@ -94,7 +135,21 @@ export default function StudyMaterialsOffcanvas({
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <ProgressBar now="49" />
+            <div className="text-center my-3">
+              <Row className="my-3">
+                <Col>ความคืบหน้า</Col>
+                <Col>
+                  {courseName} (
+                  {Math.round((userProgress / courseProgress) * 100)} %)
+                </Col>
+              </Row>
+              {/* <Row className="my-3"> */}
+              <ProgressBar
+                now={Math.round((userProgress / courseProgress) * 100)}
+              />
+              {/* </Row> */}
+            </div>
+
             <Accordion>
               {chapters.map((chapter) => (
                 <Accordion.Item key={chapter.id} eventKey={chapter.chapter - 1}>
@@ -102,8 +157,8 @@ export default function StudyMaterialsOffcanvas({
                     บทที่ {chapter.chapter} : {chapter.title}
                     <br />
                     {chapter.material?.reduce(
-                      (totalProgress, material) =>
-                        totalProgress + material.material.attributes.duration,
+                      (userProgress, material) =>
+                        userProgress + material.material.attributes.duration,
                       0
                     )}
                     นาที
@@ -117,9 +172,11 @@ export default function StudyMaterialsOffcanvas({
                           console.log(material);
                         }}
                       >
+                        {material.progress === 100 && <BsCheck />}
                         <Link>
-                          {material?.material?.attributes?.title} : เรียนไปแล้ว{" "}
-                          {material.progress} %
+                          {chapter.chapter}.
+                          {material.material.attributes.subchapter}{" "}
+                          {material?.material?.attributes?.title}
                         </Link>
                       </p>
                     ))}
