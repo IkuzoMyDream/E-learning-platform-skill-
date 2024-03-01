@@ -4,10 +4,16 @@ import ReactPlayer from "react-player";
 import ax from "../../../utils/config/ax";
 import { Container } from "react-bootstrap";
 
+import { useMediaQuery } from "react-responsive";
+
 export default function StudyPagePlayer({ state, material }) {
   const playerRef = React.useRef();
   const [progression, setProgression] = useState(0);
   const [isReady, setIsReady] = useState(false);
+
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
 
   const onReady = React.useCallback(() => {
     if (!isReady && material) {
@@ -140,9 +146,11 @@ export default function StudyPagePlayer({ state, material }) {
     }
   }, [progression]);
 
+  console.log(material);
+
   return (
     <>
-      {material && (
+      {material && isDesktopOrLaptop && (
         <div
           style={{
             marginTop: "25px",
@@ -153,9 +161,9 @@ export default function StudyPagePlayer({ state, material }) {
           }}
         >
           <ReactPlayer
-            ref={playerRef}
-            playing={true}
-            onReady={onReady}
+            // ref={playerRef}
+            // playing={true}
+            // onReady={onReady}
             url={
               "http://localhost:1337" +
               material.material.attributes.video.data[0].attributes.url
@@ -169,7 +177,58 @@ export default function StudyPagePlayer({ state, material }) {
             width="100%"
             height="100%"
           />
+          <h1>
+            บทที่{" "}
+            {
+              material.material.attributes.course_chapter.data.attributes
+                .chapter
+            }
+            .{material.material.attributes.subchapter}
+          </h1>
+          <h1>{material.material.attributes.title}</h1>
+          <h5>เรียนไปแล้ว {material.progress} %</h5>
         </div>
+      )}
+      {material && !isDesktopOrLaptop && (
+        <>
+          <div
+            style={{
+              marginTop: "25px",
+              marginLeft: "25px",
+              marginBottom: "25px",
+              marginRight: "25px",
+              height: "100%",
+            }}
+          >
+            <ReactPlayer
+              // ref={playerRef}
+              // playing={true}
+              // onReady={onReady}
+              url={
+                "http://localhost:1337" +
+                material.material.attributes.video.data[0].attributes.url
+              }
+              controls
+              onProgress={({ playedSeconds }) =>
+                setProgression(Math.round(playedSeconds))
+              }
+              config={{ file: { attributes: { controlsList: "nodownload" } } }}
+              volume={0.2}
+              width="100%"
+              height="100%"
+            />
+            <h1>
+              บทที่{" "}
+              {
+                material.material.attributes.course_chapter.data.attributes
+                  .chapter
+              }
+              .{material.material.attributes.subchapter}
+            </h1>
+            <h1>{material.material.attributes.title}</h1>
+            <h5>เรียนไปแล้ว {material.progress} %</h5>
+          </div>
+        </>
       )}
     </>
   );

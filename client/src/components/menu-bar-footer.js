@@ -7,7 +7,7 @@ export default function MenuBarFooter() {
   let { pathname } = useLocation();
   pathname = pathname.slice(-5);
 
-  if (pathname === "Study") {
+  if (pathname !== "study") {
     return (
       <>
         <div className="footer-contrack">

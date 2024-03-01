@@ -1,18 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
 import ax from "../../utils/config/ax";
 import conf from "../../utils/config/main";
-import { Link, useParams } from "react-router-dom";
-import { Container } from "react-bootstrap";
-import ReactPlayer from "react-player";
+import { useParams } from "react-router-dom";
 import { AuthContext } from "../../utils/auth/Auth.context";
 import StudyPageNavbar from "../../components/student/study-page/study-page-navbar";
 import StudyPagePlayer from "../../components/student/study-page/study-page-player";
+import StudyMaterialsOffcanvas from "../../components/student/study-page/study-materials-offcanvas";
+
+import { useMediaQuery } from "react-responsive";
 
 export default function StudyPage() {
-  const { state } = useContext(AuthContext);
-  const [chapters, setChapters] = useState([]);
+  const { state, logout } = useContext(AuthContext);
+  const [chapters, setChapters] = useState(null);
   const [selectedMaterial, setSelectedMaterial] = useState(null);
+  const [progresses, setProgresses] = useState(null);
   const { courseName } = useParams();
+
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
+
+  const [isMaterialOffcanvasOpen, setIsMaterialOffcanvasOpen] =
+    useState(isDesktopOrLaptop);
 
   const fetchItem = async () => {
     try {
@@ -34,6 +43,16 @@ export default function StudyPage() {
             (a, b) => a.material.chapter_number - b.material.chapter_number
           );
 
+      // console.log(
+      //   learningProgressesData.find((progress) => progress.progress !== 100)
+      // );
+
+      // setSelectedMaterial(
+      //   learningProgressesData.find((progress) => progress.progress !== 100)
+      //     ? learningProgressesData.find((progress) => progress.progress !== 100)
+      //     : learningProgressesData[0]
+      // );
+
       const mappedChaptersWithProgress = chaptersData.map((chapter) => {
         const correspondingMaterials = chapter.attributes.course_materials.data;
         const mappedProgressAndMaterial = correspondingMaterials.map(
@@ -54,7 +73,29 @@ export default function StudyPage() {
           material: mappedProgressAndMaterial,
         };
       });
+
       setChapters(mappedChaptersWithProgress);
+
+      setSelectedMaterial(
+        mappedChaptersWithProgress
+          .flatMap((item) => item.material)
+          .find((material) => material.progress !== 100)
+          ? mappedChaptersWithProgress
+              .flatMap((item) => item.material)
+              .find((material) => material.progress !== 100)
+          : mappedChaptersWithProgress[0].material[0]
+      );
+    } catch (err) {
+    } finally {
+      await setSelectedMaterialIntoLatestProgressMaterial();
+    }
+  };
+
+  const setSelectedMaterialIntoLatestProgressMaterial = async () => {
+    try {
+      if (chapters) {
+        // console.log(chapters);
+      }
     } catch (err) {
     } finally {
     }
@@ -64,12 +105,25 @@ export default function StudyPage() {
     fetchItem();
   }, []);
 
+  useEffect(() => {
+    setIsMaterialOffcanvasOpen(isDesktopOrLaptop);
+  }, [isDesktopOrLaptop]);
+
   if (chapters) {
     return (
       <>
         <StudyPageNavbar
-          chapters={chapters}
+          state={state}
+          setIsMaterialOffcanvasOpen={setIsMaterialOffcanvasOpen}
+        />
+        <StudyMaterialsOffcanvas
+          state={state}
           setSelectedMaterial={setSelectedMaterial}
+          logout={logout}
+          chapters={chapters}
+          isDesktopOrLaptop={isDesktopOrLaptop}
+          isMaterialOffcanvasOpen={isMaterialOffcanvasOpen}
+          setIsMaterialOffcanvasOpen={setIsMaterialOffcanvasOpen}
         />
         <StudyPagePlayer state={state} material={selectedMaterial} />
       </>

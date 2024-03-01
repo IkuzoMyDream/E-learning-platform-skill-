@@ -62,8 +62,9 @@ export default function MenuBarHeader() {
           <Navbar
             style={{
               borderBottom: "1px solid #eee",
-              background:
-                "linear-gradient(to right, #A0BFE0, #B8B2E1, #FFD2D2)",
+              background: "#A0BFE0",
+              // background:
+              //   "linear-gradient(to right, #A0BFE0, #B8B2E1, #FFD2D2)",
             }}
           >
             <Container>
@@ -111,7 +112,9 @@ export default function MenuBarHeader() {
         <Navbar
           style={{
             borderBottom: "2px solid #4A55A2",
-            background: "linear-gradient(to right, #A0BFE0, #B8B2E1, #FFD2D2)",
+            background: "#A0BFE0",
+
+            // background: "linear-gradient(to right, #A0BFE0, #B8B2E1, #FFD2D2)",
             opacity: "0.9",
           }}
         >
