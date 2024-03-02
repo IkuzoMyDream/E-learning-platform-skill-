@@ -29,17 +29,22 @@ export default function CourseDetailPage() {
       var response2 = await ax.get(
         `${conf.getUserCartsFilteredByCourseName}${courseName}`
       );
-      response2 = response2.data.carts.filter((cart) => cart.course);
-      setIsCarted(response2.length);
+      response2 = response2?.data?.carts?.filter((cart) => cart.course);
+      setIsCarted(response2?.length);
     }
     setCourseId(response?.data?.data[0]?.id);
     response = response?.data?.data[0]?.attributes;
+    console.log(response)
     setCourse(response);
     setPicturecourse(response?.picture?.data[0]?.attributes?.url);
+    {response.course_chapters.data.map((item, index) => (
+   console.log(item)   
+      ))}
+    
 
     setEnrollments(
-      response.enrollers.data?.map((enroller) => {
-        return { id: enroller.id, ...enroller.attributes };
+      response?.enrollers?.data?.map((enroller) => {
+        return { id: enroller?.id, ...enroller?.attributes };
       })
     );
   };
@@ -51,20 +56,24 @@ export default function CourseDetailPage() {
   useEffect(() => {
     setUserId(state?.user?.id);
     setIspurchased(
-      enrollments.some((enroller) => enroller.id === state?.user?.id)
+      enrollments?.some((enroller) => enroller.id === state?.user?.id)
     );
   }, [enrollments, state]);
 
   return (
     <Container>
-      <CourseDetail course={course} picturecourse={picturecourse} />
-      <TransactionButton
-        isLoggedIn={state?.isLoggedIn}
-        isPurchased={isPurchased}
-        isCarted={isCarted}
-        userId={userId}
-        courseId={courseId}
-      />
+      {course && (<>
+        <CourseDetail course={course} picturecourse={picturecourse} />
+        <TransactionButton
+          isLoggedIn={state?.isLoggedIn}
+          isPurchased={isPurchased}
+          isCarted={isCarted}
+          userId={userId}
+          courseId={courseId}
+        />
+        </>
+      )}
+
     </Container>
   );
 }
