@@ -1,4 +1,12 @@
-import { Button, Col, Container, Form, Row, Image } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  Row,
+  Image,
+  Modal,
+} from "react-bootstrap";
 import "./editinfo.css";
 import { useEffect, useState } from "react";
 import ax from "../../../utils/config/ax";
@@ -12,10 +20,11 @@ export default function EditInfomation({
   state,
 }) {
   const [image, setImage] = useState(null);
+  const [isShowConfirmedModal, setIsShowConfirmedModal] = useState(false);
 
   const handleSubmit = async (e) => {
     setIsInfoUpdated(false);
-    e.preventDefault();
+    // e.preventDefault();
     const formData = new FormData();
     try {
       if (image) {
@@ -57,8 +66,25 @@ export default function EditInfomation({
 
   return (
     <>
+      <Modal
+        show={isShowConfirmedModal}
+        // onHide={() => setIsEditInfomation((prevState) => !prevState)}
+      >
+        <Modal.Body>ท่านต้องการแก้ไขข้อมูลใช่หรือไม่?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => handleSubmit()}>
+            แก้ไข
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => setIsShowConfirmedModal(false)}
+          >
+            ยกเลิก
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <Container>
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <Row className="my-3">
             <Col sm="12" className="text-center">
               <Image
@@ -154,7 +180,8 @@ export default function EditInfomation({
             <Col>
               <Button
                 disabled={!isInfoUpdated}
-                type="submit"
+                onClick={() => setIsShowConfirmedModal(true)}
+                // type="submit"
                 variant="secondary"
               >
                 แก้ไข
@@ -163,7 +190,7 @@ export default function EditInfomation({
             <Col>
               <Button
                 variant="danger"
-                onClick={() => setIsEditInfomation((prevState) => !prevState)}
+                onClick={() => setIsEditInfomation(false)}
               >
                 ยกเลิก
               </Button>

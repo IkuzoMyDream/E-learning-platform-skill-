@@ -40,7 +40,9 @@ export default function ProfilePage() {
   }, []);
 
   useEffect(() => {
-    setMyCourses(userInfomation);
+    // console.log(userInfomation);
+
+    setMyCourses(userInfomation?.payments.map((payment) => payment.course));
 
     setAvatarUrl(
       userInfomation?.avatar?.url
