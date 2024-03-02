@@ -61,10 +61,8 @@ export default function MenuBarHeader() {
         {!ContextState.isLoggedIn && (
           <Navbar
             style={{
-              borderBottom: "1px solid #eee",
+              borderBottom: "1px solid rgb(60, 71, 82)",
               background: "#A0BFE0",
-              // background:
-              //   "linear-gradient(to right, #A0BFE0, #B8B2E1, #FFD2D2)",
             }}
           >
             <Container>
@@ -99,7 +97,7 @@ export default function MenuBarHeader() {
                   <Button
                     variant="outline-success"
                     type="submit"
-                    style={{ backgroundColor: "#C8FFE0" }}
+                    style={{ backgroundColor: "#BDD2B6" }}
                   >
                     Login
                   </Button>
@@ -111,10 +109,9 @@ export default function MenuBarHeader() {
 
         <Navbar
           style={{
-            borderBottom: "2px solid #4A55A2",
+            borderBottom: "2px solid rgb(60, 71, 82)",
             background: "#A0BFE0",
 
-            // background: "linear-gradient(to right, #A0BFE0, #B8B2E1, #FFD2D2)",
             opacity: "0.9",
           }}
         >

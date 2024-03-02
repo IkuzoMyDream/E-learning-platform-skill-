@@ -150,24 +150,15 @@ export default function CourseDetail({ course, picturecourse }) {
             >
               ผู้สอน
             </h2>
-            <h4
-              style={{
-              }}
-            >
+            <h4 style={{}}>
               <BsPersonCircle />
               {course.name_teacher}
             </h4>
-            <h4
-              style={{
-              }}
-            >
+            <h4 style={{}}>
               <BsFillEnvelopeAtFill />
               {course.mail_teacher}
             </h4>
-            <h4
-              style={{
-              }}
-            >
+            <h4 style={{}}>
               <BsFillTelephoneFill />
               {course.phone_number}
             </h4>
