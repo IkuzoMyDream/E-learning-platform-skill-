@@ -5,7 +5,7 @@ import {
   BsPersonCircle,
 } from "react-icons/bs";
 import TransactionButton from "./transaction-button";
-
+import Accordion from 'react-bootstrap/Accordion';
 
 
 
@@ -95,6 +95,16 @@ export default function CourseDetail({ course, picturecourse }) {
             เนื้อหาภายในคอร์ส
           </h2>
           <h4>
+          {course.course_chapters.data.map((item, index) => (
+  <Accordion>
+    <Accordion.Item eventKey={index}>
+    <Accordion.Header>{item.attributes.chapter}.{item.attributes.title}</Accordion.Header>
+      <Accordion.Body>
+        {item.attributes.description}
+      </Accordion.Body>
+    </Accordion.Item>
+  </Accordion>
+    ))}
 
           </h4>
         </Col>
