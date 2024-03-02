@@ -38,7 +38,7 @@ function HomePage() {
   return (
     <Container 
       style={{
-        background:"rgb(22,28,36)",
+        background:"",
       }}
     >
       <CarouselSlider />

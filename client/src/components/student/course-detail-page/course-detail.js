@@ -61,14 +61,14 @@ export default function CourseDetail({ course, picturecourse }) {
 
       <Row
         style={{
-          backgroundColor: "#1B1A55",
+          backgroundColor: "",
           height: "1000px",
         }}
       >
         <Col>
           <h2
             style={{
-              color: "#FAF0E6",
+              color: "",
               marginTop: "3%",
               marginBottom: "5px",
               fontFamily: "ArchTH",
@@ -78,7 +78,7 @@ export default function CourseDetail({ course, picturecourse }) {
           </h2>
           <h4
             style={{
-              color: "#FAF0E6",
+              color: "",
               marginBottom: "30px",
               marginLeft: "15px",
             }}
@@ -87,7 +87,7 @@ export default function CourseDetail({ course, picturecourse }) {
           </h4>
           <h2
             style={{
-              color: "#FAF0E6",
+              color: "",
               marginBottom: "5px",
               fontFamily: "ArchTH",
             }}
@@ -101,7 +101,7 @@ export default function CourseDetail({ course, picturecourse }) {
         <Col>
           <h2
             style={{
-              color: "#FAF0E6",
+              color: "",
               fontSize: "40px",
               marginTop: "3%",
               marginBottom: "5px",
@@ -144,7 +144,7 @@ export default function CourseDetail({ course, picturecourse }) {
             </button>
             <h2
               style={{
-                color: "#FAF0E6",
+                color: "",
                 marginBottom: "5px",
                 fontFamily: "ArchTH",
                 marginTop: "50px",
@@ -154,7 +154,7 @@ export default function CourseDetail({ course, picturecourse }) {
             </h2>
             <h4
               style={{
-                color: "#FAF0E6",
+                color: "",
                 marginBottom: "30px",
               }}
             >
@@ -162,7 +162,7 @@ export default function CourseDetail({ course, picturecourse }) {
             </h4>
             <h2
               style={{
-                color: "#FAF0E6",
+                color: "",
                 marginBottom: "5px",
                 fontFamily: "ArchTH",
                 marginTop: "50px",
@@ -172,7 +172,7 @@ export default function CourseDetail({ course, picturecourse }) {
             </h2>
             <h4
               style={{
-                color: "#FAF0E6",
+                color: "",
               }}
             >
               <BsPersonCircle />
@@ -180,7 +180,7 @@ export default function CourseDetail({ course, picturecourse }) {
             </h4>
             <h4
               style={{
-                color: "#FAF0E6",
+                color: "",
               }}
             >
               <BsFillEnvelopeAtFill />
@@ -188,7 +188,7 @@ export default function CourseDetail({ course, picturecourse }) {
             </h4>
             <h4
               style={{
-                color: "#FAF0E6",
+                color: "",
               }}
             >
               <BsFillTelephoneFill />
