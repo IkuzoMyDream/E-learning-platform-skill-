@@ -4,7 +4,8 @@ const conf = {
   jwtSessionStorageKey: "auth.jwt",
 
   // user
-  getUserInfomation: "/users/me?populate=*",
+  getUserInfomation:
+    "/users/me?populate[courses][populate][0]=picture&populate[learning_progresses][populate]=*&populate=avatar&populate[payments][populate][course][populate]=picture",
   getUserRole: "/users/me?populate=role",
   jwtUserEndpoint: "/users/me?populate=*",
   getUserCourseEnrollments: "/users/me?populate[courses][populate]=*",

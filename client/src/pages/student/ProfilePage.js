@@ -22,8 +22,9 @@ export default function ProfilePage() {
   const [email, setEmail] = useState("");
   const [aboutMe, setAboutMe] = useState("");
 
+  const [myCourses, setMyCourses] = useState(null);
+
   const { state } = useContext(AuthContext);
-  // console.log(state);
 
   const fetchData = async () => {
     try {
@@ -39,6 +40,8 @@ export default function ProfilePage() {
   }, []);
 
   useEffect(() => {
+    setMyCourses(userInfomation);
+
     setAvatarUrl(
       userInfomation?.avatar?.url
         ? `http://localhost:1337${userInfomation?.avatar?.url}`

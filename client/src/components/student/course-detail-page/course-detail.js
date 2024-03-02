@@ -6,15 +6,11 @@ import {
 } from "react-icons/bs";
 import TransactionButton from "./transaction-button";
 
-
-
-
 export default function CourseDetail({ course, picturecourse }) {
   return (
     <>
       <Row
         style={{
-          backgroundColor: "rgba(7, 15, 43, 0.7)",
           height: "500px",
         }}
       >
@@ -27,8 +23,6 @@ export default function CourseDetail({ course, picturecourse }) {
               fontSize: "400%",
               fontFamily: "ArchTH",
               textAlign: "center",
-              color: "#FAF0E6",
-
             }}
           >
             วิชา {course.name}
@@ -36,7 +30,6 @@ export default function CourseDetail({ course, picturecourse }) {
           <h4
             style={{
               textAlign: "center",
-              color: "#FAF0E6",
               fontFamily: "ArchTH",
             }}
           >
@@ -55,20 +48,18 @@ export default function CourseDetail({ course, picturecourse }) {
               height: "250px",
               marginTop: "20%",
             }}
-          >
-          </Image></Col>
+          ></Image>
+        </Col>
       </Row>
 
       <Row
         style={{
-          backgroundColor: "#1B1A55",
           height: "1000px",
         }}
       >
         <Col>
           <h2
             style={{
-              color: "#FAF0E6",
               marginTop: "3%",
               marginBottom: "5px",
               fontFamily: "ArchTH",
@@ -78,7 +69,6 @@ export default function CourseDetail({ course, picturecourse }) {
           </h2>
           <h4
             style={{
-              color: "#FAF0E6",
               marginBottom: "30px",
               marginLeft: "15px",
             }}
@@ -87,21 +77,17 @@ export default function CourseDetail({ course, picturecourse }) {
           </h4>
           <h2
             style={{
-              color: "#FAF0E6",
               marginBottom: "5px",
               fontFamily: "ArchTH",
             }}
           >
             เนื้อหาภายในคอร์ส
           </h2>
-          <h4>
-
-          </h4>
+          <h4></h4>
         </Col>
         <Col>
           <h2
             style={{
-              color: "#FAF0E6",
               fontSize: "40px",
               marginTop: "3%",
               marginBottom: "5px",
@@ -136,15 +122,11 @@ export default function CourseDetail({ course, picturecourse }) {
                 background: "rgba(146, 144, 195, 0.9)",
                 color: "#070F2B",
               }}
-
             >
-              <span>
-                dummy button
-              </span>
+              <span>dummy button</span>
             </button>
             <h2
               style={{
-                color: "#FAF0E6",
                 marginBottom: "5px",
                 fontFamily: "ArchTH",
                 marginTop: "50px",
@@ -154,7 +136,6 @@ export default function CourseDetail({ course, picturecourse }) {
             </h2>
             <h4
               style={{
-                color: "#FAF0E6",
                 marginBottom: "30px",
               }}
             >
@@ -162,7 +143,6 @@ export default function CourseDetail({ course, picturecourse }) {
             </h4>
             <h2
               style={{
-                color: "#FAF0E6",
                 marginBottom: "5px",
                 fontFamily: "ArchTH",
                 marginTop: "50px",
@@ -172,7 +152,6 @@ export default function CourseDetail({ course, picturecourse }) {
             </h2>
             <h4
               style={{
-                color: "#FAF0E6",
               }}
             >
               <BsPersonCircle />
@@ -180,7 +159,6 @@ export default function CourseDetail({ course, picturecourse }) {
             </h4>
             <h4
               style={{
-                color: "#FAF0E6",
               }}
             >
               <BsFillEnvelopeAtFill />
@@ -188,7 +166,6 @@ export default function CourseDetail({ course, picturecourse }) {
             </h4>
             <h4
               style={{
-                color: "#FAF0E6",
               }}
             >
               <BsFillTelephoneFill />
@@ -196,9 +173,7 @@ export default function CourseDetail({ course, picturecourse }) {
             </h4>
           </Container>
         </Col>
-      </Row >
-
-
+      </Row>
     </>
   );
 }

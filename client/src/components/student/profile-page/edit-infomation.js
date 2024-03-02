@@ -14,6 +14,7 @@ export default function EditInfomation({
   const [image, setImage] = useState(null);
 
   const handleSubmit = async (e) => {
+    setIsInfoUpdated(false);
     e.preventDefault();
     const formData = new FormData();
     try {
@@ -149,7 +150,7 @@ export default function EditInfomation({
               />
             </Col>
           </Row>
-          <Row>
+          <Row className="my-3 text-center">
             <Col>
               <Button
                 disabled={!isInfoUpdated}
