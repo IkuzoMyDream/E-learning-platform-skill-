@@ -27,7 +27,7 @@ export default function CategoryList() {
 
   return (
     <Container className="my-5">
-      <h1 className="text-center">หมวดหมู่รายวิชา</h1>
+      <h1 className="text-center" style={{color:"#FAF0E6",}}>หมวดหมู่รายวิชา</h1>
       <div className="my-5 row">
         {categories.map((d) => (
           <div className="col-sm-3 " key={d.id}>

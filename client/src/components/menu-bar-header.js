@@ -61,8 +61,8 @@ export default function MenuBarHeader() {
         {!ContextState.isLoggedIn && (
           <Navbar
             style={{
-              borderBottom: "1px solid #eee",
-              background: "#A0BFE0",
+              borderBottom: "1px solid rgb(60, 71, 82)",
+              background: "rgb(22,28,36)",
               // background:
               //   "linear-gradient(to right, #A0BFE0, #B8B2E1, #FFD2D2)",
             }}
@@ -99,7 +99,7 @@ export default function MenuBarHeader() {
                   <Button
                     variant="outline-success"
                     type="submit"
-                    style={{ backgroundColor: "#C8FFE0" }}
+                    style={{ backgroundColor: "#BDD2B6" }}
                   >
                     Login
                   </Button>
@@ -111,8 +111,8 @@ export default function MenuBarHeader() {
 
         <Navbar
           style={{
-            borderBottom: "2px solid #4A55A2",
-            background: "#A0BFE0",
+            borderBottom: "2px solid rgb(60, 71, 82)",
+            background: "rgb(33, 43, 54)",
 
             // background: "linear-gradient(to right, #A0BFE0, #B8B2E1, #FFD2D2)",
             opacity: "0.9",
@@ -144,7 +144,7 @@ export default function MenuBarHeader() {
                 </Nav.Link>
               )}
 
-              <Nav.Link onClick={() => navigate("/course")}>รายวิชา</Nav.Link>
+              <Nav.Link onClick={() => navigate("/course")} >รายวิชา</Nav.Link>
 
               {ContextState.isLoggedIn && (
                 <Dropdown

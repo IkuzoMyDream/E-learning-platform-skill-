@@ -36,7 +36,11 @@ function HomePage() {
   }, []);
 
   return (
-    <Container>
+    <Container 
+      style={{
+        background:"rgb(22,28,36)",
+      }}
+    >
       <CarouselSlider />
       <CategoryList />
       <CourseRecommended courses={courses} />
