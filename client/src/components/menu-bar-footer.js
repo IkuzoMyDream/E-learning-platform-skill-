@@ -3,6 +3,7 @@ import "./menu-bar-footer.css";
 import { CiLocationOn, CiMail, CiMobile3 } from "react-icons/ci";
 import { useLocation } from "react-router-dom";
 
+
 export default function MenuBarFooter() {
   let { pathname } = useLocation();
   pathname = pathname.slice(-5);

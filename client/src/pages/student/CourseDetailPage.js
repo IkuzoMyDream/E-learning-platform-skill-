@@ -37,6 +37,10 @@ export default function CourseDetailPage() {
     console.log(response)
     setCourse(response);
     setPicturecourse(response?.picture?.data[0]?.attributes?.url);
+    {response.course_chapters.data.map((item, index) => (
+   console.log(item)   
+      ))}
+    
 
     setEnrollments(
       response?.enrollers?.data?.map((enroller) => {
