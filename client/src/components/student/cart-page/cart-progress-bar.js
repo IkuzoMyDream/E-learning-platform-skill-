@@ -53,6 +53,9 @@ export default function CartProgressBar({
       await Promise.all(
         selectedCourses.map(async (course) => {
           await ax.put(`/course/${course.id}/enroll`);
+          await ax.post(`/payments`, {
+            data: { owner: state.user.id, course: course.id },
+          });
         })
       );
     } catch (err) {
@@ -63,6 +66,7 @@ export default function CartProgressBar({
   };
 
   useEffect(() => {
+    console.log(selectedCourses);
     setTotalPrice(selectedCourses?.reduce((a, b) => a + b.price, 0));
   }, [selectedCourses]);
 

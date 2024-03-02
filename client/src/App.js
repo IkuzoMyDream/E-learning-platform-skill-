@@ -46,9 +46,8 @@ function App() {
 
           {/* role == admin */}
         </Routes>
+        <MenuBarFooter />
       </Router>
-
-      <MenuBarFooter />
     </>
   );
 }

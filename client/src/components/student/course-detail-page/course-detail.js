@@ -5,16 +5,18 @@ import {
   BsPersonCircle,
 } from "react-icons/bs";
 import TransactionButton from "./transaction-button";
+<<<<<<< HEAD
 import Accordion from 'react-bootstrap/Accordion';
 
 
+=======
+>>>>>>> bc1bfcf15af273afbbab2a9c7796fdb2037a6764
 
 export default function CourseDetail({ course, picturecourse }) {
   return (
     <>
       <Row
         style={{
-          backgroundColor: "rgba(7, 15, 43, 0.7)",
           height: "500px",
         }}
       >
@@ -27,8 +29,6 @@ export default function CourseDetail({ course, picturecourse }) {
               fontSize: "400%",
               fontFamily: "ArchTH",
               textAlign: "center",
-              color: "#FAF0E6",
-
             }}
           >
             วิชา {course.name}
@@ -36,7 +36,6 @@ export default function CourseDetail({ course, picturecourse }) {
           <h4
             style={{
               textAlign: "center",
-              color: "#FAF0E6",
               fontFamily: "ArchTH",
             }}
           >
@@ -55,20 +54,18 @@ export default function CourseDetail({ course, picturecourse }) {
               height: "250px",
               marginTop: "20%",
             }}
-          >
-          </Image></Col>
+          ></Image>
+        </Col>
       </Row>
 
       <Row
         style={{
-          backgroundColor: "#1B1A55",
           height: "1000px",
         }}
       >
         <Col>
           <h2
             style={{
-              color: "#FAF0E6",
               marginTop: "3%",
               marginBottom: "5px",
               fontFamily: "ArchTH",
@@ -78,7 +75,6 @@ export default function CourseDetail({ course, picturecourse }) {
           </h2>
           <h4
             style={{
-              color: "#FAF0E6",
               marginBottom: "30px",
               marginLeft: "15px",
             }}
@@ -87,13 +83,13 @@ export default function CourseDetail({ course, picturecourse }) {
           </h4>
           <h2
             style={{
-              color: "#FAF0E6",
               marginBottom: "5px",
               fontFamily: "ArchTH",
             }}
           >
             เนื้อหาภายในคอร์ส
           </h2>
+<<<<<<< HEAD
           <h4>
           {course.course_chapters.data.map((item, index) => (
   <Accordion>
@@ -107,11 +103,13 @@ export default function CourseDetail({ course, picturecourse }) {
     ))}
 
           </h4>
+=======
+          <h4></h4>
+>>>>>>> bc1bfcf15af273afbbab2a9c7796fdb2037a6764
         </Col>
         <Col>
           <h2
             style={{
-              color: "#FAF0E6",
               fontSize: "40px",
               marginTop: "3%",
               marginBottom: "5px",
@@ -146,15 +144,11 @@ export default function CourseDetail({ course, picturecourse }) {
                 background: "rgba(146, 144, 195, 0.9)",
                 color: "#070F2B",
               }}
-
             >
-              <span>
-                dummy button
-              </span>
+              <span>dummy button</span>
             </button>
             <h2
               style={{
-                color: "#FAF0E6",
                 marginBottom: "5px",
                 fontFamily: "ArchTH",
                 marginTop: "50px",
@@ -164,7 +158,6 @@ export default function CourseDetail({ course, picturecourse }) {
             </h2>
             <h4
               style={{
-                color: "#FAF0E6",
                 marginBottom: "30px",
               }}
             >
@@ -172,7 +165,6 @@ export default function CourseDetail({ course, picturecourse }) {
             </h4>
             <h2
               style={{
-                color: "#FAF0E6",
                 marginBottom: "5px",
                 fontFamily: "ArchTH",
                 marginTop: "50px",
@@ -180,35 +172,21 @@ export default function CourseDetail({ course, picturecourse }) {
             >
               ผู้สอน
             </h2>
-            <h4
-              style={{
-                color: "#FAF0E6",
-              }}
-            >
+            <h4 style={{}}>
               <BsPersonCircle />
               {course.name_teacher}
             </h4>
-            <h4
-              style={{
-                color: "#FAF0E6",
-              }}
-            >
+            <h4 style={{}}>
               <BsFillEnvelopeAtFill />
               {course.mail_teacher}
             </h4>
-            <h4
-              style={{
-                color: "#FAF0E6",
-              }}
-            >
+            <h4 style={{}}>
               <BsFillTelephoneFill />
               {course.phone_number}
             </h4>
           </Container>
         </Col>
-      </Row >
-
-
+      </Row>
     </>
   );
 }

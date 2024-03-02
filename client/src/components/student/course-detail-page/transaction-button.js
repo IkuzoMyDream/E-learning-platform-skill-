@@ -60,10 +60,12 @@ export default function TransactionButton({
           variant="secondary"
           onClick={() => navigate(`/course/${courseName}/study`)}
         >
-          เรียน
+          เข้าเรียนต่อ
         </Button>
       ) : isCarted ? (
-        <Button variant="secondary" onClick={() => navigate("/cart")}
+        <Button
+          variant="secondary"
+          onClick={() => navigate("/cart")}
           /*style={{
             outline:"none",
             cursor:"pointer",
@@ -83,9 +85,7 @@ export default function TransactionButton({
             color: "ghostwhite",
           }}*/
         >
-          <span>
-            ชำระเงิน
-          </span>
+          <span>ชำระเงิน</span>
         </Button>
       ) : (
         <Button onClick={handleAddCart}>เพิ่มลงตะกร้า</Button>

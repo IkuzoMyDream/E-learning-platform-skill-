@@ -1,13 +1,30 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import ax from "../../utils/config/ax";
 import conf from "../../utils/config/main";
 
 import { Button, Card, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import EditInfomation from "../../components/student/profile-page/edit-infomation";
+import ShowInfomation from "../../components/student/profile-page/show-infomation";
+
+import { AuthContext } from "../../utils/auth/Auth.context";
 
 export default function ProfilePage() {
   const [userInfomation, setUserInfomation] = useState(null);
+  const [isEditInfomation, setIsEditInfomation] = useState(false);
+
+  const [isInfoUpdated, setIsInfoUpdated] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [phoneNumber, setPhonenumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [aboutMe, setAboutMe] = useState("");
+
+  const [myCourses, setMyCourses] = useState(null);
+
+  const { state } = useContext(AuthContext);
 
   const fetchData = async () => {
     try {
@@ -23,48 +40,56 @@ export default function ProfilePage() {
   }, []);
 
   useEffect(() => {
-    console.log(userInfomation);
+    setMyCourses(userInfomation);
+
+    setAvatarUrl(
+      userInfomation?.avatar?.url
+        ? `http://localhost:1337${userInfomation?.avatar?.url}`
+        : "/logo.jpg"
+    );
+    setFirstname(userInfomation?.firstname);
+    setLastName(userInfomation?.lastname);
+    setPhonenumber(userInfomation?.phone_number);
+    setEmail(userInfomation?.email);
+    setAboutMe(userInfomation?.about_me);
   }, [userInfomation]);
+
+  useEffect(() => {
+    // console.log(firstname, lastname, phoneNumber, email, aboutMe);
+  }, [firstname, lastname, phoneNumber, email, aboutMe]);
 
   if (userInfomation) {
     return (
       <Container>
-        <Card className="text-center mb-3">
-          <Card.Body>
-            <Card.Img
-              style={{
-                maxHeight: "100px",
-                maxWidth: "100px",
-                borderRadius: "50%",
-              }}
-              src={"http://localhost:1337" + userInfomation.avatar.url}
-            />
-            <Card.Title>{userInfomation.username}</Card.Title>
-            <Card.Title>Email Address</Card.Title>
-            <Card.Text>{userInfomation.email}</Card.Text>
-            <Button variant="secondary">แก้ไขข้อมูลส่วนตัว</Button>
-          </Card.Body>
-        </Card>
-        <Card>
-          <Card.Header>คอร์สเรียนของฉัน</Card.Header>
-          {userInfomation.courses.map((course) => (
-            <Card.Body key={course.id}>
-              <Link to={`/course/${course.name}`}>
-                <Card.Text>{course.name}</Card.Text>
-              </Link>
-            </Card.Body>
-          ))}
-        </Card>
-        <Card className="my-3">
-          <Card.Header>คอร์สที่เรียนเสร็จแล้ว</Card.Header>
-          {userInfomation.courses.map((course) => (
-            <Card.Body key={course.id}>
-              <Link to={`/course/${course.name}`}>
-                <Card.Text>{course.name}</Card.Text>
-              </Link>
-            </Card.Body>
-          ))}
-        </Card>
+        {!isEditInfomation ? (
+          <ShowInfomation
+            userInfomation={userInfomation}
+            setIsEditInfomation={setIsEditInfomation}
+          />
+        ) : (
+          <EditInfomation
+            state={state}
+            isInfoUpdated={isInfoUpdated}
+            setIsInfoUpdated={setIsInfoUpdated}
+            setUserInfomation={{
+              setAvatarUrl,
+              setFirstname,
+              setLastName,
+              setPhonenumber,
+              setEmail,
+              setAboutMe,
+            }}
+            userInfomation={{
+              avatarUrl,
+              firstname,
+              lastname,
+              phoneNumber,
+              email,
+              aboutMe,
+            }}
+            setIsEditInfomation={setIsEditInfomation}
+          />
+        )}
       </Container>
     );
   }

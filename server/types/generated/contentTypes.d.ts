@@ -739,6 +739,8 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::progress.progress'
     >;
+    phone_number: Attribute.String;
+    about_me: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -926,6 +928,11 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'oneToMany',
       'api::course-chapter.course-chapter'
     >;
+    course_materials: Attribute.Relation<
+      'api::course.course',
+      'oneToMany',
+      'api::material.material'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -961,7 +968,7 @@ export interface ApiCourseChapterCourseChapter extends Schema.CollectionType {
       'manyToOne',
       'api::course.course'
     >;
-    chapter: Attribute.Integer;
+    chapter: Attribute.Integer & Attribute.Required;
     course_materials: Attribute.Relation<
       'api::course-chapter.course-chapter',
       'oneToMany',
@@ -1019,6 +1026,11 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
       'api::material.material',
       'manyToOne',
       'api::course-chapter.course-chapter'
+    >;
+    course: Attribute.Relation<
+      'api::material.material',
+      'manyToOne',
+      'api::course.course'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1094,7 +1106,7 @@ export interface ApiProgressProgress extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    progress: Attribute.Integer;
+    progress: Attribute.Integer & Attribute.Required;
     course: Attribute.Relation<
       'api::progress.progress',
       'manyToOne',

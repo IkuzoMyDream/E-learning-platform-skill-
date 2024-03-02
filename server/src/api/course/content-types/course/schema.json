@@ -67,10 +67,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::progress.progress",
-      "mappedBy": "course",
-      "phone_number": {
-        "type": "string"
-      }
+      "mappedBy": "course"
     },
     "phone_number": {
       "type": "string"
@@ -79,6 +76,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::course-chapter.course-chapter",
+      "mappedBy": "course"
+    },
+    "course_materials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::material.material",
       "mappedBy": "course"
     }
   }

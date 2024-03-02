@@ -19,7 +19,8 @@
       "inversedBy": "course_chapters"
     },
     "chapter": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "course_materials": {
       "type": "relation",

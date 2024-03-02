@@ -36,7 +36,11 @@ function HomePage() {
   }, []);
 
   return (
-    <Container>
+    <Container 
+      style={{
+        background:"",
+      }}
+    >
       <CarouselSlider />
       <CategoryList />
       <CourseRecommended courses={courses} />

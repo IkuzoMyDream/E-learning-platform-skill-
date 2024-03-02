@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "progress": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "course": {
       "type": "relation",
