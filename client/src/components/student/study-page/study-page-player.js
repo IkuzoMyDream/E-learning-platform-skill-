@@ -26,47 +26,6 @@ export default function StudyPagePlayer({ state, material }) {
     }
   }, [isReady]);
 
-  //   const handleSelectMaterial = async () => {
-  //     try {
-  //       if (!isLoading) {
-  //         setIsLoading(true);
-  //       }
-  //       var progress_response = await ax.get(
-  //         `/users/me?populate[learning_progresses][populate][material][filters][id][$eq]=${material.id}`
-  //       );
-  //     } catch (err) {
-  //       setIsLoading(false);
-  //       console.log(err);
-  //     } finally {
-  //       var is_has_progress = progress_response.data.learning_progresses.find(
-  //         (progress) => progress?.material?.id == material.id
-  //       );
-  //       if (!is_has_progress) {
-  //         try {
-  //           var post_progress_response = await ax.post(`/progresses`, {
-  //             data: {
-  //               material: { connect: [{ id: material.id }] },
-  //               progress: 0,
-  //               course: { connect: [{ id: material.course.data.id }] },
-  //               owner: { connect: [{ id: state.user.id }] },
-  //             },
-  //           });
-  //         } catch (err) {
-  //           console.log(err);
-  //         } finally {
-  //         }
-  //       } else {
-  //         try {
-  //         } catch (err) {
-  //           console.log(err);
-  //         } finally {
-  //           setIsLoading(false);
-  //         }
-  //       }
-  //       setIsLoading(false);
-  //     }
-  //   };
-
   const updateLearningProgress = async () => {
     if (material) {
       try {

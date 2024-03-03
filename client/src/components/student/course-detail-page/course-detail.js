@@ -5,11 +5,10 @@ import {
   BsPersonCircle,
 } from "react-icons/bs";
 import TransactionButton from "./transaction-button";
-import Accordion from 'react-bootstrap/Accordion';
-
-
+import Accordion from "react-bootstrap/Accordion";
 
 export default function CourseDetail({ course, picturecourse }) {
+  console.log(course);
   return (
     <>
       <Row
@@ -28,7 +27,6 @@ export default function CourseDetail({ course, picturecourse }) {
               fontFamily: "ArchTH",
               textAlign: "center",
               //color: "#FAF0E6",
-
             }}
           >
             วิชา {course.name}
@@ -55,8 +53,8 @@ export default function CourseDetail({ course, picturecourse }) {
               height: "250px",
               marginTop: "20%",
             }}
-          >
-          </Image></Col>
+          ></Image>
+        </Col>
       </Row>
 
       <Row
@@ -95,17 +93,16 @@ export default function CourseDetail({ course, picturecourse }) {
             เนื้อหาภายในคอร์ส
           </h2>
           <h4>
-          {/* {course.course_chapters.data.map((item, index) => (
-  <Accordion>
-    <Accordion.Item eventKey={index}>
-    <Accordion.Header>{item.attributes.chapter}.{item.attributes.title}</Accordion.Header>
-      <Accordion.Body>
-        {item.attributes.description}
-      </Accordion.Body>
-    </Accordion.Item>
-  </Accordion>
-    ))} */}
-
+            {course?.course_chapters?.data?.map((item, index) => (
+              <Accordion>
+                <Accordion.Item eventKey={index}>
+                  <Accordion.Header>
+                    {item.attributes.chapter}.{item.attributes.title}
+                  </Accordion.Header>
+                  <Accordion.Body>{item.attributes.description}</Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            ))}
           </h4>
         </Col>
         <Col>
@@ -146,11 +143,8 @@ export default function CourseDetail({ course, picturecourse }) {
                 //background: "rgba(146, 144, 195, 0.9)",
                 //color: "#070F2B",
               }}
-
             >
-              <span>
-                dummy button
-              </span>
+              <span>dummy button</span>
             </button>
             <h2
               style={{
@@ -181,34 +175,38 @@ export default function CourseDetail({ course, picturecourse }) {
               ผู้สอน
             </h2>
             <h4
-              style={{
-                //color: "#FAF0E6",
-              }}
+              style={
+                {
+                  //color: "#FAF0E6",
+                }
+              }
             >
               <BsPersonCircle />
               {course.name_teacher}
             </h4>
             <h4
-              style={{
-                //color: "#FAF0E6",
-              }}
+              style={
+                {
+                  //color: "#FAF0E6",
+                }
+              }
             >
               <BsFillEnvelopeAtFill />
               {course.mail_teacher}
             </h4>
             <h4
-              style={{
-                //color: "#FAF0E6",
-              }}
+              style={
+                {
+                  //color: "#FAF0E6",
+                }
+              }
             >
               <BsFillTelephoneFill />
               {course.phone_number}
             </h4>
           </Container>
         </Col>
-      </Row >
-
-
+      </Row>
     </>
   );
 }
