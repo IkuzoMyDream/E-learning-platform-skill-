@@ -41,10 +41,10 @@ export default function MenuBarFooter() {
               <div className="col-lg-6 col-md-6 mb-4 mb-md-0">
                 <h5 className="text-uppercase">About US</h5>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste
-                  atque ea quis molestias. Fugiat pariatur maxime quis culpa
-                  corporis vitae repudiandae aliquam voluptatem veniam, est
-                  atque cumque eum delectus sint!
+                เว็บ skill++ เป็นแพลตฟอร์มที่ให้บริการการเรียนรู้ที่ยืดหยุ่นและสะดวกสบาย 
+                ผู้เรียนสามารถเลือกเรียนจากหลากหลายวิชาการ และสามารถเรียนได้ตามรอบเวลาที่สะดวก 
+                ระบบการสอนออนไลน์ทำให้การเรียนรู้เป็นไปอย่างรวดเร็วและมีประสิทธิภาพมากยิ่งขึ้น 
+                บริการที่ยอดเยี่ยมนี้ช่วยให้ผู้เรียนได้รับความรู้และทักษะที่ต้องการในสถานที่และเวลาที่สะดวกสบายสำหรับคุณ
                 </p>
               </div>
               <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
