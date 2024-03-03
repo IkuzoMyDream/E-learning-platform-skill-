@@ -2,8 +2,32 @@ import { Container, Col, Row } from "react-bootstrap";
 import "./menu-bar-footer.css";
 import { CiLocationOn, CiMail, CiMobile3 } from "react-icons/ci";
 import { useLocation } from "react-router-dom";
+/*
+<h6 className="text-uppercase">Links</h6>
 
-
+<ul className="list-unstyled mb-0">
+  <li>
+    <a href="#!" className="text-black">
+      Link 1
+    </a>
+  </li>
+  <li>
+    <a href="#!" className="text-black">
+      Link 2
+    </a>
+  </li>
+  <li>
+    <a href="#!" className="text-black">
+      Link 3
+    </a>
+  </li>
+  <li>
+    <a href="#!" className="text-black">
+      Link 4
+    </a>
+  </li>
+</ul>
+*/
 export default function MenuBarFooter() {
   let { pathname } = useLocation();
   pathname = pathname.slice(-5);
@@ -17,10 +41,10 @@ export default function MenuBarFooter() {
               <div className="col-lg-6 col-md-6 mb-4 mb-md-0">
                 <h5 className="text-uppercase">About US</h5>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste
-                  atque ea quis molestias. Fugiat pariatur maxime quis culpa
-                  corporis vitae repudiandae aliquam voluptatem veniam, est
-                  atque cumque eum delectus sint!
+                เว็บ skill++ เป็นแพลตฟอร์มที่ให้บริการการเรียนรู้ที่ยืดหยุ่นและสะดวกสบาย 
+                ผู้เรียนสามารถเลือกเรียนจากหลากหลายวิชาการ และสามารถเรียนได้ตามรอบเวลาที่สะดวก 
+                ระบบการสอนออนไลน์ทำให้การเรียนรู้เป็นไปอย่างรวดเร็วและมีประสิทธิภาพมากยิ่งขึ้น 
+                บริการที่ยอดเยี่ยมนี้ช่วยให้ผู้เรียนได้รับความรู้และทักษะที่ต้องการในสถานที่และเวลาที่สะดวกสบายสำหรับคุณ
                 </p>
               </div>
               <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
@@ -41,30 +65,7 @@ export default function MenuBarFooter() {
                 </Container>
               </div>
               <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h6 className="text-uppercase">Links</h6>
-
-                <ul className="list-unstyled mb-0">
-                  <li>
-                    <a href="#!" className="text-black">
-                      Link 1
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-black">
-                      Link 2
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-black">
-                      Link 3
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-black">
-                      Link 4
-                    </a>
-                  </li>
-                </ul>
+              <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/113.webp" class="w-100" />
               </div>
             </div>
           </div>
