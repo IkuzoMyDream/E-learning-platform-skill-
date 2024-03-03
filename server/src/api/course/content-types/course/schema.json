@@ -83,6 +83,17 @@
       "relation": "oneToMany",
       "target": "api::material.material",
       "mappedBy": "course"
+    },
+    "preview": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }
