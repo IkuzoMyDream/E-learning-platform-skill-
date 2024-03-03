@@ -46,7 +46,7 @@ function HomePage() {
       }}
     >
       <CarouselSlider />
-      <form className="form d-flex" onSubmit={handleSearch}>
+      <form className="form d-flex" onSubmit={handleSearch} style={{border:'0.1px solid blue'}}>
         <button type="submit">
           <svg
             width="17"
