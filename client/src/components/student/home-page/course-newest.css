@@ -1,0 +1,35 @@
+/* เพิ่มความห่างระหว่าง Card */
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* ปรับขนาดและสีของชื่อวิชาและชื่อครู */
+  .card-subtitle {
+    color: #333;
+    font-size: 1.2rem;
+  }
+  
+  .card-text {
+    color: #666;
+    font-size: 1rem;
+  }
+
+  /* ปรับขนาดของรูปภาพ */
+  .card-img-top {
+    object-fit: cover;
+  }
+  
+  /* ปรับขนาดและสีของลิงก์ */
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #0056b3;
+  }

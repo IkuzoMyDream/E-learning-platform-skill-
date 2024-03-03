@@ -9,12 +9,13 @@ import {
   Dropdown,
 } from "react-bootstrap";
 import { BsCart3 } from "react-icons/bs";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../utils/auth/Auth.context";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import ax from "../utils/config/ax";
 import conf from "../utils/config/main";
 import { useLocation } from "react-router-dom";
+
 
 const initialState = {
   username: "",
@@ -51,6 +52,11 @@ export default function MenuBarHeader() {
     });
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/course/${searchCourse}`);
+  };
+
   const onBrandClick = () => {
     navigate("/");
   };
@@ -60,11 +66,13 @@ export default function MenuBarHeader() {
       <>
         {!ContextState.isLoggedIn && (
           <Navbar
-            style={{
-              borderBottom: "1px solid rgb(60, 71, 82)",
-              background: "#A0BFE0",
-            }}
-          >
+          style={{
+            borderBottom: "1px solid rgb(60, 71, 82)",
+            background: "#A0BFE0",
+            opacity: "0.9",
+          }}
+          expand="lg"
+        >
             <Container>
               <Navbar.Brand></Navbar.Brand>
               <>
@@ -109,32 +117,58 @@ export default function MenuBarHeader() {
 
         <Navbar
           style={{
-            borderBottom: "2px solid rgb(60, 71, 82)",
+            borderBottom: "1px solid rgb(60, 71, 82)",
             background: "#A0BFE0",
-
             opacity: "0.9",
           }}
+          expand="lg"
         >
           <Container>
             <Navbar.Brand onClick={onBrandClick}>
+              <Link  to = "/">
               <Image src="/logo-skillpp.png" style={{ maxHeight: "60px" }} />
+              </Link>
             </Navbar.Brand>
             <Nav>
-              <Form className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder="ค้นหารายวิชา"
-                  className="me-2"
-                  aria-label="Search"
-                  onChange={(e) => setSearchCourse(e.target.value)}
-                />
-                <Button
-                  onClick={() => navigate(`/course/${searchCourse}`)}
-                  variant="outline-success"
-                >
-                  Search
-                </Button>
-              </Form>
+               <form className="form d-flex" onSubmit={handleSearch} style={{border:'0.1px solid blue'}}>
+                 <button type="submit">
+                   <svg
+                     width="17"
+                     height="16"
+                     fill="none"
+                     xmlns="http://www.w3.org/2000/svg"
+                     role="img"
+                     aria-labelledby="search"
+                   >
+                     <path
+                       d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+                       stroke="currentColor"
+                       strokeWidth="1.333"
+                       strokeLinecap="round"
+                       strokeLinejoin="round"
+                     ></path>
+                   </svg>
+                 </button>
+                 <input
+                   className="input me-2"
+                   placeholder="ค้นหารายวิชา"
+                   aria-label="Search"
+                   type="search"
+                   onChange={(e) => setSearchCourse(e.target.value)}
+                 />
+                 <button className="reset" type="reset">
+                   <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     className="h-6 w-6"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke="currentColor"
+                     strokeWidth="2"
+                   >
+                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                   </svg>
+                 </button>
+               </form>
               {ContextState.isLoggedIn && (
                 <Nav.Link onClick={() => navigate("/cart")}>
                   <BsCart3 />
