@@ -1,0 +1,22 @@
+.dropdown {
+    z-index: 1000 !important;
+}   
+
+.dropdown-menu {
+    z-index: 1000 !important;
+}
+
+.dropdown-item {
+    z-index: 1000 !important;
+}
+
+/* Add this CSS to your stylesheet */
+.navbar .navbar-nav .nav-link .dropdown-menu {
+    z-index: 1000; /* Adjust the value as needed */
+  }
+  
+  .navbar .navbar-nav .nav-link {
+    position: relative; /* Ensure that the position is set to relative */
+    z-index: 1; /* Ensure that the z-index is higher than other elements */
+  }
+  

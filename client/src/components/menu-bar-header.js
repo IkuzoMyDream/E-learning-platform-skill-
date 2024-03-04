@@ -16,6 +16,7 @@ import ax from "../utils/config/ax";
 import conf from "../utils/config/main";
 import { useLocation } from "react-router-dom";
 
+import "./menu-bar.header.css";
 
 const initialState = {
   username: "",
@@ -63,8 +64,88 @@ export default function MenuBarHeader() {
 
   if (pathname !== "study") {
     return (
-      <>
+      <div style={{ position: "flex" }}>
         {!ContextState.isLoggedIn && (
+<<<<<<< HEAD
+          <div>
+            <Navbar
+              style={{
+                borderBottom: "1px solid rgb(60, 71, 82)",
+                background: "#A0BFE0",
+                width: "100%",
+              }}
+              expand="lg"
+              className="z-3 position-fixed"
+            >
+              <Container>
+                <Navbar.Brand></Navbar.Brand>
+                <>
+                  <Form className="d-flex" onSubmit={onSubmit}>
+                    <Form.Control
+                      type="email"
+                      placeholder="username"
+                      className="me-2"
+                      aria-label="username"
+                      onChange={(e) =>
+                        setState((prevState) => ({
+                          ...prevState,
+                          username: e.target.value,
+                        }))
+                      }
+                      value={state.username}
+                    />
+                    <Form.Control
+                      type="password"
+                      placeholder="password"
+                      className="me-2"
+                      aria-label="password"
+                      onChange={(e) =>
+                        setState((prevState) => ({
+                          ...prevState,
+                          password: e.target.value,
+                        }))
+                      }
+                    />
+                    <Button
+                      variant="outline-success"
+                      type="submit"
+                      style={{ backgroundColor: "#BDD2B6" }}
+                    >
+                      Login
+                    </Button>
+                  </Form>
+                </>
+              </Container>
+            </Navbar>
+          </div>
+        )}
+        <div>
+          <Navbar
+            style={{
+              borderBottom: "1px solid rgb(60, 71, 82)",
+              background: "#A0BFE0",
+              marginBottom: "100px",
+              width: "100%",
+              marginTop: !ContextState.isLoggedIn ? "54.4px" : "0",
+            }}
+            expand="lg"
+            className="z-3 position-fixed"
+          >
+            <Container>
+              <Navbar.Brand onClick={onBrandClick}>
+                <Link to="/">
+                  <Image
+                    src="/logo-skillpp.png"
+                    style={{ maxHeight: "60px" }}
+                  />
+                </Link>
+              </Navbar.Brand>
+              <Nav>
+                <form
+                  className="form d-flex"
+                  onSubmit={handleSearch}
+                  style={{ border: "0.1px solid blue" }}
+=======
           <Navbar
           style={{
             borderBottom: "1px solid rgb(240, 240, 255)",
@@ -181,47 +262,106 @@ export default function MenuBarHeader() {
                 <Dropdown
                   variant="inherit"
                   style={{ zIndex: "1000 !important" }}
+>>>>>>> 337708ff10a253ad3cd757b85903f3f21c23fad5
                 >
-                  <Dropdown.Toggle
-                    variant="inherit"
-                    style={{
-                      color: "black",
-                      border: "none",
-                    }}
-                  >
-                    {ContextState.user.username}
+                  <button type="submit">
+                    <svg
+                      width="17"
+                      height="16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      role="img"
+                      aria-labelledby="search"
+                    >
+                      <path
+                        d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+                        stroke="currentColor"
+                        strokeWidth="1.333"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>
+                    </svg>
+                  </button>
+                  <input
+                    className="input me-2"
+                    placeholder="ค้นหารายวิชา"
+                    aria-label="Search"
+                    type="search"
+                    onChange={(e) => setSearchCourse(e.target.value)}
+                  />
+                  <button className="reset" type="reset">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
+                      className="h-6 w-6"
                       fill="none"
-                      stroke="#000000"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
                       strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="mx-2"
                     >
-                      <path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3" />
-                      <circle cx="12" cy="10" r="3" />
-                      <circle cx="12" cy="12" r="10" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      ></path>
                     </svg>
-                  </Dropdown.Toggle>
+                  </button>
+                </form>
+                {ContextState.isLoggedIn && (
+                  <Nav.Link onClick={() => navigate("/cart")}>
+                    <BsCart3 />
+                  </Nav.Link>
+                )}
 
-                  <Dropdown.Menu style={{ zIndex: "1000 !important" }}>
-                    <Dropdown.Item href="" onClick={() => navigate("/profile")}>
-                      Profile
-                    </Dropdown.Item>
-                    <Dropdown.Item href="" onClick={logout}>
-                      Log Out
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              )}
-            </Nav>
-          </Container>
-        </Navbar>
-      </>
+                <Nav.Link onClick={() => navigate("/course")}>รายวิชา</Nav.Link>
+
+                {ContextState.isLoggedIn && (
+                  <Dropdown variant="inherit" className="z-3">
+                    <Dropdown.Toggle
+                      className="z-3"
+                      variant="inherit"
+                      style={{
+                        color: "black",
+                        border: "none",
+                      }}
+                    >
+                      {ContextState.user.username}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#000000"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="mx-2"
+                      >
+                        <path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3" />
+                        <circle cx="12" cy="10" r="3" />
+                        <circle cx="12" cy="12" r="10" />
+                      </svg>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu className="dropdown-menu">
+                      <Dropdown.Item
+                        href=""
+                        className="dropdown-item"
+                        onClick={() => navigate("/profile")}
+                      >
+                        Profile
+                      </Dropdown.Item>
+                      <Dropdown.Item href="" onClick={logout}>
+                        Log Out
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                )}
+              </Nav>
+            </Container>
+          </Navbar>
+        </div>
+      </div>
     );
   }
 }

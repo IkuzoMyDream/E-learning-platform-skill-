@@ -93,21 +93,22 @@ export default function ShowInfomation({
                       </Link>
                     </td>
                     <td>
-                      {course.progress.userProgress /
-                      course.progress.courseProgress
+                      {course?.progress?.userProgress /
+                      course?.progress?.courseProgress
                         ? Math.round(
-                            course.progress.userProgress /
-                              course.progress.courseProgress
-                          ) * 100
-                        : 0}
+                            (course.progress.userProgress /
+                              course.progress.courseProgress) *
+                              100
+                          )
+                        : 0}{" "}
+                      %
                       <ProgressBar
                         variant="info"
-                        now={
-                          Math.round(
-                            course.progress.userProgress /
-                              course.progress.courseProgress
-                          ) * 100
-                        }
+                        now={Math.round(
+                          (course.progress.userProgress /
+                            course.progress.courseProgress) *
+                            100
+                        )}
                       />
                     </td>
                   </tr>
