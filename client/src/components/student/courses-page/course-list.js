@@ -12,6 +12,7 @@ export default function CourseList({
   selectedCategoriesId,
   categories,
   setSelectedCategoriesId,
+  currentCourses,
 }) {
   const handleCheckboxChange = (courseId) => {
     setSelectedCategoriesId((prevSelectedCoursesId) => {
@@ -75,7 +76,10 @@ export default function CourseList({
               {courses && filteredCourses.length !== 0 ? (
                 filteredCourses.map((course) => (
                   <Col className="my-3" lg="4" sm="4" key={course.id}>
-                    <Link to={`/course/${course.name}`}>
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to={`/course/${course.name}`}
+                    >
                       <Card className={styles.courses_card} key={course.id}>
                         <Card.Img
                           src={
@@ -84,7 +88,17 @@ export default function CourseList({
                           }
                           style={{ maxHeight: "150px" }}
                         />
-                        <Card.Body>{course.name}</Card.Body>
+                        <Card.Body>
+                          <Card.Subtitle style={{ color: "#3BB3B" }} as="h4">
+                            {course.name}
+                          </Card.Subtitle>
+                          <br></br>
+                          <Card.Text>{course.name_teacher ? course.name_teacher : "นายสมมติ สมมติ"}</Card.Text>
+                          <Card.Img
+                            src="/logo-skillpp.png"
+                            style={{ maxHeight: "50px", maxWidth: "50px" }}
+                          />
+                        </Card.Body>
                       </Card>
                     </Link>
                   </Col>

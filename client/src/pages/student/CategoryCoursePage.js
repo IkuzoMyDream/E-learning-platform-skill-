@@ -46,10 +46,16 @@ export default function CategoryCoursePage() {
 
   return (
     <Container style={{ marginTop: "30px" }}>
-      <h1 className="text-center" style={{ color: "#1B1A55", marginBottom: "25px" }}>
+      <h1
+        className="text-center"
+        style={{ color: "#1B1A55", marginBottom: "25px" }}
+      >
         รายวิชาสำหรับหมวดหมู่
       </h1>
-      <h1 style={{ color: "#1B1A55", marginBottom: "20px" }} className="text-left">
+      <h1
+        style={{ color: "#1B1A55", marginBottom: "20px" }}
+        className="text-left"
+      >
         {categoryName}
       </h1>
       <div
@@ -63,13 +69,25 @@ export default function CategoryCoursePage() {
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Pagination>
-          <Pagination.Prev onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1} />
-          {[...Array(Math.ceil(courses.length / coursesPerPage)).keys()].map((number) => (
-            <Pagination.Item key={number + 1} active={number + 1 === currentPage} onClick={() => paginate(number + 1)}>
-              {number + 1}
-            </Pagination.Item>
-          ))}
-          <Pagination.Next onClick={() => paginate(currentPage + 1)} disabled={indexOfLastCourse >= courses.length} />
+          <Pagination.Prev
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+          />
+          {[...Array(Math.ceil(courses.length / coursesPerPage)).keys()].map(
+            (number) => (
+              <Pagination.Item
+                key={number + 1}
+                active={number + 1 === currentPage}
+                onClick={() => paginate(number + 1)}
+              >
+                {number + 1}
+              </Pagination.Item>
+            )
+          )}
+          <Pagination.Next
+            onClick={() => paginate(currentPage + 1)}
+            disabled={indexOfLastCourse >= courses.length}
+          />
         </Pagination>
       </div>
     </Container>

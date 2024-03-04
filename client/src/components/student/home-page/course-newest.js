@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import styles  from './home-card.module.css';
+import styles from "./home-card.module.css";
 
 export default function CourseNewest({ courses }) {
   const [newestCourses, setNewestCourses] = useState([]);
@@ -39,7 +39,11 @@ export default function CourseNewest({ courses }) {
                         {course.name}
                       </Card.Subtitle>
                       <br></br>
-                      <Card.Text>{course.name_teacher}</Card.Text>
+                      <Card.Text>
+                        {course.name_teacher
+                          ? course.name_teacher
+                          : "นายสมมติ สมมติ"}
+                      </Card.Text>
                       <Card.Img
                         src="/logo-skillpp.png"
                         style={{ maxHeight: "50px", maxWidth: "50px" }}
