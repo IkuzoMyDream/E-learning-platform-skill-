@@ -30,6 +30,7 @@ export default function MenuBarHeader() {
 
   let { pathname } = useLocation();
   pathname = pathname.slice(-5);
+  const isPathIsLogin = pathname.slice(0, 5) === "login"
 
   const navigate = useNavigate();
 
@@ -62,7 +63,7 @@ export default function MenuBarHeader() {
     navigate("/");
   };
 
-  if (pathname !== "study") {
+  if (pathname !== "study" && !isPathIsLogin) {
     return (
       <div style={{ position: "flex" }}>
         {!ContextState.isLoggedIn && (
@@ -108,7 +109,7 @@ export default function MenuBarHeader() {
                     <Button
                       variant="outline-success"
                       type="submit"
-                      style={{ backgroundColor: "#BDD2B6" }}
+                      style={{ backgroundColor: "#B0D9B1" }}
                     >
                       Login
                     </Button>
