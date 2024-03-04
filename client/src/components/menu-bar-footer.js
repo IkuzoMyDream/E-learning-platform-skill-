@@ -31,8 +31,9 @@ import { useLocation } from "react-router-dom";
 export default function MenuBarFooter() {
   let { pathname } = useLocation();
   pathname = pathname.slice(-5);
+  const isPathIsLogin = pathname.slice(0,5) === "login"
 
-  if (pathname !== "study") {
+  if (pathname !== "study" && !isPathIsLogin) {
     return (
       <>
         <div className="footer-contrack">
