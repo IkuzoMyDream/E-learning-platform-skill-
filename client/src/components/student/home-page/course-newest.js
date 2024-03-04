@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import './course-newest.css';
+import styles  from './home-card.module.css';
 
 export default function CourseNewest({ courses }) {
   const [newestCourses, setNewestCourses] = useState([]);
@@ -26,7 +26,7 @@ export default function CourseNewest({ courses }) {
                   to={`/course/${course.name}`}
                   style={{ textDecoration: "none" }}
                 >
-                  <Card key={course.id}>
+                  <Card className={styles.home_card} key={course.id}>
                     <Card.Img
                       src={
                         "http://localhost:1337" +

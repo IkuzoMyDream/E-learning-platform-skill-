@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 import { Card, Col, Container, Row } from "react-bootstrap";
 
+import styles  from './home-card.module.css';
+
+
 export default function CourseRecommended({ courses }) {
   const [recommendedCourses, setRecommendedCourses] = useState([]);
 
@@ -26,7 +29,7 @@ export default function CourseRecommended({ courses }) {
                   to={`/course/${course.name}`}
                   style={{ textDecoration: "none" }}
                 >
-                  <Card key={course.id}>
+                  <Card className={styles.home_card} key={course.id}>
                     <Card.Img
                       src={
                         "http://localhost:1337" +

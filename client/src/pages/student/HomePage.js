@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
+
 function HomePage() {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
