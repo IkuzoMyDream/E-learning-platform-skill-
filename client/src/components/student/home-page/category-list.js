@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 import { Card, Container, Image } from "react-bootstrap";
 
+import styles  from './home-card.module.css';
+
 export default function CategoryList() {
   const [categories, setCategories] = useState([]);
 
@@ -33,7 +35,7 @@ export default function CategoryList() {
           <div className="col-sm-3 " key={d.id}>
             <Link style={{ textDecoration: "none" }} to={`/category/${d.name}`}>
               <Card
-                className="mb-3"
+                className={styles.home_card + " mb-3"}
                 style={{
                   display: "flex",
                   alignItems: "center",

@@ -8,10 +8,19 @@ import './Css/css_search_course.css'
 import { useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+
 
 function HomePage() {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
+  
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
+  
+  const [isMaterialOffcanvasOpen, setIsMaterialOffcanvasOpen] =
+    useState(isDesktopOrLaptop);
   
   const fetchItems = async () => {
     try {
