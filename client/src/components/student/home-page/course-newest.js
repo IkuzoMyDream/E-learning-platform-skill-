@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import './course-newest.css';
 
 export default function CourseNewest({ courses }) {
   const [newestCourses, setNewestCourses] = useState([]);
