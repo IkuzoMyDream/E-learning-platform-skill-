@@ -933,6 +933,7 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'oneToMany',
       'api::material.material'
     >;
+    preview: Attribute.Media & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
