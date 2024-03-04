@@ -45,7 +45,7 @@ export default function CategoryCoursePage() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <Container style={{ marginTop: "30px" }}>
+    <Container>
       <h1
         className="text-center"
         style={{ color: "#1B1A55", marginBottom: "25px" }}
