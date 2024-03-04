@@ -67,7 +67,7 @@ export default function MenuBarHeader() {
         {!ContextState.isLoggedIn && (
           <Navbar
           style={{
-            borderBottom: "1px solid rgb(60, 71, 82)",
+            borderBottom: "1px solid rgb(240, 240, 255)",
             background: "#A0BFE0",
             opacity: "0.9",
           }}
