@@ -44,37 +44,43 @@ export default function CategoryCoursePage() {
   const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
   const currentCourses = courses.slice(indexOfFirstCourse, indexOfLastCourse);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const { state: ContextState,} = useContext(AuthContext);
+  const { state: ContextState, } = useContext(AuthContext);
 
   return (
-    <Container>
-      
-      <h1
-       
-        className="text-center"
-        style={{ color: "#1B1A55", marginBottom: !ContextState.isLoggedIn ? "140px" : "85px" }}
+    <>
+      <Container
+        style={{
+          height: "1200px",
+        }}
       >
-        .
-      </h1>
-      <h1
-        style={{ color: "#1B1A55", marginBottom: "20px" }}
-        className="text-left"
-      >
-        <div className="text-center"  style={{ color: "#1B1A55", marginBottom: "50px" }}>
-          รายวิชาสำหรับหมวดหมู่
+
+        <h1
+
+          className="text-center"
+          style={{ color: "#1B1A55", marginBottom: !ContextState.isLoggedIn ? "140px" : "85px" }}
+        >
+          .
+        </h1>
+        <h1
+          style={{ color: "#1B1A55", marginBottom: "20px" }}
+          className="text-left"
+        >
+          <div className="text-center" style={{ color: "#1B1A55", marginBottom: "50px" }}>
+            รายวิชาสำหรับหมวดหมู่
+          </div>
+          {categoryName}
+        </h1>
+        <div
+          className="Container"
+          style={{ backgroundColor: "#A0BFE0", padding: "10px", marginBottom:"30px", }}
+        >
+          <h4 style={{ color: "black", textIndent: "2em" }}>{category.detail}</h4>
         </div>
-        {categoryName}
-      </h1>
-      <div
-        className="Container"
-        style={{ backgroundColor: "#A0BFE0", padding: "10px" }}
-      >
-        <h4 style={{ color: "black", textIndent: "2em" }}>{category.detail}</h4>
-      </div>
-      <div style={{ marginBottom: "20px" }}>
-        <CategoryCourseList courses={currentCourses} />
-      </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ marginBottom: "20px" }}>
+          <CategoryCourseList courses={currentCourses} />
+        </div>
+      </Container>
+            <div style={{ display: "flex", justifyContent: "center", }}>
         <Pagination>
           <Pagination.Prev
             onClick={() => paginate(currentPage - 1)}
@@ -97,6 +103,6 @@ export default function CategoryCoursePage() {
           />
         </Pagination>
       </div>
-    </Container>
+    </>
   );
 }
