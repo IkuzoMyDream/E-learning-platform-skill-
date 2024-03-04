@@ -31,7 +31,7 @@ export default function CourseRecommended({ courses }) {
                 >
                   <Card className={styles.home_card} key={course.id}>
                     <Card.Img
-                      src={
+                      src={   
                         "http://localhost:1337" +
                         course.picture.data[0].attributes.url
                       }
