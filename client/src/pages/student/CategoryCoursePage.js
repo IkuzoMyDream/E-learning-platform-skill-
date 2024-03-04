@@ -46,16 +46,21 @@ export default function CategoryCoursePage() {
 
   return (
     <Container>
+      
       <h1
+       
         className="text-center"
-        style={{ color: "#1B1A55", marginBottom: "25px" }}
+        style={{ color: "#1B1A55", marginBottom: "50px" }}
       >
-        รายวิชาสำหรับหมวดหมู่
+        .
       </h1>
       <h1
         style={{ color: "#1B1A55", marginBottom: "20px" }}
         className="text-left"
       >
+        <div className="text-center"  style={{ color: "#1B1A55", marginBottom: "50px" }}>
+          รายวิชาสำหรับหมวดหมู่
+        </div>
         {categoryName}
       </h1>
       <div

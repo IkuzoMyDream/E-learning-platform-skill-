@@ -12,8 +12,9 @@ export default function CoursesPageHeader({
 }) {
   return (
     <Container className="mb-5">
-      <Form className="text-center mx-5">
+      <Form className="text-center mx-5" >
         <Form.Label as="h1">รายวิชาทั้งหมด</Form.Label>
+        <div style={{marginTop:"80px"}} ></div>
         <Form.Control
           onChange={(e) => setSearch(e.target.value)}
           type="text"

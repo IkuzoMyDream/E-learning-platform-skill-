@@ -10,7 +10,8 @@ export default function CourseDetailHeader({ course }) {
   }, [course]);
   return (
     <Card>
-      <Card.Body>
+      <div style={{marginTop:"80px"}}/>
+      <Card.Body >
         <div className="my-5">
           <Row sm={2} xs={1}>
             <Col>
