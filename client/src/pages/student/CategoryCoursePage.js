@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ax from "../../utils/config/ax";
 import conf from "../../utils/config/main";
 import Pagination from "react-bootstrap/Pagination";
 import CategoryCourseList from "../../components/student/category-course-page/category-course-list";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import { AuthContext } from "../../utils/auth/Auth.context";
 
 export default function CategoryCoursePage() {
   const { categoryName } = useParams();
@@ -43,6 +44,7 @@ export default function CategoryCoursePage() {
   const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
   const currentCourses = courses.slice(indexOfFirstCourse, indexOfLastCourse);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const { state: ContextState,} = useContext(AuthContext);
 
   return (
     <Container>
@@ -50,7 +52,7 @@ export default function CategoryCoursePage() {
       <h1
        
         className="text-center"
-        style={{ color: "#1B1A55", marginBottom: "50px" }}
+        style={{ color: "#1B1A55", marginBottom: !ContextState.isLoggedIn ? "140px" : "85px" }}
       >
         .
       </h1>
