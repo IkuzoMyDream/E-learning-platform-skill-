@@ -1,6 +1,6 @@
 import { Row, Col, Container, Image } from "react-bootstrap";
 import { AuthContext } from "../../../utils/auth/Auth.context";
-import React, { useContext, useState } from "react";
+import React, { useContext,} from "react";
 
 export default function CarouselSliderItems() {
   const { state: ContextState, login, logout } = useContext(AuthContext);
