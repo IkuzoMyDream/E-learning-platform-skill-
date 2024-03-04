@@ -46,14 +46,18 @@ export default function ShowInfomation({
         <>
           {" "}
           <Card className="text-center mb-3">
-            <Card.Body style={{marginTop:"105px",}}>
+            <Card.Body style={{ marginTop: "105px", }}>
               <Card.Img
                 style={{
-                  maxHeight: "100px",
-                  maxWidth: "100px",
+                  maxHeight: "150px",
+                  maxWidth: "150px",
+                  height:"150px",
+                  weight:"150px",
                   borderRadius: "50%",
+                  overflow: "hidden",
+                  backgroundColor: "#C7C8CC",
                 }}
-                src={"http://localhost:1337" + userInfomation.avatar.url}
+                src={"http://localhost:1337" + userInfomation.avatar.url} alt="Avatar"
               />
               <Card.Title>{userInfomation.username}</Card.Title>
               <Card.Title>Email Address</Card.Title>
@@ -94,12 +98,12 @@ export default function ShowInfomation({
                     </td>
                     <td>
                       {course?.progress?.userProgress /
-                      course?.progress?.courseProgress
+                        course?.progress?.courseProgress
                         ? Math.round(
-                            (course.progress.userProgress /
-                              course.progress.courseProgress) *
-                              100
-                          )
+                          (course.progress.userProgress /
+                            course.progress.courseProgress) *
+                          100
+                        )
                         : 0}{" "}
                       %
                       <ProgressBar
@@ -107,7 +111,7 @@ export default function ShowInfomation({
                         now={Math.round(
                           (course.progress.userProgress /
                             course.progress.courseProgress) *
-                            100
+                          100
                         )}
                       />
                     </td>
