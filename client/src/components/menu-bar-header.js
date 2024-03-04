@@ -130,7 +130,7 @@ export default function MenuBarHeader() {
               </Link>
             </Navbar.Brand>
             <Nav>
-               <form className="form d-flex" onSubmit={handleSearch} style={{border:'0.1px solid blue'}}>
+               <form className="form d-flex" onSubmit={handleSearch} style={{border:'1.5px solid #337CCF'}}>
                  <button type="submit">
                    <svg
                      width="17"
