@@ -46,7 +46,7 @@ export default function ShowInfomation({
         <>
           {" "}
           <Card className="text-center mb-3">
-            <Card.Body>
+            <Card.Body style={{marginTop:"105px",}}>
               <Card.Img
                 style={{
                   maxHeight: "100px",
