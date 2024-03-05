@@ -30,9 +30,10 @@ import { useLocation } from "react-router-dom";
 */
 export default function MenuBarFooter() {
   let { pathname } = useLocation();
+  const isAdminPath = pathname.slice(1, 6) === "admin";
   pathname = pathname.slice(-5);
 
-  if (pathname !== "study") {
+  if (pathname !== "study" && !isAdminPath) {
     return (
       <>
         <div className="footer-contrack">
@@ -41,10 +42,12 @@ export default function MenuBarFooter() {
               <div className="col-lg-6 col-md-6 mb-4 mb-md-0">
                 <h5 className="text-uppercase">About US</h5>
                 <p>
-                เว็บ skill++ เป็นแพลตฟอร์มที่ให้บริการการเรียนรู้ที่ยืดหยุ่นและสะดวกสบาย 
-                ผู้เรียนสามารถเลือกเรียนจากหลากหลายวิชาการ และสามารถเรียนได้ตามรอบเวลาที่สะดวก 
-                ระบบการสอนออนไลน์ทำให้การเรียนรู้เป็นไปอย่างรวดเร็วและมีประสิทธิภาพมากยิ่งขึ้น 
-                บริการที่ยอดเยี่ยมนี้ช่วยให้ผู้เรียนได้รับความรู้และทักษะที่ต้องการในสถานที่และเวลาที่สะดวกสบายสำหรับคุณ
+                  เว็บ skill++
+                  เป็นแพลตฟอร์มที่ให้บริการการเรียนรู้ที่ยืดหยุ่นและสะดวกสบาย
+                  ผู้เรียนสามารถเลือกเรียนจากหลากหลายวิชาการ
+                  และสามารถเรียนได้ตามรอบเวลาที่สะดวก
+                  ระบบการสอนออนไลน์ทำให้การเรียนรู้เป็นไปอย่างรวดเร็วและมีประสิทธิภาพมากยิ่งขึ้น
+                  บริการที่ยอดเยี่ยมนี้ช่วยให้ผู้เรียนได้รับความรู้และทักษะที่ต้องการในสถานที่และเวลาที่สะดวกสบายสำหรับคุณ
                 </p>
               </div>
               <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
@@ -65,7 +68,10 @@ export default function MenuBarFooter() {
                 </Container>
               </div>
               <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/113.webp" class="w-100" />
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/new/fluid/city/113.webp"
+                  class="w-100"
+                />
               </div>
             </div>
           </div>

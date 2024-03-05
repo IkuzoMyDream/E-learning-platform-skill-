@@ -93,7 +93,11 @@ export default function CourseList({
                             {course.name}
                           </Card.Subtitle>
                           <br></br>
-                          <Card.Text>{course.name_teacher ? course.name_teacher : "นายสมมติ สมมติ"}</Card.Text>
+                          <Card.Text>
+                            {course.name_teacher
+                              ? course.name_teacher
+                              : "นายสมมติ สมมติ"}
+                          </Card.Text>
                           <Card.Img
                             src="/logo-skillpp.png"
                             style={{ maxHeight: "50px", maxWidth: "50px" }}
