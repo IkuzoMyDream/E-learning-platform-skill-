@@ -84,7 +84,7 @@ export default function MenuBarHeader() {
                   <Form className="d-flex" onSubmit={onSubmit}>
                     <Form.Control
                       type="email"
-                      placeholder="username"
+                      placeholder="Email"
                       className="me-2"
                       aria-label="username"
                       onChange={(e) =>
@@ -97,7 +97,7 @@ export default function MenuBarHeader() {
                     />
                     <Form.Control
                       type="password"
-                      placeholder="password"
+                      placeholder="Password"
                       className="me-2"
                       aria-label="password"
                       onChange={(e) =>
