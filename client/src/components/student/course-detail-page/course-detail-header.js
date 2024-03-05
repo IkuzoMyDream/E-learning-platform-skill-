@@ -13,7 +13,7 @@ export default function CourseDetailHeader({ course }) {
   return (
     <>
       <Card style={{ marginBottom: !ContextState.isLoggedIn ? "10px" : "85px" }}>
-        <div style={{ paddingTop: !ContextState.isLoggedIn ? "140px" : "95px" }}></div>
+        <div style={{ paddingTop: !ContextState.isLoggedIn ? "1px" : "95px" }}></div>
         <Card.Body >
           <div className="my-5">
             <Row sm={2} xs={1}>
@@ -26,7 +26,7 @@ export default function CourseDetailHeader({ course }) {
                 <p>จำนวนผู้เรียน {course?.enrollers?.data?.length} คน</p>
               </Col>
               <Col>
-                <div>
+                <div class="embed-responsive embed-responsive-16by9">
                   <ReactPlayer
                     url={
                       "http://localhost:1337" +
@@ -35,6 +35,8 @@ export default function CourseDetailHeader({ course }) {
                     volume={0}
                     playing={true}
                     controls
+                    width="100%"
+                    height="100%"
                   />
                 </div>
               </Col>
