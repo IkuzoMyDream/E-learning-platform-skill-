@@ -119,7 +119,6 @@ export default function MenuBarHeader() {
               </Container>
             </Navbar>
           </div>
->>>>>>> ffa4b05ae2d84a8e4836fa41756d6a5afc3ec7a0
         )}
         <div>
           <Navbar
