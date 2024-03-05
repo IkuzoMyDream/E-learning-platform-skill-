@@ -23,7 +23,7 @@ export default function CourseDetailPage() {
 
   // for params
   const [isPurchased, setIspurchased] = useState(false);
-  const [isCarted, setIsCarted] = useState(false); 
+  const [isCarted, setIsCarted] = useState(false);
   const [userId, setUserId] = useState(undefined);
   const [courseId, setCourseId] = useState(undefined);
 
@@ -35,7 +35,11 @@ export default function CourseDetailPage() {
       "/courses?populate[course_chapters][populate]=course_materials&filters[name][$eq]=" +
         courseName
     );
-    setChapters(chapters.data.data[0].attributes.course_chapters.data.map(item => item.attributes));
+    setChapters(
+      chapters.data.data[0].attributes.course_chapters.data.map(
+        (item) => item.attributes
+      )
+    );
     if (state.isLoggedIn) {
       var response2 = await ax.get(
         `${conf.getUserCartsFilteredByCourseName}${courseName}`
@@ -72,7 +76,7 @@ export default function CourseDetailPage() {
   return (
     <Container>
       {course && (
-        <>   
+        <>
           <CourseDetailHeader course={course} />
           <CourseDetailBody
             isPurchased={isPurchased}
