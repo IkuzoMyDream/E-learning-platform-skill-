@@ -29,6 +29,7 @@ export default function MenuBarHeader() {
   const [searchCourse, setSearchCourse] = useState("");
 
   let { pathname } = useLocation();
+  const isAdminPath = pathname.slice(1, 6) === "admin";
   pathname = pathname.slice(-5);
   const isPathIsLogin = pathname.slice(0, 5) === "login"
 
@@ -63,7 +64,7 @@ export default function MenuBarHeader() {
     navigate("/");
   };
 
-  if (pathname !== "study" && !isPathIsLogin) {
+  if (pathname !== "study" && !isPathIsLogin && !isAdminPath) {
     return (
       <div style={{ position: "flex" }}>
         {!ContextState.isLoggedIn && (

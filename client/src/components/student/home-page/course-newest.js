@@ -15,6 +15,7 @@ export default function CourseNewest({ courses }) {
   }, [courses]);
 
   if (newestCourses.length) {
+    console.log(newestCourses);
     return (
       <Container className="my-5">
         <h1 className="text-center">รายวิชาล่าสุด</h1>

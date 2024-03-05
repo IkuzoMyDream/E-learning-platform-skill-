@@ -8,7 +8,7 @@ const initialState = {
   isLoggedIn: false,
   user: null,
   isLoginPending: false,
-  loginError: null,  
+  loginError: null,
 };
 
 const updateJwt = (jwt) => {
@@ -58,7 +58,7 @@ export const ContextProvider = (props) => {
     updateJwt(null);
     setLoginSuccess(false);
     setLoginError(null);
-    sessionStorage.removeItem("auth.role")
+    sessionStorage.removeItem("auth.role");
   };
 
   return (
@@ -83,6 +83,7 @@ const fetchLogin = async (username, password, callback) => {
     if (response.data.jwt && response.data.user.id > 0) {
       callback(null, response.data);
       const role = await ax.get(conf.getUserRole);
+      console.log("role =", role);
       sessionStorage.setItem("auth.role", role.data.role.name);
       // console.log(role?.data?.role?.name);
     } else {
