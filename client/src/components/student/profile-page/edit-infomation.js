@@ -66,10 +66,10 @@ export default function EditInfomation({
 
   return (
     <>
-    <h1 style={{marginBottom:"85px",}}>.</h1>
+      <h1 style={{ marginBottom: "85px", }}>.</h1>
       <Modal
         show={isShowConfirmedModal}
-        // onHide={() => setIsEditInfomation((prevState) => !prevState)}
+      // onHide={() => setIsEditInfomation((prevState) => !prevState)}
       >
         <Modal.Body>ท่านต้องการแก้ไขข้อมูลใช่หรือไม่?</Modal.Body>
         <Modal.Footer>
@@ -90,8 +90,11 @@ export default function EditInfomation({
             <Col sm="12" className="text-center">
               <Image
                 style={{
-                  maxHeight: "100px",
-                  maxWidth: "100px",
+                  maxHeight: "150px",
+                  maxWidth: "150px",
+                  height: "150px",
+                  width: "150px",
+                  backgroundColor: "#C7C8CC",
                   borderRadius: "50%",
                 }}
                 src={userInfomation.avatarUrl}
