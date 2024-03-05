@@ -40,7 +40,7 @@ export default function CartList({
             <th id="course-thumbnail"></th>
             <th id="course-selected"></th>
             <th>สินค้า</th>
-            <th>ราคา</th>
+            <th>ราคา (บาท)</th>
             <th id="course-canceled"></th>
           </tr>
         </thead>
