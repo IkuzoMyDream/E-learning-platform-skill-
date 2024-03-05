@@ -1,0 +1,12 @@
+.AdminForm {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 0.4em;
+    background-color: #A0BFE0;
+    transition: .4s ease-in-out;
+}
+
