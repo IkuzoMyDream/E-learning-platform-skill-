@@ -15,7 +15,7 @@ export default function CoursesPage() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const coursesPerPage = 9;
-
+   
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const fetchItems = async () => {

@@ -27,7 +27,7 @@ export default function CourseDetailHeader({ course }) {
                 <p>จำนวนผู้เรียน {course?.enrollers?.data?.length} คน</p>
               </Col>
               <Col>
-                <div class="embed-responsive embed-responsive-16by9">
+                <div class="embed-responsive embed-responsive-16by9">    
                   <ReactPlayer
                     url={
                       "http://localhost:1337" +
@@ -36,9 +36,9 @@ export default function CourseDetailHeader({ course }) {
                     volume={0}
                     playing={true}
                     controls
-                    width={Container}
-                    height={Container}
-                  />              
+                    width="100%"
+                    height="100%"
+                  />
                 </div>
               </Col>
             </Row>

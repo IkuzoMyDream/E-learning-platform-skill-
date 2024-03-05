@@ -1107,7 +1107,7 @@ export interface ApiProgressProgress extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    progress: Attribute.Integer & Attribute.Required;
+    progress: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
     course: Attribute.Relation<
       'api::progress.progress',
       'manyToOne',

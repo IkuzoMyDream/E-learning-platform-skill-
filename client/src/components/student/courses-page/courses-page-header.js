@@ -1,4 +1,4 @@
-import { useState , useContext} from "react";
+import { useState, useContext } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { AuthContext } from "../../../utils/auth/Auth.context";
 
@@ -11,13 +11,15 @@ export default function CoursesPageHeader({
   setSearch,
   handleSearch,
 }) {
-  const { state: ContextState} = useContext(AuthContext);
+  const { state: ContextState } = useContext(AuthContext);
   return (
     <>
-      <Container className="mb-5" >
-        <Form className="text-center mx-5" >
+      <Container className="mb-5">
+        <Form className="text-center mx-5">
           <Form.Label as="h1">รายวิชาทั้งหมด</Form.Label>
-          <div style={{marginTop: !ContextState.isLoggedIn ? "140px" : "85px",}}></div>
+          <div
+            style={{ marginTop: !ContextState.isLoggedIn ? "140px" : "85px" }}
+          ></div>
           <Form.Control
             onChange={(e) => setSearch(e.target.value)}
             type="text"

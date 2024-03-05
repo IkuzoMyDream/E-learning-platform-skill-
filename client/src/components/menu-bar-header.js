@@ -126,8 +126,12 @@ export default function MenuBarHeader() {
               borderBottom: "1px solid rgb(60, 71, 82)",
               background: "#A0BFE0",
               width: "100%",
+<<<<<<< HEAD
               marginTop: !ContextState.isLoggedIn ? "1px" : "0",
 
+=======
+              marginTop: !ContextState.isLoggedIn ? "54.4px" : "0",
+>>>>>>> ce5d314142df6278c7656ee702b7ce3e88d457b6
             }}
             expand="lg"
             className="z-3 "

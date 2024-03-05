@@ -23,7 +23,11 @@ export default function CourseRecommended({ courses }) {
         <Row className="my-5">
           {courses &&
             recommendedCourses.map((course) => (
+<<<<<<< HEAD
               <Col lg="3" key={course.id} className="mb - 3">
+=======
+              <Col lg="3" key={course.id} className="mb-3">
+>>>>>>> ce5d314142df6278c7656ee702b7ce3e88d457b6
                 <Link
                   to={`/course/${course.name}`}
                   style={{ textDecoration: "none" }}
