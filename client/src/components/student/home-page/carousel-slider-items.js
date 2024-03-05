@@ -13,7 +13,7 @@ export default function CarouselSliderItems() {
           style={{
             maxHeight: "350px",
             zIndex: "-1 !important",
-            marginTop: !ContextState.isLoggedIn ? "30px" : "85px"
+            marginTop: !ContextState.isLoggedIn ? "140px" : "85px"
           }}
           src="/www.skillplusplus.com.jpg" />
       </Row>
