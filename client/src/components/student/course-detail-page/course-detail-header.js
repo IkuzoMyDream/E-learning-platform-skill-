@@ -13,8 +13,8 @@ export default function CourseDetailHeader({ course }) {
   return (
     <>
     <Container>
-      <Card style={{ marginBottom: !ContextState.isLoggedIn ? "10px" : "85px" }}>
-        <div style={{ paddingTop: !ContextState.isLoggedIn ? "1px" : "95px" }}></div>
+      <Card>
+        <div style={{ paddingTop: !ContextState.isLoggedIn ? "140px" : "85px" }}></div>
         <Card.Body >
           <div className="my-5">
             <Row sm={2} xs={1}>
