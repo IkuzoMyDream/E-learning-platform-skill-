@@ -55,7 +55,7 @@ export default function CourseDetailBody({
   return (
     <>
       {chapters && course && (
-        <Card style={{ height: "800px", width: "auto", float: "center" }}>
+        <Card style={{ height: "800px", width: "auto", float: "center", backgroundColor:"white",}}>
           <Card.Body>
             <Row className="my-3">
               <Col>
