@@ -85,7 +85,7 @@ export default function ShowInfomation({
                 <th>ความคืบหน้า</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody style={{height:"500px",}}>
               {myCourses &&
                 myCourses.map((course) => (
                   <tr>
