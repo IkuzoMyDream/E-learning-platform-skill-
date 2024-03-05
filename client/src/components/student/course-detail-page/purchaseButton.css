@@ -5,8 +5,8 @@
     --tooltip-height: 35px;
     --tooltip-width: 90px;
     --gap-between-tooltip-to-button: 18px;
-    --button-color: #222;
-    --tooltip-color: #fff;
+    --button-color: #B0D9B1;
+    --tooltip-color: #C7C8CC;
     width: var(--width);
     height: var(--height);
     background: var(--button-color);
@@ -42,7 +42,8 @@
   }
   
   .text {
-    top: 15px
+    top: 15px;
+    font-size: large;
   }
   
   .text,.icon {
@@ -63,7 +64,7 @@
   }
   
   .purchaseButton:hover {
-    background: #222;
+    background: #436850;
   }
   
   .purchaseButton:hover .text {

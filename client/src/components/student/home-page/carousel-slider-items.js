@@ -4,7 +4,7 @@ import React, { useContext,} from "react";
 
 export default function CarouselSliderItems() {
   const { state: ContextState, login, logout } = useContext(AuthContext);
-
+  
   return (
     
     <Container>
