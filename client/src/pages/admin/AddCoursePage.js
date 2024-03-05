@@ -33,10 +33,19 @@ export default function AddCoursePage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = {};
+
+    const formPreviewVdo = new FormData();
+    formPreviewVdo.append("files", previewVdo, previewVdo.name);
+
+    const formCourseImg = new FormData();
+    formCourseImg.append("files", courseImg, courseImg.name);
+
     try {
-      console.log(chapters);
-      const response = ax.post("/courses", {
+      const uploadPictureResponse = await ax.post("/upload", formCourseImg);
+      const uploadPreviewVdoResponse = await ax.post("/upload", formPreviewVdo);
+      const courseImgId = uploadPictureResponse.data[0].id;
+      const previewVdoId = uploadPreviewVdoResponse.data[0].id;
+      const postCourseResponse = await ax.post("/courses", {
         data: {
           name: name,
           description: description,
@@ -44,11 +53,61 @@ export default function AddCoursePage() {
           mail_teacher: mail_teacher,
           price: price,
           categories: { connect: [...selectedCategoriesId] },
+          preview: previewVdoId,
+          picture: courseImgId,
         },
       });
+
+      const courseId = postCourseResponse.data.data.id;
+
+      // add chapter and sub-chapter
+      await Promise.all(
+        chapters.map(async (chapter) => {
+          // add chapters
+          const postChapterResponse = await ax.post("/course-chapters", {
+            data: {
+              chapter: chapter.chapter,
+              description: chapter.description,
+              duration: chapter.duration,
+              title: chapter.name,
+              course: courseId,
+            },
+          });
+          const chapterId = postChapterResponse.data.data.id;
+
+          // add sub-chapters
+          chapter.subchapters.map(async (subchapter) => {
+            const formMaterialVdo = new FormData();
+            formMaterialVdo.append(
+              "files",
+              subchapter.video,
+              subchapter.video.name
+            );
+
+            const uploadVideoResponse = await ax.post(
+              "/upload",
+              formMaterialVdo
+            );
+            const videoId = uploadVideoResponse.data[0].id;
+
+            await ax.post("/materials", {
+              data: {
+                subchapter: subchapter.subchapter,
+                title: subchapter.name,
+                description: subchapter.description,
+                duration: subchapter.duration,
+                video: videoId,
+                course_chapter: chapterId,
+                course: courseId,
+              },
+            });
+          });
+        })
+      );
     } catch (err) {
       console.log(err);
     } finally {
+      window.location.reload();
     }
   };
 
@@ -138,6 +197,7 @@ export default function AddCoursePage() {
                   name: "",
                   description: "",
                   duration: "",
+                  video: "",
                 },
               ],
             }
@@ -164,7 +224,7 @@ export default function AddCoursePage() {
               <Col>
                 <Form.Label>รูปคอร์ส</Form.Label>
                 <Form.Control
-                  //   required
+                  required
                   accept="image/*"
                   type="file"
                   label="Upload Course Picture"
@@ -176,7 +236,7 @@ export default function AddCoursePage() {
               <Col>
                 <Form.Label>คำอธิบาย</Form.Label>
                 <Form.Control
-                  //   required
+                  required
                   as="textarea"
                   placeholder="คำอธิบาย"
                   style={{ resize: "none" }}
@@ -190,7 +250,7 @@ export default function AddCoursePage() {
                 <Form>
                   {categories.map((category) => (
                     <Form.Check
-                      //   required
+                      required
                       key={category.id}
                       className="my-3"
                       label={category.name}
@@ -202,7 +262,7 @@ export default function AddCoursePage() {
               <Col>
                 <Form.Label>ราคา</Form.Label>
                 <Form.Control
-                  //   required
+                  required
                   type="number"
                   onChange={(e) => setPrice(e.target.value)}
                 />
@@ -212,7 +272,7 @@ export default function AddCoursePage() {
               <Col>
                 <Form.Label>ชื่อผู้สอน</Form.Label>
                 <Form.Control
-                  //   required
+                  required
                   type="text"
                   onChange={(e) => setNameTeacher(e.target.value)}
                 />
@@ -220,7 +280,7 @@ export default function AddCoursePage() {
               <Col>
                 <Form.Label>อีเมลผู้สอน</Form.Label>
                 <Form.Control
-                  //   required
+                  required
                   type="email"
                   onChange={(e) => setEmailTeacher(e.target.value)}
                 />
@@ -230,8 +290,8 @@ export default function AddCoursePage() {
               <Col lg="4" className="text-center">
                 <Form.Label>วิดิโอตัวอย่าง</Form.Label>
                 <Form.Control
-                  //   required
-                  accept="image/*"
+                  required
+                  accept="video/*"
                   type="file"
                   label="Upload Course Preview"
                   onChange={(e) => setPreviewVdo(e.target.files[0])}
@@ -265,7 +325,7 @@ export default function AddCoursePage() {
                         <Form.Group controlId={`chapterTitle_${index}`}>
                           <Form.Label>หัวข้อ</Form.Label>
                           <Form.Control
-                            // required
+                            required
                             type="text"
                             placeholder="Chapter Title"
                             value={chapter.name} // Make sure to set the value to the current name
@@ -284,7 +344,7 @@ export default function AddCoursePage() {
                         <Form.Group controlId={`chapterDescription_${index}`}>
                           <Form.Label>รายละเอียด</Form.Label>
                           <Form.Control
-                            // required
+                            required
                             as="textarea"
                             placeholder="Chapter Description"
                             onChange={(e) => {
@@ -302,7 +362,7 @@ export default function AddCoursePage() {
                         <Form.Group controlId={`chapterDuration_${index}`}>
                           <Form.Label>ความยาวทั้งบทเรียน (วินาที)</Form.Label>
                           <Form.Control
-                            // required
+                            required
                             type="text"
                             placeholder="Chapter Video Duration"
                             onChange={(e) => {
@@ -324,7 +384,7 @@ export default function AddCoursePage() {
                             >
                               <Form.Label>หัวข้อ</Form.Label>
                               <Form.Control
-                                // required
+                                required
                                 type="text"
                                 placeholder="Subchapter Title"
                                 value={subchapter.name}
@@ -356,7 +416,7 @@ export default function AddCoursePage() {
                             >
                               <Form.Label>รายละเอียด</Form.Label>
                               <Form.Control
-                                // required
+                                required
                                 as="textarea"
                                 placeholder="Subchapter Description"
                                 value={subchapter.description}
@@ -389,8 +449,8 @@ export default function AddCoursePage() {
                             >
                               <Form.Label>ความยาววิดีโอ</Form.Label>
                               <Form.Control
-                                // required
-                                type="text"
+                                required
+                                type="number"
                                 placeholder="Subchapter Video Duration"
                                 value={subchapter.duration}
                                 onChange={(e) => {
@@ -420,7 +480,31 @@ export default function AddCoursePage() {
                               controlId={`subchapterVdo_${index}_${subIndex}`}
                             >
                               <Form.Label>Video</Form.Label>
-                              <Form.Control type="file" accept="video/*" />
+                              <Form.Control
+                                type="file"
+                                accept="video/*"
+                                onChange={(e) => {
+                                  const newVideo = e.target.files[0];
+                                  setChapters((prevChapters) =>
+                                    prevChapters.map((chap, idx) =>
+                                      idx === index
+                                        ? {
+                                            ...chap,
+                                            subchapters: chap.subchapters.map(
+                                              (subchap, sidx) =>
+                                                sidx === subIndex
+                                                  ? {
+                                                      ...subchap,
+                                                      video: newVideo,
+                                                    }
+                                                  : subchap
+                                            ),
+                                          }
+                                        : chap
+                                    )
+                                  );
+                                }}
+                              />
                             </Form.Group>
                             <Button
                               variant="danger"
