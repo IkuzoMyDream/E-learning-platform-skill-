@@ -18,6 +18,7 @@ import StudyPage from "./pages/student/StudyPage";
 import DashBoardPage from "./pages/admin/DashBoardPage";
 import AdminLoginPage from "./pages/admin/AdminLoginPage";
 import AddCoursePage from "./pages/admin/AddCoursePage";
+import SignUpPage from "./pages/SignUpPage"
 
 function App() {
   const { state } = useContext(AuthContext);
@@ -28,6 +29,7 @@ function App() {
         <MenuBarHeader />
         <Routes>
           {/* public */}
+          <Route path="/signup" element={<SignUpPage/>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/course" element={<CoursesPage />} />
