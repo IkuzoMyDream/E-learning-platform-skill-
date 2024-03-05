@@ -109,7 +109,11 @@ export default function CourseDetailBody({
                   <div className="my-3">
                     {state.isLoggedIn && isPurchased ? (
                       <Button
-                        style={{ width: "100%" }}
+                        style={{
+                          width: "100%",
+                          backgroundColor: "blue",
+                          color: "white",
+                        }}
                         variant="secondary"
                         onClick={() => navigate(`/course/${courseName}/study`)}
                       >
@@ -117,14 +121,25 @@ export default function CourseDetailBody({
                       </Button>
                     ) : isCarted ? (
                       <Button
-                        style={{ width: "100%" }}
+                        style={{
+                          width: "100%",
+                          backgroundColor: "#B0D9B1",
+                          color: "#198754",
+                        }}
                         variant="secondary"
                         onClick={() => navigate("/cart")}
                       >
                         <span>ชำระเงิน</span>
                       </Button>
                     ) : (
-                      <Button style={{ width: "100%" }} onClick={handleAddCart}>
+                      <Button className="purchaseButton"
+                        style={{
+                          width: "100%",
+                          backgroundColor: "#B0D9B1",
+                          color: "#198754",
+                        }}
+                        onClick={handleAddCart}
+                      >
                         เพิ่มลงตะกร้า
                       </Button>
                     )}
