@@ -66,6 +66,7 @@ export default function EditInfomation({
 
   return (
     <>
+    <h1 style={{marginBottom:"85px",}}>.</h1>
       <Modal
         show={isShowConfirmedModal}
         // onHide={() => setIsEditInfomation((prevState) => !prevState)}
