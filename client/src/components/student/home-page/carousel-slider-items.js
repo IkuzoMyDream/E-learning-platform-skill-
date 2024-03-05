@@ -12,10 +12,14 @@ export default function CarouselSliderItems() {
         <Image
           style={{
             maxHeight: "350px",
+            height:"350px",
             zIndex: "-1 !important",
             marginTop: !ContextState.isLoggedIn ? "140px" : "85px"
           }}
-          src="/www.skillplusplus.com.jpg" />
+          src="/banner0.png" 
+          
+          />
+          
       </Row>
     </Container>
   );
