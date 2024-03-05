@@ -1,0 +1,92 @@
+
+.purchaseButton {
+    --width: 100%;
+    --height: 50px;
+    --tooltip-height: 35px;
+    --tooltip-width: 90px;
+    --gap-between-tooltip-to-button: 18px;
+    --button-color: #222;
+    --tooltip-color: #fff;
+    width: var(--width);
+    height: var(--height);
+    background: var(--button-color);
+    position: relative;
+    text-align: center;
+    border-radius: 0.45em;
+    font-family: "Arial";
+    transition: background 0.3s;
+    align-self: center;
+  }
+  
+
+  
+  .purchaseButton::after,.purchaseButton::before {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s;
+  }
+  
+  .purchaseButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .purchaseButton-wrapper,.text,.icon {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    color: #fff;
+  }
+  
+  .text {
+    top: 15px
+  }
+  
+  .text,.icon {
+    transition: top 0.5s;
+  }
+  
+  .icon {
+    color: #fff;
+    top: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .purchaseButton:hover {
+    background: #222;
+  }
+  
+  .purchaseButton:hover .text {
+    top: -100%;
+  }
+  
+  .purchaseButton:hover .icon {
+    top: 0;
+  }
+  
+  .purchaseButton:hover:before,.purchaseButton:hover:after {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .purchaseButton:hover:after {
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+  }
+  
+  .purchaseButton:hover:before {
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+  }
+  
+  
+  
+  
