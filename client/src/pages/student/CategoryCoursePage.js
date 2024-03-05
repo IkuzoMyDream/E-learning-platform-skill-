@@ -49,12 +49,20 @@ export default function CategoryCoursePage() {
   return (
     <>
       <Container
+<<<<<<< HEAD
       >
+=======
+        >
+>>>>>>> 4c6dd1039b1a4bb1e8f91b9aee7515a732e26fb2
         <h1
           style={{ color: "#1B1A55", marginBottom: "20px" }}
           className="text-left"
         >
+<<<<<<< HEAD
           <div className="text-center" style={{ color: "#1B1A55", marginBottom: "50px",marginTop:"20px"}}>
+=======
+          <div className="text-center" style={{ color: "#1B1A55", marginBottom: "50px" ,marginTop: "20px"}}>
+>>>>>>> 4c6dd1039b1a4bb1e8f91b9aee7515a732e26fb2
             รายวิชาสำหรับหมวดหมู่
           </div>
           {categoryName}
