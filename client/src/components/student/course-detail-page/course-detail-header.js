@@ -13,7 +13,7 @@ export default function CourseDetailHeader({ course }) {
   return (
     <>
     <Container>
-      <Card>
+      <Card style={{width:"auto",}}>
         <div style={{ paddingTop: !ContextState.isLoggedIn ? "140px" : "85px" }}></div>
         <Card.Body >
           <div className="my-5">
