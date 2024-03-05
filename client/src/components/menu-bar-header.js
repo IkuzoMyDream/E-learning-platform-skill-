@@ -79,7 +79,7 @@ export default function MenuBarHeader() {
               className="z-3"
             >
               <Container>
-                <Navbar.Brand></Navbar.Brand>
+              <Navbar.Brand></Navbar.Brand>
                 <>
                   <Form className="d-flex" onSubmit={onSubmit}>
                     <Form.Control
@@ -125,16 +125,15 @@ export default function MenuBarHeader() {
             style={{
               borderBottom: "1px solid rgb(60, 71, 82)",
               background: "#A0BFE0",
-              marginBottom: "100px",
               width: "100%",
               marginTop: !ContextState.isLoggedIn ? "54.5px" : "0",
 
             }}
             expand="lg"
-            className="z-3"
+            className="z-3 "
           >
             <Container>
-              <Navbar.Brand onClick={onBrandClick}>
+            <Navbar.Brand onClick={onBrandClick}>
                 <Link to="/">
                   <Image
                     src="/logo-skillpp.png"
