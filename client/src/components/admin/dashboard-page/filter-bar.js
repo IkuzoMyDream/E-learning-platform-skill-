@@ -33,11 +33,6 @@ export default function FilterBar({
               <Dropdown.Item onClick={() => setFilterSort("เก่าสุด")}>
                 เก่าสุด
               </Dropdown.Item>
-              <Dropdown.Item
-                onClick={() => setFilterSort("จำนวนชั่วโมงเรียนของผู้ใช้งาน")}
-              >
-                จำนวนชั่วโมงเรียนของผู้ใช้งาน
-              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Col>

@@ -31,7 +31,7 @@ export default function MenuBarHeader() {
   let { pathname } = useLocation();
   const isAdminPath = pathname.slice(1, 6) === "admin";
   pathname = pathname.slice(-5);
-  const isPathIsLogin = pathname.slice(0, 5) === "login"
+  const isPathIsLogin = pathname.slice(0, 5) === "login";
 
   const navigate = useNavigate();
 
@@ -76,10 +76,10 @@ export default function MenuBarHeader() {
                 width: "100%",
               }}
               expand="lg"
-              className="z-3"
+              className="z-3 position-fixed"
             >
               <Container>
-              <Navbar.Brand></Navbar.Brand>
+                <Navbar.Brand></Navbar.Brand>
                 <>
                   <Form className="d-flex" onSubmit={onSubmit}>
                     <Form.Control
@@ -126,13 +126,13 @@ export default function MenuBarHeader() {
               borderBottom: "1px solid rgb(60, 71, 82)",
               background: "#A0BFE0",
               width: "100%",
-              marginTop: !ContextState.isLoggedIn ? "1px" : "0",
+              marginTop: !ContextState.isLoggedIn ? "54.4px" : "0",
             }}
             expand="lg"
-            className="z-3 "
+            className="z-3 position-fixed"
           >
             <Container>
-            <Navbar.Brand onClick={onBrandClick}>
+              <Navbar.Brand onClick={onBrandClick}>
                 <Link to="/">
                   <Image
                     src="/logo-skillpp.png"

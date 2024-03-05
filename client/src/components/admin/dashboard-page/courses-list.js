@@ -45,12 +45,6 @@ export default function CoursesList({
       var filteredSort = filteredSearch?.sort(
         (a, b) => a.attributes.enrollers.length - b.attributes.enrollers.length
       );
-    } else if (filterSort === "คอร์สขายดี") {
-      var filteredSort = filteredSearch.sort(
-        (a, b) =>
-          a.attributes.progresses.data.length -
-          b.attributes.progresses.data.length
-      );
     } else if (filterSort === "ล่าสุด") {
       var filteredSort = filteredSearch.sort(
         (a, b) =>
@@ -135,7 +129,7 @@ export default function CoursesList({
                   <Col className="my-3" lg="4" sm="4" key={course.id}>
                     <Link
                       style={{ textDecoration: "none" }}
-                      to={`/course/${course.name}`}
+                      to={`/course/${course.attributes.name}`}
                     >
                       <Card key={course.id}>
                         <Card.Img
@@ -147,12 +141,17 @@ export default function CoursesList({
                         />
                         <Card.Body>
                           <Card.Subtitle style={{ color: "#3BB3B" }} as="h4">
-                            {course.name}
+                            {course.attributes.name}
                           </Card.Subtitle>
                           <br></br>
+                          <div>
+                            ลงเรียนทั้งหมด{" "}
+                            {course.attributes.enrollers.data.length} คน
+                          </div>
+                          <br></br>
                           <Card.Text>
-                            {course.name_teacher
-                              ? course.name_teacher
+                            {course.attributes.name_teacher
+                              ? course.attributes.name_teacher
                               : "นายสมมติ สมมติ"}
                           </Card.Text>
                           <Card.Img
