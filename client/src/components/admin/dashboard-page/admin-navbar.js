@@ -10,10 +10,10 @@ import {
 } from "react-bootstrap";
 import { BsCart3 } from "react-icons/bs";
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../../utils/auth/Auth.context";
+import { AuthContext } from "../../../utils/auth/Auth.context";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import ax from "../../utils/config/ax";
-import conf from "../../utils/config/main";
+import ax from "../../../utils/config/ax";
+import conf from "../../../utils/config/main";
 import { useLocation } from "react-router-dom";
 
 const initialState = {
@@ -68,11 +68,11 @@ export default function AdminNavbar() {
           style={{
             borderBottom: "1px solid rgb(60, 71, 82)",
             background: "#A0BFE0",
-            marginBottom: "100px",
+            marginBottom: "25px",
             width: "100%",
           }}
           expand="lg"
-          className="z-3 position-fixed"
+          // className="z-3 position-fixed"
         >
           <Container>
             <Navbar.Brand onClick={onBrandClick}>
@@ -84,7 +84,7 @@ export default function AdminNavbar() {
               <form
                 className="form d-flex"
                 onSubmit={handleSearch}
-                style={{ border: "0.1px solid blue" }}
+                style={{ border: "0.1px solid #a8bce4" }}
               >
                 <button type="submit">
                   <svg
@@ -129,9 +129,18 @@ export default function AdminNavbar() {
                 </button>
               </form>
 
-              <Nav.Link onClick={() => navigate("/admin/course")}>รายวิชา</Nav.Link>
-
-          
+              <NavDropdown title="จัดการคอร์ส">
+                <NavDropdown.Item onClick={() => navigate("/admin/add-course")}>
+                  เพิ่มวิชาเรียน
+                </NavDropdown.Item>
+                {/* <NavDropdown.Item> */}
+                <Link to="https://www.google.com/">
+                  <a href="http://localhost:1337/admin/" target="_blank">
+                    ลบ/แก้ไขวิชาเรียน
+                  </a>
+                </Link>
+                {/* </NavDropdown.Item> */}
+              </NavDropdown>
             </Nav>
           </Container>
         </Navbar>

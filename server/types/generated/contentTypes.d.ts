@@ -362,347 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiCartCart extends Schema.CollectionType {
-  collectionName: 'carts';
-  info: {
-    singularName: 'cart';
-    pluralName: 'carts';
-    displayName: 'Cart';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    course: Attribute.Relation<
-      'api::cart.cart',
-      'manyToOne',
-      'api::course.course'
-    >;
-    owner: Attribute.Relation<
-      'api::cart.cart',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    payment: Attribute.Relation<
-      'api::cart.cart',
-      'manyToOne',
-      'api::payment.payment'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCategoryCategory extends Schema.CollectionType {
-  collectionName: 'categories';
-  info: {
-    singularName: 'category';
-    pluralName: 'categories';
-    displayName: 'Category';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    courses: Attribute.Relation<
-      'api::category.category',
-      'manyToMany',
-      'api::course.course'
-    >;
-    picture: Attribute.Media;
-    detail: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCourseCourse extends Schema.CollectionType {
-  collectionName: 'courses';
-  info: {
-    singularName: 'course';
-    pluralName: 'courses';
-    displayName: 'Course';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
-    enrollers: Attribute.Relation<
-      'api::course.course',
-      'manyToMany',
-      'plugin::users-permissions.user'
-    >;
-    categories: Attribute.Relation<
-      'api::course.course',
-      'manyToMany',
-      'api::category.category'
-    >;
-    picture: Attribute.Media;
-    name_teacher: Attribute.String;
-    mail_teacher: Attribute.Email;
-    price: Attribute.Integer;
-    carts: Attribute.Relation<
-      'api::course.course',
-      'oneToMany',
-      'api::cart.cart'
-    >;
-    payments: Attribute.Relation<
-      'api::course.course',
-      'oneToMany',
-      'api::payment.payment'
-    >;
-    progresses: Attribute.Relation<
-      'api::course.course',
-      'oneToMany',
-      'api::progress.progress'
-    >;
-    phone_number: Attribute.String;
-    course_chapters: Attribute.Relation<
-      'api::course.course',
-      'oneToMany',
-      'api::course-chapter.course-chapter'
-    >;
-    course_materials: Attribute.Relation<
-      'api::course.course',
-      'oneToMany',
-      'api::material.material'
-    >;
-    preview: Attribute.Media & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::course.course',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::course.course',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCourseChapterCourseChapter extends Schema.CollectionType {
-  collectionName: 'course_chapters';
-  info: {
-    singularName: 'course-chapter';
-    pluralName: 'course-chapters';
-    displayName: 'CourseChapter';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    course: Attribute.Relation<
-      'api::course-chapter.course-chapter',
-      'manyToOne',
-      'api::course.course'
-    >;
-    chapter: Attribute.Integer & Attribute.Required;
-    course_materials: Attribute.Relation<
-      'api::course-chapter.course-chapter',
-      'oneToMany',
-      'api::material.material'
-    >;
-    title: Attribute.String;
-    duration: Attribute.Integer;
-    description: Attribute.String;
-    learning_progress: Attribute.Relation<
-      'api::course-chapter.course-chapter',
-      'oneToMany',
-      'api::progress.progress'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::course-chapter.course-chapter',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::course-chapter.course-chapter',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiMaterialMaterial extends Schema.CollectionType {
-  collectionName: 'materials';
-  info: {
-    singularName: 'material';
-    pluralName: 'materials';
-    displayName: 'CourseMaterial';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    video: Attribute.Media;
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
-    duration: Attribute.Integer;
-    subchapter: Attribute.Integer;
-    learning_progress: Attribute.Relation<
-      'api::material.material',
-      'oneToMany',
-      'api::progress.progress'
-    >;
-    course_chapter: Attribute.Relation<
-      'api::material.material',
-      'manyToOne',
-      'api::course-chapter.course-chapter'
-    >;
-    course: Attribute.Relation<
-      'api::material.material',
-      'manyToOne',
-      'api::course.course'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::material.material',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::material.material',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPaymentPayment extends Schema.CollectionType {
-  collectionName: 'payments';
-  info: {
-    singularName: 'payment';
-    pluralName: 'payments';
-    displayName: 'Payment';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    owner: Attribute.Relation<
-      'api::payment.payment',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    course: Attribute.Relation<
-      'api::payment.payment',
-      'manyToOne',
-      'api::course.course'
-    >;
-    carts: Attribute.Relation<
-      'api::payment.payment',
-      'oneToMany',
-      'api::cart.cart'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::payment.payment',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::payment.payment',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiProgressProgress extends Schema.CollectionType {
-  collectionName: 'progresses';
-  info: {
-    singularName: 'progress';
-    pluralName: 'progresses';
-    displayName: 'LearningProgress';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    progress: Attribute.Integer & Attribute.Required;
-    course: Attribute.Relation<
-      'api::progress.progress',
-      'manyToOne',
-      'api::course.course'
-    >;
-    owner: Attribute.Relation<
-      'api::progress.progress',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    material: Attribute.Relation<
-      'api::progress.progress',
-      'manyToOne',
-      'api::material.material'
-    >;
-    course_chapter: Attribute.Relation<
-      'api::progress.progress',
-      'manyToOne',
-      'api::course-chapter.course-chapter'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::progress.progress',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::progress.progress',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -1146,6 +805,347 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiCartCart extends Schema.CollectionType {
+  collectionName: 'carts';
+  info: {
+    singularName: 'cart';
+    pluralName: 'carts';
+    displayName: 'Cart';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    course: Attribute.Relation<
+      'api::cart.cart',
+      'manyToOne',
+      'api::course.course'
+    >;
+    owner: Attribute.Relation<
+      'api::cart.cart',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    payment: Attribute.Relation<
+      'api::cart.cart',
+      'manyToOne',
+      'api::payment.payment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    courses: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::course.course'
+    >;
+    picture: Attribute.Media;
+    detail: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCourseCourse extends Schema.CollectionType {
+  collectionName: 'courses';
+  info: {
+    singularName: 'course';
+    pluralName: 'courses';
+    displayName: 'Course';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    enrollers: Attribute.Relation<
+      'api::course.course',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    categories: Attribute.Relation<
+      'api::course.course',
+      'manyToMany',
+      'api::category.category'
+    >;
+    picture: Attribute.Media;
+    name_teacher: Attribute.String;
+    mail_teacher: Attribute.Email;
+    price: Attribute.Integer;
+    carts: Attribute.Relation<
+      'api::course.course',
+      'oneToMany',
+      'api::cart.cart'
+    >;
+    payments: Attribute.Relation<
+      'api::course.course',
+      'oneToMany',
+      'api::payment.payment'
+    >;
+    progresses: Attribute.Relation<
+      'api::course.course',
+      'oneToMany',
+      'api::progress.progress'
+    >;
+    phone_number: Attribute.String;
+    course_chapters: Attribute.Relation<
+      'api::course.course',
+      'oneToMany',
+      'api::course-chapter.course-chapter'
+    >;
+    course_materials: Attribute.Relation<
+      'api::course.course',
+      'oneToMany',
+      'api::material.material'
+    >;
+    preview: Attribute.Media & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::course.course',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::course.course',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCourseChapterCourseChapter extends Schema.CollectionType {
+  collectionName: 'course_chapters';
+  info: {
+    singularName: 'course-chapter';
+    pluralName: 'course-chapters';
+    displayName: 'CourseChapter';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    course: Attribute.Relation<
+      'api::course-chapter.course-chapter',
+      'manyToOne',
+      'api::course.course'
+    >;
+    chapter: Attribute.Integer & Attribute.Required;
+    course_materials: Attribute.Relation<
+      'api::course-chapter.course-chapter',
+      'oneToMany',
+      'api::material.material'
+    >;
+    title: Attribute.String;
+    duration: Attribute.Integer;
+    description: Attribute.String;
+    learning_progress: Attribute.Relation<
+      'api::course-chapter.course-chapter',
+      'oneToMany',
+      'api::progress.progress'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::course-chapter.course-chapter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::course-chapter.course-chapter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMaterialMaterial extends Schema.CollectionType {
+  collectionName: 'materials';
+  info: {
+    singularName: 'material';
+    pluralName: 'materials';
+    displayName: 'CourseMaterial';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    video: Attribute.Media;
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    duration: Attribute.Integer;
+    subchapter: Attribute.Integer;
+    learning_progress: Attribute.Relation<
+      'api::material.material',
+      'oneToMany',
+      'api::progress.progress'
+    >;
+    course_chapter: Attribute.Relation<
+      'api::material.material',
+      'manyToOne',
+      'api::course-chapter.course-chapter'
+    >;
+    course: Attribute.Relation<
+      'api::material.material',
+      'manyToOne',
+      'api::course.course'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::material.material',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::material.material',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPaymentPayment extends Schema.CollectionType {
+  collectionName: 'payments';
+  info: {
+    singularName: 'payment';
+    pluralName: 'payments';
+    displayName: 'Payment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    owner: Attribute.Relation<
+      'api::payment.payment',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    course: Attribute.Relation<
+      'api::payment.payment',
+      'manyToOne',
+      'api::course.course'
+    >;
+    carts: Attribute.Relation<
+      'api::payment.payment',
+      'oneToMany',
+      'api::cart.cart'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::payment.payment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::payment.payment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProgressProgress extends Schema.CollectionType {
+  collectionName: 'progresses';
+  info: {
+    singularName: 'progress';
+    pluralName: 'progresses';
+    displayName: 'LearningProgress';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    progress: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
+    course: Attribute.Relation<
+      'api::progress.progress',
+      'manyToOne',
+      'api::course.course'
+    >;
+    owner: Attribute.Relation<
+      'api::progress.progress',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    material: Attribute.Relation<
+      'api::progress.progress',
+      'manyToOne',
+      'api::material.material'
+    >;
+    course_chapter: Attribute.Relation<
+      'api::progress.progress',
+      'manyToOne',
+      'api::course-chapter.course-chapter'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::progress.progress',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::progress.progress',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1156,13 +1156,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::cart.cart': ApiCartCart;
-      'api::category.category': ApiCategoryCategory;
-      'api::course.course': ApiCourseCourse;
-      'api::course-chapter.course-chapter': ApiCourseChapterCourseChapter;
-      'api::material.material': ApiMaterialMaterial;
-      'api::payment.payment': ApiPaymentPayment;
-      'api::progress.progress': ApiProgressProgress;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -1171,6 +1164,13 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::cart.cart': ApiCartCart;
+      'api::category.category': ApiCategoryCategory;
+      'api::course.course': ApiCourseCourse;
+      'api::course-chapter.course-chapter': ApiCourseChapterCourseChapter;
+      'api::material.material': ApiMaterialMaterial;
+      'api::payment.payment': ApiPaymentPayment;
+      'api::progress.progress': ApiProgressProgress;
     }
   }
 }
