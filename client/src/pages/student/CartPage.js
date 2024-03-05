@@ -51,6 +51,9 @@ export default function CartPage() {
 
   return (
     <Container>
+      <h1 style={{marginBottom:"85px",}}>
+        .
+      </h1>
       <CartProgressBar
         selectedCoursesId={selectedCoursesId}
         selectedCourses={selectedCourses}

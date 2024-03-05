@@ -15,6 +15,9 @@ import ProfilePage from "./pages/student/ProfilePage";
 import CategoryCoursePage from "./pages/student/CategoryCoursePage";
 import CartPage from "./pages/student/CartPage";
 import StudyPage from "./pages/student/StudyPage";
+import DashBoardPage from "./pages/admin/DashBoardPage";
+import AdminLoginPage from "./pages/admin/AdminLoginPage";
+import AddCoursePage from "./pages/admin/AddCoursePage";
 
 function App() {
   const { state } = useContext(AuthContext);
@@ -45,6 +48,10 @@ function App() {
           </Route>
 
           {/* role == admin */}
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+          <Route path="/admin/dashboard" element={<DashBoardPage />} />
+          <Route path="/admin/add-course" element={<AddCoursePage />} />
+          <Route element={<PrivateRoutes allowedRole="Admin" />}></Route>
         </Routes>
         <MenuBarFooter />
       </Router>

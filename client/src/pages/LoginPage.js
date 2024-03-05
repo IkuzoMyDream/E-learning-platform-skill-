@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
-
 import { AuthContext } from "../utils/auth/Auth.context.js";
-import { Route } from "react-router-dom";
+import './Csssignin.css';
 
 const initialState = {
   username: "",
@@ -16,62 +15,48 @@ function LoginPage() {
   const onSubmit = (e) => {
     e.preventDefault();
     const { username, password } = state;
-    console.log(username, password);
     login(username, password);
-    setState({
-      username: "",
-      password: "",
-    });
+    setState(initialState);
   };
- 
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   return (
-    <form name="loginForm" onSubmit={onSubmit}>
-      <div className="row">
-        <div className="col-sm-3 col-md-6">
-          <label htmlFor="username">email</label>
-        </div>
-
-        <div className="col-sm-9 col-md-6">
-          <input
-            type="text"
-            name="username"
-            onChange={(e) =>
-              setState((prevState) => ({
-                ...prevState,
-                username: e.target.value,
-              }))
-            }
-            value={state.username}
-            placeholder="admin"
-          />
-        </div>
-
-        <div className="col-sm-3 col-md-6">
-          <label htmlFor="password">Password</label>
-        </div>
-        <div className="col-sm-9 col-md-6">
-          <input
-            type="password"
-            name="password"
-            onChange={(e) =>
-              setState((prevState) => ({
-                ...prevState,
-                password: e.target.value,
-              }))
-            }
-            value={state.password}
-            placeholder="admin"
-          />
-        </div>
-
-        <div className="col-sm-3 col-md-6"></div>
-        <div className="col-sm-9 col-md-6">
-          <input className="primary" type="submit" value="Login" />
-        </div>
+    <form className="form" onSubmit={onSubmit}>
+      <p className="form-title">Sign in to your account</p>
+      <div className="input-container">
+        <input
+          type="text"
+          placeholder="Enter email"
+          name="username"
+          onChange={handleChange}
+          value={state.username}
+        />
       </div>
+      <div className="input-container">
+        <input
+          type="password"
+          placeholder="Enter password"
+          name="password"
+          onChange={handleChange}
+          value={state.password}
+        />
+      </div>
+      <button type="submit" className="submit">
+        Sign in
+      </button>
+      <p className="signup-link">
+        No account? <a href="">Sign up</a>
+      </p>
 
       {isLoginPending && <div>Please wait...</div>}
-      {isLoggedIn && <div>Success.</div> }
+      {isLoggedIn && <div>Success.</div>}
       {loginError && <div>{loginError.message}</div>}
     </form>
   );

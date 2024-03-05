@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Card, Col, Container, Row } from "react-bootstrap";
 
-import styles  from './home-card.module.css';
-
+import styles from "./home-card.module.css";
 
 export default function CourseRecommended({ courses }) {
   const [recommendedCourses, setRecommendedCourses] = useState([]);

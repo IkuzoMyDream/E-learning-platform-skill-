@@ -72,7 +72,7 @@ export default function CourseDetailPage() {
   return (
     <Container>
       {course && (
-        <>
+        <>   
           <CourseDetailHeader course={course} />
           <CourseDetailBody
             isPurchased={isPurchased}
