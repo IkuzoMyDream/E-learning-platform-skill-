@@ -50,7 +50,7 @@ export default function CartPage() {
   }, [enrollers]);
 
   return (
-    <Container>
+    <Container style={{height:"800px",}}>
       <h1 style={{marginBottom:"85px",}}>
         .
       </h1>
