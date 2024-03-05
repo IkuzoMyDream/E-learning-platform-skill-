@@ -23,6 +23,18 @@ export default function StudyPage() {
   const [isMaterialOffcanvasOpen, setIsMaterialOffcanvasOpen] =
     useState(isDesktopOrLaptop);
 
+  const isEnrollThisCourse = async () => {
+    try {
+      const response = await ax.get("/courses?populate[enrollers][filters][]")
+    }
+    catch(err) {
+
+    }
+    finally {
+
+    }
+  };
+
   const fetchItem = async () => {
     try {
       const chaptersResponse = await ax.get(
@@ -42,16 +54,6 @@ export default function StudyPage() {
           .sort(
             (a, b) => a.material.chapter_number - b.material.chapter_number
           );
-
-      // console.log(
-      //   learningProgressesData.find((progress) => progress.progress !== 100)
-      // );
-
-      // setSelectedMaterial(
-      //   learningProgressesData.find((progress) => progress.progress !== 100)
-      //     ? learningProgressesData.find((progress) => progress.progress !== 100)
-      //     : learningProgressesData[0]
-      // );
 
       const mappedChaptersWithProgress = chaptersData.map((chapter) => {
         const correspondingMaterials = chapter.attributes.course_materials.data;

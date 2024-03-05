@@ -46,18 +46,23 @@ export default function ShowInfomation({
         <>
           {" "}
           <Card className="text-center mb-3">
-            <Card.Body style={{ marginTop: "105px", }}>
+            <Card.Body style={{ marginTop: "105px" }}>
               <Card.Img
                 style={{
                   maxHeight: "150px",
                   maxWidth: "150px",
-                  height:"150px",
-                  weight:"150px",
+                  height: "150px",
+                  weight: "150px",
                   borderRadius: "50%",
                   overflow: "hidden",
                   backgroundColor: "#C7C8CC",
                 }}
-                src={"http://localhost:1337" + userInfomation.avatar.url} alt="Avatar"
+                src={
+                  userInfomation?.avatar?.url
+                    ? "http://localhost:1337" + userInfomation.avatar.url
+                    : ""
+                }
+                alt="Avatar"
               />
               <Card.Title>{userInfomation.username}</Card.Title>
               <Card.Title>Email Address</Card.Title>
@@ -87,7 +92,10 @@ export default function ShowInfomation({
                       <Image
                         style={{ maxHeight: "50px", minWidth: "50px" }}
                         src={
-                          "http://localhost:1337" + course.course.picture[0].url
+                          userInfomation?.avatar?.url
+                            ? "http://localhost:1337" +
+                              userInfomation.avatar.url
+                            : ""
                         }
                       />
                     </td>
@@ -98,12 +106,12 @@ export default function ShowInfomation({
                     </td>
                     <td>
                       {course?.progress?.userProgress /
-                        course?.progress?.courseProgress
+                      course?.progress?.courseProgress
                         ? Math.round(
-                          (course.progress.userProgress /
-                            course.progress.courseProgress) *
-                          100
-                        )
+                            (course.progress.userProgress /
+                              course.progress.courseProgress) *
+                              100
+                          )
                         : 0}{" "}
                       %
                       <ProgressBar
@@ -111,7 +119,7 @@ export default function ShowInfomation({
                         now={Math.round(
                           (course.progress.userProgress /
                             course.progress.courseProgress) *
-                          100
+                            100
                         )}
                       />
                     </td>

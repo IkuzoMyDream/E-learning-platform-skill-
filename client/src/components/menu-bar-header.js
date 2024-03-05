@@ -7,6 +7,7 @@ import {
   Image,
   NavDropdown,
   Dropdown,
+  Offcanvas,
 } from "react-bootstrap";
 import { BsCart3 } from "react-icons/bs";
 import React, { useContext, useState } from "react";
@@ -128,10 +129,11 @@ export default function MenuBarHeader() {
               width: "100%",
               marginTop: !ContextState.isLoggedIn ? "54.4px" : "0",
             }}
-            expand="lg"
+            expand="sm"
             className="z-3 position-fixed"
+            key="sm"
           >
-            <Container>
+            <Container fluid>
               <Navbar.Brand onClick={onBrandClick}>
                 <Link to="/">
                   <Image
@@ -140,106 +142,114 @@ export default function MenuBarHeader() {
                   />
                 </Link>
               </Navbar.Brand>
-              <Nav>
-                <form
-                  className="form d-flex"
-                  onSubmit={handleSearch}
-                  style={{ border: "0.1px solid blue" }}
-                >
-                  <button type="submit">
-                    <svg
-                      width="17"
-                      height="16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      role="img"
-                      aria-labelledby="search"
+              <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"sm"}`} />
+              <Navbar.Offcanvas placement="end">
+                <Offcanvas.Header>header</Offcanvas.Header>
+                <Offcanvas.Body>
+                  <Nav className="justify-content-end flex-grow-1 pe-3">
+                    <form
+                      className="form d-flex"
+                      onSubmit={handleSearch}
+                      style={{ border: "0.1px solid blue" }}
                     >
-                      <path
-                        d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
-                        stroke="currentColor"
-                        strokeWidth="1.333"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      ></path>
-                    </svg>
-                  </button>
-                  <input
-                    className="input me-2"
-                    placeholder="ค้นหารายวิชา"
-                    aria-label="Search"
-                    type="search"
-                    onChange={(e) => setSearchCourse(e.target.value)}
-                  />
-                  <button className="reset" type="reset">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                      ></path>
-                    </svg>
-                  </button>
-                </form>
-                {ContextState.isLoggedIn && (
-                  <Nav.Link onClick={() => navigate("/cart")}>
-                    <BsCart3 />
-                  </Nav.Link>
-                )}
+                      <button type="submit">
+                        <svg
+                          width="17"
+                          height="16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          role="img"
+                          aria-labelledby="search"
+                        >
+                          <path
+                            d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+                            stroke="currentColor"
+                            strokeWidth="1.333"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          ></path>
+                        </svg>
+                      </button>
+                      <input
+                        className="input me-2"
+                        placeholder="ค้นหารายวิชา"
+                        aria-label="Search"
+                        type="search"
+                        onChange={(e) => setSearchCourse(e.target.value)}
+                      />
+                      <button className="reset" type="reset">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                          ></path>
+                        </svg>
+                      </button>
+                    </form>
+                    {ContextState.isLoggedIn && (
+                      <Nav.Link onClick={() => navigate("/cart")}>
+                        <BsCart3 />
+                      </Nav.Link>
+                    )}
 
-                <Nav.Link onClick={() => navigate("/course")}>รายวิชา</Nav.Link>
+                    <Nav.Link onClick={() => navigate("/course")}>
+                      รายวิชา
+                    </Nav.Link>
 
-                {ContextState.isLoggedIn && (
-                  <Dropdown variant="inherit" className="z-3">
-                    <Dropdown.Toggle
-                      className="z-3"
-                      variant="inherit"
-                      style={{
-                        color: "black",
-                        border: "none",
-                      }}
-                    >
-                      {ContextState.user.username}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#000000"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="mx-2"
-                      >
-                        <path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3" />
-                        <circle cx="12" cy="10" r="3" />
-                        <circle cx="12" cy="12" r="10" />
-                      </svg>
-                    </Dropdown.Toggle>
+                    {ContextState.isLoggedIn && (
+                      <Dropdown variant="inherit" className="z-3">
+                        <Dropdown.Toggle
+                          className="z-3"
+                          variant="inherit"
+                          style={{
+                            color: "black",
+                            border: "none",
+                          }}
+                        >
+                          {ContextState.user.username}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#000000"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="mx-2"
+                          >
+                            <path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3" />
+                            <circle cx="12" cy="10" r="3" />
+                            <circle cx="12" cy="12" r="10" />
+                          </svg>
+                        </Dropdown.Toggle>
 
-                    <Dropdown.Menu className="dropdown-menu">
-                      <Dropdown.Item
-                        href=""
-                        className="dropdown-item"
-                        onClick={() => navigate("/profile")}
-                      >
-                        Profile
-                      </Dropdown.Item>
-                      <Dropdown.Item href="" onClick={logout}>
-                        Log Out
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                )}
-              </Nav>
+                        <Dropdown.Menu className="dropdown-menu">
+                          <Dropdown.Item
+                            href=""
+                            className="dropdown-item"
+                            onClick={() => navigate("/profile")}
+                          >
+                            Profile
+                          </Dropdown.Item>
+                          <Dropdown.Item href="" onClick={logout}>
+                            Log Out
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    )}
+                  </Nav>
+                </Offcanvas.Body>
+              </Navbar.Offcanvas>
             </Container>
           </Navbar>
         </div>
