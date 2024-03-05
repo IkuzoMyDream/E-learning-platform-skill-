@@ -82,7 +82,7 @@ export default function MenuBarHeader() {
               <Container>
                 <Navbar.Brand></Navbar.Brand>
                 <>
-                  <Form className="d-flex" onSubmit={onSubmit}>
+                  <Form className="d-flex" onSubmit={onSubmit} >
                     <Form.Control
                       type="email"
                       placeholder="Email"
