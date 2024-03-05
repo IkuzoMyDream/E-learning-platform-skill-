@@ -76,7 +76,7 @@ export default function MenuBarHeader() {
                 width: "100%",
               }}
               expand="lg"
-              className="z-3 position-fixed"
+              className="z-3"
             >
               <Container>
                 <Navbar.Brand></Navbar.Brand>
@@ -84,7 +84,7 @@ export default function MenuBarHeader() {
                   <Form className="d-flex" onSubmit={onSubmit}>
                     <Form.Control
                       type="email"
-                      placeholder="username"
+                      placeholder="Email"
                       className="me-2"
                       aria-label="username"
                       onChange={(e) =>
@@ -97,7 +97,7 @@ export default function MenuBarHeader() {
                     />
                     <Form.Control
                       type="password"
-                      placeholder="password"
+                      placeholder="Password"
                       className="me-2"
                       aria-label="password"
                       onChange={(e) =>
@@ -128,9 +128,10 @@ export default function MenuBarHeader() {
               marginBottom: "100px",
               width: "100%",
               marginTop: !ContextState.isLoggedIn ? "54.5px" : "0",
+
             }}
             expand="lg"
-            className="z-3 position-fixed"
+            className="z-3"
           >
             <Container>
               <Navbar.Brand onClick={onBrandClick}>
