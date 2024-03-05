@@ -31,6 +31,7 @@ export default function MenuBarHeader() {
   let { pathname } = useLocation();
   const isAdminPath = pathname.slice(1, 6) === "admin";
   pathname = pathname.slice(-5);
+  const isPathIsLogin = pathname.slice(0, 5) === "login"
 
   const navigate = useNavigate();
 
@@ -63,14 +64,14 @@ export default function MenuBarHeader() {
     navigate("/");
   };
 
-  if (pathname !== "study" && !isAdminPath) {
+  if (pathname !== "study" && !isPathIsLogin && !isAdminPath) {
     return (
       <div style={{ position: "flex" }}>
         {!ContextState.isLoggedIn && (
           <div>
             <Navbar
               style={{
-                borderBottom: "1px solid rgb(60, 71, 82)",
+                borderBottom: "1px solid #fff",
                 background: "#A0BFE0",
                 width: "100%",
               }}
@@ -109,7 +110,7 @@ export default function MenuBarHeader() {
                     <Button
                       variant="outline-success"
                       type="submit"
-                      style={{ backgroundColor: "#BDD2B6" }}
+                      style={{ backgroundColor: "#B0D9B1" }}
                     >
                       Login
                     </Button>
@@ -126,7 +127,7 @@ export default function MenuBarHeader() {
               background: "#A0BFE0",
               marginBottom: "100px",
               width: "100%",
-              marginTop: !ContextState.isLoggedIn ? "54.4px" : "0",
+              marginTop: !ContextState.isLoggedIn ? "55px" : "0",
             }}
             expand="lg"
             className="z-3 position-fixed"
