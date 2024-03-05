@@ -55,79 +55,89 @@ export default function CourseDetailBody({
   return (
     <>
       {chapters && course && (
-        <Card>
+        <Card style={{ height: "800px", width: "auto", float: "center" }}>
           <Card.Body>
             <Row className="my-3">
               <Col>
-                <h1>เกี่ยวกับ</h1>
-                <p>{course.description}</p>
-                <h1>เนื้อหาในคอร์ส</h1>
-                <Accordion>
-                  {chapters?.map((chapter) => (
-                    <Accordion.Item
-                      key={chapter.id}
-                      eventKey={chapter.chapter - 1}
-                    >
-                      <Accordion.Header>
-                        บทที่ {chapter.chapter} : {chapter.title}
-                        <br />
-                        {chapter.material?.reduce(
-                          (userProgress, material) =>
-                            userProgress +
-                            material.material.attributes.duration,
-                          0
-                        )}
-                        นาที
-                      </Accordion.Header>
-                      <Accordion.Body>
-                        {chapter?.course_materials?.data?.map((material) => (
-                          <div key={material.attributes.id}>
-                            <Row>
-                              <Col>
-                                &nbsp;&nbsp;{chapter.chapter}.
-                                {material.attributes?.subchapter}{" "}
-                                {material?.attributes?.title}
-                              </Col>
-                              <Col>{chapter.duration} วินาที</Col>
-                            </Row>
-                          </div>
-                        ))}
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  ))}
-                </Accordion>
+                <Col>
+                  <h1>เกี่ยวกับ</h1>
+                  <p>{course.description}</p>
+                </Col>
+                <Col>
+                  <h1>เนื้อหาในคอร์ส</h1>
+                  <Accordion>
+                    {chapters?.map((chapter) => (
+                      <Accordion.Item
+                        key={chapter.id}
+                        eventKey={chapter.chapter - 1}
+                      >
+                        <Accordion.Header>
+                          บทที่ {chapter.chapter} : {chapter.title}
+                          <br />
+                          {chapter.material?.reduce(
+                            (userProgress, material) =>
+                              userProgress +
+                              material.material.attributes.duration,
+                            0
+                          )}
+                          นาที
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          {chapter?.course_materials?.data?.map((material) => (
+                            <div key={material.attributes.id}>
+                              <Row>
+                                <Col>
+                                  &nbsp;&nbsp;{chapter.chapter}.
+                                  {material.attributes?.subchapter}{" "}
+                                  {material?.attributes?.title}
+                                </Col>
+                                <Col>{chapter.duration} วินาที</Col>
+                              </Row>
+                            </div>
+                          ))}
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    ))}
+                  </Accordion>
+                </Col>
               </Col>
               <Col>
-                <div className="my-3">
+                <Col>
                   <h3>{course.price} ฿</h3>
-                  {state.isLoggedIn && isPurchased ? (
-                    <Button
-                      style={{ width: "100%" }}
-                      variant="secondary"
-                      onClick={() => navigate(`/course/${courseName}/study`)}
-                    >
-                      เข้าเรียนต่อ
-                    </Button>
-                  ) : isCarted ? (
-                    <Button
-                      style={{ width: "100%" }}
-                      variant="secondary"
-                      onClick={() => navigate("/cart")}
-                    >
-                      <span>ชำระเงิน</span>
-                    </Button>
-                  ) : (
-                    <Button style={{ width: "100%" }} onClick={handleAddCart}>
-                      เพิ่มลงตะกร้า
-                    </Button>
-                  )}
-                </div>
-                <div>
-                  <h1>หมวดหมู่</h1>
-                  {categories?.map((category) => (
-                    <p>-{category.name}</p>
-                  ))}
-                </div>
+                </Col>
+                <Col>
+                  <div className="my-3">
+                    {state.isLoggedIn && isPurchased ? (
+                      <Button
+                        style={{ width: "100%" }}
+                        variant="secondary"
+                        onClick={() => navigate(`/course/${courseName}/study`)}
+                      >
+                        เข้าเรียนต่อ
+                      </Button>
+                    ) : isCarted ? (
+                      <Button
+                        style={{ width: "100%" }}
+                        variant="secondary"
+                        onClick={() => navigate("/cart")}
+                      >
+                        <span>ชำระเงิน</span>
+                      </Button>
+                    ) : (
+                      <Button style={{ width: "100%" }} onClick={handleAddCart}>
+                        เพิ่มลงตะกร้า
+                      </Button>
+                    )}
+                  </div>
+                </Col>
+                <Col>
+                  <div>
+                    <h1>หมวดหมู่</h1>
+                    {categories?.map((category) => (
+                      <p>-{category.name}</p>
+                    ))}
+                  </div>
+                </Col>
               </Col>
             </Row>
           </Card.Body>
