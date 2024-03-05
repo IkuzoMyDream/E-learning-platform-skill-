@@ -48,7 +48,11 @@ export default function CategoryCoursePage() {
 
   return (
     <>
-      <Container>
+      <Container
+        style={{
+          height:"1200px",
+        }}
+      >
         <h1
           className="text-center"
           style={{ color: "#1B1A55", marginBottom: !ContextState.isLoggedIn ? "140px" : "85px" }}
