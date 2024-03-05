@@ -76,15 +76,15 @@ export default function MenuBarHeader() {
                 width: "100%",
               }}
               expand="lg"
-              className="z-3 position-fixed"
+              className="z-3"
             >
               <Container>
-                <Navbar.Brand></Navbar.Brand>
+              <Navbar.Brand></Navbar.Brand>
                 <>
                   <Form className="d-flex" onSubmit={onSubmit}>
                     <Form.Control
                       type="email"
-                      placeholder="username"
+                      placeholder="Email"
                       className="me-2"
                       aria-label="username"
                       onChange={(e) =>
@@ -97,7 +97,7 @@ export default function MenuBarHeader() {
                     />
                     <Form.Control
                       type="password"
-                      placeholder="password"
+                      placeholder="Password"
                       className="me-2"
                       aria-label="password"
                       onChange={(e) =>
@@ -125,15 +125,14 @@ export default function MenuBarHeader() {
             style={{
               borderBottom: "1px solid rgb(60, 71, 82)",
               background: "#A0BFE0",
-              marginBottom: "100px",
               width: "100%",
               marginTop: !ContextState.isLoggedIn ? "54.4px" : "0",
             }}
             expand="lg"
-            className="z-3 position-fixed"
+            className="z-3 "
           >
             <Container>
-              <Navbar.Brand onClick={onBrandClick}>
+            <Navbar.Brand onClick={onBrandClick}>
                 <Link to="/">
                   <Image
                     src="/logo-skillpp.png"

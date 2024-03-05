@@ -1,6 +1,14 @@
 import { Modal, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
 
 export default function LoginModal({ isShowLoginModal, setShowLoginModal }) {
+  
+  const navigate = useNavigate();
+  const onBrandClick = () => {
+    navigate("/login");
+  };
+
   return (
     <>
       <Modal
@@ -12,7 +20,7 @@ export default function LoginModal({ isShowLoginModal, setShowLoginModal }) {
           <Modal.Title>มีรหัสนักเรียน SKILL++ หรือไม่?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Modal.Dialog>
+          <Modal.Dialog onClick={onBrandClick}>
             <Button>เข้าสู่ระบบ</Button>
           </Modal.Dialog>
           <p>หรือ</p>

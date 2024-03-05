@@ -49,23 +49,12 @@ export default function CategoryCoursePage() {
   return (
     <>
       <Container
-        style={{
-          height: "1200px",
-        }}
       >
-
-        <h1
-
-          className="text-center"
-          style={{ color: "#1B1A55", marginBottom: !ContextState.isLoggedIn ? "140px" : "85px" }}
-        >
-          .
-        </h1>
         <h1
           style={{ color: "#1B1A55", marginBottom: "20px" }}
           className="text-left"
         >
-          <div className="text-center" style={{ color: "#1B1A55", marginBottom: "50px" }}>
+          <div className="text-center" style={{ color: "#1B1A55", marginBottom: "50px",marginTop:"20px"}}>
             รายวิชาสำหรับหมวดหมู่
           </div>
           {categoryName}
@@ -76,7 +65,7 @@ export default function CategoryCoursePage() {
         >
           <h4 style={{ color: "black", textIndent: "2em" }}>{category.detail}</h4>
         </div>
-        <div style={{ marginBottom: "20px" }}>
+        <div style={{ marginBottom: "20px"}}>
           <CategoryCourseList courses={currentCourses} />
         </div>
       </Container>

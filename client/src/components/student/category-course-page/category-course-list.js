@@ -8,7 +8,7 @@ export default function CategoryCourseList({ courses }) {
       <Row>
         {courses &&
           courses.map((course) => (
-            <Col lg="3" key={course.id}>
+            <Col lg="3" key={course.id} className="mb-3">
               <Link to={`/course/${course.name}`}>
                 <Card key={course.id}>
                   <Card.Img
