@@ -37,7 +37,6 @@ export default function ShowInfomation({
         progress: { courseProgress, userProgress },
       };
     });
-    console.log(mappedCourseLearning);
     setMyCourses(mappedCourseLearning);
   }, [userInfomation]);
 

@@ -25,13 +25,12 @@ export default function StudyPage() {
 
   const isEnrollThisCourse = async () => {
     try {
-      const response = await ax.get("/courses?populate[enrollers][filters][]")
-    }
-    catch(err) {
-
-    }
-    finally {
-
+      const response = await ax.get(
+        "/courses?populate[enrollers][filters][id][$eq]=" + state.user.id
+      );
+      console.log(response);
+    } catch (err) {
+    } finally {
     }
   };
 
@@ -105,6 +104,7 @@ export default function StudyPage() {
 
   useEffect(() => {
     fetchItem();
+    isEnrollThisCourse();
   }, []);
 
   useEffect(() => {

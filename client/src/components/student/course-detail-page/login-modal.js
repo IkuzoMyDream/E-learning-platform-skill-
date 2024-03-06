@@ -1,12 +1,15 @@
 import { Modal, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 export default function LoginModal({ isShowLoginModal, setShowLoginModal }) {
-  
   const navigate = useNavigate();
   const onBrandClick = () => {
     navigate("/login");
+  };
+
+  const onRegisterHit = () => {
+    navigate("/signup");
   };
 
   return (
@@ -25,7 +28,7 @@ export default function LoginModal({ isShowLoginModal, setShowLoginModal }) {
           </Modal.Dialog>
           <p>หรือ</p>
           <Modal.Dialog>
-            <Button>สมัครสมาชิกใหม่</Button>
+            <Button onClick={onRegisterHit}>สมัครสมาชิกใหม่</Button>
           </Modal.Dialog>
         </Modal.Body>
       </Modal>

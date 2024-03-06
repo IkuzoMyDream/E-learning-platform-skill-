@@ -16,9 +16,9 @@ function SignUpPage() {
         username,
         password,
         email,
-        role:4
+        role: 4,
       });
-    //   navigate("/");
+      //   navigate("/");
     } catch (error) {
       console.error("Registration failed:", error);
     }

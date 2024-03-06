@@ -105,7 +105,6 @@ export default function StudyPagePlayer({ state, material }) {
     }
   }, [progression]);
 
-  console.log(material);
 
   return (
     <>
