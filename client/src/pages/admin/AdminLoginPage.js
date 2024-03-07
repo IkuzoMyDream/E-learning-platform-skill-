@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 import { AuthContext } from "../../utils/auth/Auth.context";
 import { Route } from "react-router-dom";
 import './adminform.css'
+import DashBoardPage from "../../pages/admin/DashBoardPage"
 
 const initialState = {
   username: "",
@@ -73,8 +74,8 @@ function AdminLoginPage() {
           </div>
         </div>
 
-        {isLoginPending && <div>Please wait...</div>}
-        {isLoggedIn && <div>Success.</div>}
+        {isLoginPending && <div>Please enter to login</div>}
+        {isLoggedIn && <div>Success.</div> && <DashBoardPage />}
         {loginError && <div>{loginError.message}</div>}
       </form>
     </div>
