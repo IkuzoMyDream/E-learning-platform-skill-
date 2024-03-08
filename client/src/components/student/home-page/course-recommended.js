@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Card, Col, Container, Row } from "react-bootstrap";
 
 import styles from "./home-card.module.css";
+import config from "../../../config";
 
 export default function CourseRecommended({ courses }) {
   const [recommendedCourses, setRecommendedCourses] = useState([]);
@@ -11,7 +12,7 @@ export default function CourseRecommended({ courses }) {
   useEffect(() => {
     setRecommendedCourses(
       [...courses]
-        .sort((a, b) => b.enrollers.data.length - a.enrollers.data.length)
+        .sort((a, b) => b.enrollers?.data?.length - a.enrollers?.data?.length)
         .slice(0, 4)
     );
   }, [courses]);
@@ -31,8 +32,8 @@ export default function CourseRecommended({ courses }) {
                   <Card className={styles.home_card} key={course.id}>
                     <Card.Img
                       src={
-                        "http://localhost:1337" +
-                        course.picture.data[0].attributes.url
+                        config.serverAdminUrlPrefix +
+                        course.picture.data[0]?.attributes.url
                       }
                       style={{ maxHeight: "150px" }}
                     />
