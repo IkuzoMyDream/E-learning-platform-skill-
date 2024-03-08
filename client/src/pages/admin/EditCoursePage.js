@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Accordion, Button, Col, Container, Form, Row } from "react-bootstrap";
 import ax from "../../utils/config/ax";
 import { useParams } from "react-router-dom";
+import Modal from 'react-bootstrap/Modal';
 
 
 export default function EditCoursePage() {
@@ -43,6 +44,11 @@ export default function EditCoursePage() {
       ],
     },
   ]);
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -605,12 +611,25 @@ export default function EditCoursePage() {
           </Form>
         )}
       </>
-      <Button
-        variant="danger"
-        onClick={deleteCourse}
-        >
-        ลบคอส
+      <Button variant="danger" position= "right" onClick={handleShow}>
+       ลบคอส
       </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>ต้องการจะลบคอสนี้หรือไม่</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>หากกด"ยืนยัน"แล้วจะไม่สามารถย้อนกลับได้แต่ข้อมมูลในคอสยังคงอยู่
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            ยกเลิก
+          </Button>
+          <Button variant="outline-danger" onClick={handleClose && deleteCourse}>
+            ยืนยัน
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }
