@@ -18,7 +18,7 @@ import StudyPage from "./pages/student/StudyPage";
 import DashBoardPage from "./pages/admin/DashBoardPage";
 import AdminLoginPage from "./pages/admin/AdminLoginPage";
 import AddCoursePage from "./pages/admin/AddCoursePage";
-import SignUpPage from "./pages/SignUpPage"
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   const { state } = useContext(AuthContext);
@@ -29,7 +29,7 @@ function App() {
         <MenuBarHeader />
         <Routes>
           {/* public */}
-          <Route path="/signup" element={<SignUpPage/>} />
+          <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/course" element={<CoursesPage />} />
@@ -51,9 +51,10 @@ function App() {
 
           {/* role == admin */}
           <Route path="/admin/login" element={<AdminLoginPage />} />
-          <Route path="/admin/dashboard" element={<DashBoardPage />} />
-          <Route path="/admin/add-course" element={<AddCoursePage />} />
-          <Route element={<PrivateRoutes allowedRole="Admin" />}></Route>
+          <Route element={<PrivateRoutes allowedRole="Admin" />}>
+            <Route path="/admin/dashboard" element={<DashBoardPage />} />
+            <Route path="/admin/add-course" element={<AddCoursePage />} />
+          </Route>
         </Routes>
         <MenuBarFooter />
       </Router>

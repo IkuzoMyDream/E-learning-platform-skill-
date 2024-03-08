@@ -25,7 +25,7 @@ function SignUpPage() {
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center vh-100">
+    <Container>
       <Form className="form" onSubmit={handleSubmit}>
         <p className="title">Register</p>
         <p className="message">Signup now and get full access to our app.</p>
@@ -66,9 +66,9 @@ function SignUpPage() {
         <Button variant="primary" type="submit" className="submit">
           Submit
         </Button>
-        {/* <p className="signin">
-          Already have an account? <Link to="/signin">Sign in</Link>
-        </p> */}
+        <p className="signin">
+          Already have an account? <Link to="/login">Sign in</Link>
+        </p>
       </Form>
     </Container>
   );

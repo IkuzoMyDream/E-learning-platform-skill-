@@ -30,6 +30,7 @@ export default function MenuBarHeader() {
   const [searchCourse, setSearchCourse] = useState("");
 
   let { pathname } = useLocation();
+  let isSignupPath = pathname.slice(1, 7) === "signup";
   const isAdminPath = pathname.slice(1, 6) === "admin";
   pathname = pathname.slice(-5);
   const isPathIsLogin = pathname.slice(0, 5) === "login";
@@ -65,7 +66,7 @@ export default function MenuBarHeader() {
     navigate("/");
   };
 
-  if (pathname !== "study" && !isPathIsLogin && !isAdminPath) {
+  if (pathname !== "study" && !isPathIsLogin && !isAdminPath && !isSignupPath) {
     return (
       <div style={{ position: "flex" }}>
         {!ContextState.isLoggedIn && (
@@ -82,7 +83,7 @@ export default function MenuBarHeader() {
               <Container>
                 <Navbar.Brand></Navbar.Brand>
                 <>
-                  <Form className="d-flex" onSubmit={onSubmit} >
+                  <Form className="d-flex" onSubmit={onSubmit}>
                     <Form.Control
                       type="email"
                       placeholder="Email"

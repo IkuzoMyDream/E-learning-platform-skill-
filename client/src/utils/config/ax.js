@@ -1,12 +1,14 @@
 import axios from "axios"
 import conf from './main'
 
+import config from "../../config"
+
 export const axData = {
   jwt: null
 }
-
+   
 const ax = axios.create({
-    baseURL: conf.apiUrlPrefix,
+    baseURL: config.serverUrlPrefix,
     withCredentials: true,
 })
 

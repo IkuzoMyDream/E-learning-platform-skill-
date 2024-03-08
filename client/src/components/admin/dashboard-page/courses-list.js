@@ -145,7 +145,7 @@ export default function CoursesList({
                           </Card.Subtitle>
                           <br></br>
                           <div>
-                            ลงเรียนทั้งหมด{" "}
+                            จำนวนผู้ลงทะเบียน{" "}
                             {course.attributes.enrollers.data.length} คน
                           </div>
                           <br></br>

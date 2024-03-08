@@ -10,7 +10,6 @@ import {
 } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
-
 export default function ShowInfomation({
   userInfomation,
   setIsEditInfomation,
@@ -84,7 +83,7 @@ export default function ShowInfomation({
                 <th>ความคืบหน้า</th>
               </tr>
             </thead>
-            <tbody style={{height:"500px",}}>
+            <tbody >
               {myCourses &&
                 myCourses.map((course) => (
                   <tr>
@@ -92,10 +91,7 @@ export default function ShowInfomation({
                       <Image
                         style={{ maxHeight: "50px", minWidth: "50px" }}
                         src={
-                          userInfomation?.avatar?.url
-                            ? "http://localhost:1337" +
-                              userInfomation.avatar.url
-                            : ""
+                          "http://localhost:1337" + course.course.picture[0].url
                         }
                       />
                     </td>

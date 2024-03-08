@@ -66,7 +66,7 @@ function LoginPage() {
             Sign in
           </button>
           <p className="signup-link">
-            No account? <a href="">Sign up</a>
+            No account? <Link to="/signup">Sign up</Link>
           </p>
 
           {isLoginPending && <div>Please wait...</div>}
