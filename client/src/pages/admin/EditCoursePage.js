@@ -6,15 +6,15 @@ import { useParams } from "react-router-dom";
 
 export default function EditCoursePage() {
 
-  const { courseName } = useParams();
-  const [courseImg, setCourseImg] = useState(null);
-  const [name, setName] = useState(null);
-  const [description, setDescription] = useState(null);
-  const [price, setPrice] = useState(null);
-  const [name_teacher, setNameTeacher] = useState(null);
-  const [mail_teacher, setEmailTeacher] = useState(null);
-  const [previewVdo, setPreviewVdo] = useState(null);
-  const [categories, setCategories] = useState(null);
+  const { courseId } = useParams();
+  const [courseImg, setCourseImg] = useState();
+  const [name, setName] = useState();
+  const [description, setDescription] = useState();
+  const [price, setPrice] = useState();
+  const [name_teacher, setNameTeacher] = useState();
+  const [mail_teacher, setEmailTeacher] = useState();
+  const [previewVdo, setPreviewVdo] = useState();
+  const [categories, setCategories] = useState();
   const [selectedCategoriesId, setSelectedCategoriesId] = useState([]);
   const [courseData, setCourseData] = useState({
     name: "",
@@ -132,7 +132,7 @@ export default function EditCoursePage() {
         response_categories.data.data.map((category) => {
           return {
             id: category.id,
-            ...category.attributes,
+            ...category?.attributes,
           };
         })
       );
@@ -153,8 +153,9 @@ export default function EditCoursePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await ax.get(`/courses/${courseName}`);
+        const response = await ax.get(`/courses/${courseId}`);
         const course = response.data.data;
+        console.log(courseId)
 
         setCourseData({
           name: course.name,
@@ -187,6 +188,7 @@ export default function EditCoursePage() {
         console.error("Error fetching course data:", error);
       }
     };
+    fetchData();
     fetchItems();
   }, []);
 

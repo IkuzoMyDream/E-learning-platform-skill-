@@ -72,11 +72,11 @@ export default function CoursesList({
   }, [filteredCourses, currentPage]);
 
   useEffect(() => {
-    console.log(currentCourses);
+    //console.log(currentCourses);
   }, [currentCourses]);
 
   useEffect(() => {
-    console.log(courses);
+    //console.log(courses);
     if (selectedCategoriesId.length === 0) {
       const filtered = courses?.filter((course) =>
         course.attributes.name.toLowerCase().includes(search.toLowerCase())
@@ -129,7 +129,7 @@ export default function CoursesList({
                   <Col className="my-3" lg="4" sm="4" key={course.id}>
                     <Link
                       style={{ textDecoration: "none" }}
-                      to={`/course/${course.attributes.name}`}
+                      to={`/admin/edit-course/${course.id}`}
                     >
                       <Card key={course.id}>
                         <Card.Img
