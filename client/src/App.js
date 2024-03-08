@@ -55,7 +55,7 @@ function App() {
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/admin/dashboard" element={<DashBoardPage />} />
           <Route path="/admin/add-course" element={<AddCoursePage />} />
-          <Route path="/admin/edit-course/:courseName" element={<EditCoursePage />} />
+          <Route path="/admin/edit-course/:courseId" element={<EditCoursePage />} />
           <Route element={<PrivateRoutes allowedRole="Admin" />}></Route>
         </Routes>
         <MenuBarFooter />

@@ -6,15 +6,15 @@ import { useParams } from "react-router-dom";
 
 export default function EditCoursePage() {
 
-  const { courseName } = useParams();
-  const [courseImg, setCourseImg] = useState(null);
-  const [name, setName] = useState(null);
-  const [description, setDescription] = useState(null);
-  const [price, setPrice] = useState(null);
-  const [name_teacher, setNameTeacher] = useState(null);
-  const [mail_teacher, setEmailTeacher] = useState(null);
-  const [previewVdo, setPreviewVdo] = useState(null);
-  const [categories, setCategories] = useState(null);
+  const { courseId } = useParams();
+  const [courseImg, setCourseImg] = useState();
+  const [name, setName] = useState();
+  const [description, setDescription] = useState();
+  const [price, setPrice] = useState();
+  const [name_teacher, setNameTeacher] = useState();
+  const [mail_teacher, setEmailTeacher] = useState();
+  const [previewVdo, setPreviewVdo] = useState();
+  const [categories, setCategories] = useState();
   const [selectedCategoriesId, setSelectedCategoriesId] = useState([]);
   const [courseData, setCourseData] = useState({
     name: "",
@@ -132,7 +132,7 @@ export default function EditCoursePage() {
         response_categories.data.data.map((category) => {
           return {
             id: category.id,
-            ...category.attributes,
+            ...category?.attributes,
           };
         })
       );
@@ -153,46 +153,68 @@ export default function EditCoursePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await ax.get(`/courses/${courseName}`);
+        const response = await ax.get(`/courses/${courseId}?populate=categories`);
         const course = response.data.data;
+        console.log(course)
 
-        setCourseData({
-          name: course.name,
-          description: course.description,
-          price: course.price,
-          name_teacher: course.name_teacher,
-          mail_teacher: course.mail_teacher,
-          previewVdo: course.preview,
-          courseImg: course.picture,
-          categories: course.categories.map((category) => category.id),
-          chapters: course.chapters.map((chapter) => {
-            return {
-              chapter: chapter.chapter,
-              name: chapter.title,
-              description: chapter.description,
-              duration: chapter.duration,
-              subchapters: chapter.materials.map((material) => {
-                return {
-                  subchapter: material.subchapter,
-                  name: material.title,
-                  description: material.description,
-                  duration: material.duration,
-                  video: null, // We don't fetch video data in this request
-                };
-              }),
-            };
-          }),
-        });
+        //console.log(course.attributes.categories.map((category)=> category.id))
+        setName(
+          course.attributes.name
+        )
+        setPrice(course.attributes.price)
+
+        setCourseData(
+          { ...course.attributes,
+           categories: course.attributes.categories.data.map(item => item.attributes)}
+          //   {
+          //   name: "test",
+          //   description: course.attributes.description,
+          //   price: course.attributes.price,
+          //   name_teacher: course.attributes.name_teacher,
+          //   mail_teacher: course.attributes.mail_teacher,
+          //   previewVdo: course.attributes.preview,
+          //   courseImg: course.attributes.picture,
+          //   categories: course.categories.map((category) => category.id),
+          //   chapters: course.chapters.map((chapter) => {
+          //     return {
+          //       chapter: chapter.chapter,
+          //       name: chapter.title,
+          //       description: chapter.description,
+          //       duration: chapter.duration,
+          //       subchapters: chapter.materials.map((material) => {
+          //         return {
+          //           subchapter: material.subchapter,
+          //           name: material.title,
+          //           description: material.description,
+          //           duration: material.duration,
+          //           video: null, // We don't fetch video data in this request
+          //         };
+          //       }),
+          //     };
+          //   }),
+          // }
+        );
       } catch (error) {
         console.error("Error fetching course data:", error);
       }
     };
+    fetchData();
     fetchItems();
   }, []);
+
+  useEffect(() => {
+    //  console.log(courseData.name_teacher,"ชื่อจารย์");
+    // console.log(name, "ชื่อวิชา")
+    // console.log(price)
+  }, [name, price]);
 
   //   useEffect(() => {
   //     console.log(chapters);
   //   }, [chapters]);
+
+  useEffect(() => {
+    console.log(courseData, categories)
+  }, [courseData])
 
   const handleDeleteChapter = (index) => {
     setChapters((prevChapters) => prevChapters.filter((_, i) => i !== index));
@@ -203,9 +225,9 @@ export default function EditCoursePage() {
       prevChapters.map((chapter, index) =>
         index === chapterIndex
           ? {
-              ...chapter,
-              subchapters: chapter.subchapters.filter((_, i) => i !== subIndex),
-            }
+            ...chapter,
+            subchapters: chapter.subchapters.filter((_, i) => i !== subIndex),
+          }
           : chapter
       )
     );
@@ -232,23 +254,32 @@ export default function EditCoursePage() {
     ]);
   };
 
+  const deleteCourse = async () => {
+    try {
+      const deleteCourse1 = await ax.delete(`/courses/${courseId}`);
+      deleteCourse1();
+    } catch (err) {
+      console.error("Error fetching categories:", err);
+    }
+  };
+
   const handleAddSubChapter = (chapterIndex) => {
     setChapters((prevChapters) =>
       prevChapters.map((chapter, index) =>
         index === chapterIndex
           ? {
-              ...chapter,
-              subchapters: [
-                ...chapter.subchapters,
-                {
-                  subchapter: chapter.subchapters.length + 1,
-                  name: "",
-                  description: "",
-                  duration: "",
-                  video: "",
-                },
-              ],
-            }
+            ...chapter,
+            subchapters: [
+              ...chapter.subchapters,
+              {
+                subchapter: chapter.subchapters.length + 1,
+                name: "",
+                description: "",
+                duration: "",
+                video: "",
+              },
+            ],
+          }
           : chapter
       )
     );
@@ -256,344 +287,353 @@ export default function EditCoursePage() {
 
   return (
     <Container>
-      <>
-        {categories && (
-          <Form onSubmit={handleSubmit}>
-            <Row>
-              <Col>
-                <Form.Label>หัวข้อ</Form.Label>
-                <Form.Control
-                  onChange={(e) => setName(e.target.value)}
-                  type="text"
-                  placeholder="หัวข้อ"
-                  value={courseData.name}
-                  required
-                />
-              </Col>
-              <Col>
-                <Form.Label>รูปคอร์ส</Form.Label>
-                <Form.Control
-                  required
-                  accept="image/*"
-                  type="file"
-                  label="Upload Course Picture"
-                  value={courseData.courseImg}
-                  onChange={(e) => setCourseImg(e.target.files[0])}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Form.Label>คำอธิบาย</Form.Label>
-                <Form.Control
-                  required
-                  as="textarea"
-                  placeholder="คำอธิบาย"
-                  style={{ resize: "none" }}
-                  value={courseData.description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Form.Label>หมวดหมู่</Form.Label>
+      {name && (
+        <>
+          {categories && (
+            <Form onSubmit={handleSubmit}>
+              <Row>
+                <Col>
+                  <Form.Label>หัวข้อ</Form.Label>
+                  <Form.Control
+                    onChange={(e) => setName(e.target.value)}
+                    type="text"
+                    placeholder="หัวข้อ"
+                    value={name}
+                    required
+                  />
+                </Col>
+                <Col>
+                  <Form.Label>รูปคอร์ส</Form.Label>
+                  <Form.Control
+                    required
+                    accept="image/*"
+                    type="file"
+                    label="Upload Course Picture"
+                    value={courseData.courseImg}
+                    onChange={(e) => setCourseImg(e.target.files[0])}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Form.Label>คำอธิบาย</Form.Label>
+                  <Form.Control
+                    required
+                    as="textarea"
+                    placeholder="คำอธิบาย"
+                    style={{ resize: "none" }}
+                    value={courseData.description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Form.Label>หมวดหมู่</Form.Label>
+                  <Form>
+                    {categories.map((category) => (
+                      <Form.Check
+                        required
+                        key={category.id}
+                        className="my-3"
+                        label={category.name}
+                        value={courseData.category}
+                        onChange={() => handleCheckboxChange(category.id)}
+                        checked={true}
+                      />
+                    ))}
+                  </Form>
+                </Col>
+                <Col>
+                  <Form.Label>ราคา</Form.Label>
+                  <Form.Control
+                    required
+                    type="number"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Form.Label>ชื่อผู้สอน</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    value={courseData.name_teacher}
+                    onChange={(e) => setNameTeacher(e.target.value)}
+                  />
+                </Col>
+                <Col>
+                  <Form.Label>อีเมลผู้สอน</Form.Label>
+                  <Form.Control
+                    required
+                    type="email"
+                    value={courseData.mail_teacher}
+                    onChange={(e) => setEmailTeacher(e.target.value)}
+                  />
+                </Col>
+              </Row>
+              <Row style={{ display: "flex", justifyContent: "center" }}>
+                <Col lg="4" className="text-center">
+                  <Form.Label>วิดิโอตัวอย่าง</Form.Label>
+                  <Form.Control
+                    required
+                    accept="video/*"
+                    type="file"
+                    label="Upload Course Preview"
+                    value={courseData.previewVdo}
+                    onChange={(e) => setPreviewVdo(e.target.files[0])}
+                  />
+                </Col>
+              </Row>
+              <Row>
                 <Form>
-                  {categories.map((category) => (
-                    <Form.Check
-                      required
-                      key={category.id}
-                      className="my-3"
-                      label={category.name}
-                      value={courseData.category}
-                      onChange={() => handleCheckboxChange(category.id)}
-                    />
-                  ))}
-                </Form>
-              </Col>
-              <Col>
-                <Form.Label>ราคา</Form.Label>
-                <Form.Control
-                  required
-                  type="number"
-                  value={courseData.price}
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Form.Label>ชื่อผู้สอน</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  value={courseData.name_teacher}
-                  onChange={(e) => setNameTeacher(e.target.value)}
-                />
-              </Col>
-              <Col>
-                <Form.Label>อีเมลผู้สอน</Form.Label>
-                <Form.Control
-                  required
-                  type="email"
-                  value={courseData.mail_teacher}
-                  onChange={(e) => setEmailTeacher(e.target.value)}
-                />
-              </Col>
-            </Row>
-            <Row style={{ display: "flex", justifyContent: "center" }}>
-              <Col lg="4" className="text-center">
-                <Form.Label>วิดิโอตัวอย่าง</Form.Label>
-                <Form.Control
-                  required
-                  accept="video/*"
-                  type="file"
-                  label="Upload Course Preview"
-                  value={courseData.previewVdo}
-                  onChange={(e) => setPreviewVdo(e.target.files[0])}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Form>
-                <Row className="mb-3">
-                  <Col>
-                    <Form.Label>เพิ่มเนื้อหาและบทเรียน</Form.Label>
-                  </Col>
-                </Row>
-                {chapters.map((chapter, index) => (
-                  <Accordion key={index}>
-                    <Accordion.Item>
-                      <Accordion.Header>
-                        <p>{chapter.name}</p>
-                        {/* <input
+                  <Row className="mb-3">
+                    <Col>
+                      <Form.Label>เพิ่มเนื้อหาและบทเรียน</Form.Label>
+                    </Col>
+                  </Row>
+                  {chapters.map((chapter, index) => (
+                    <Accordion key={index}>
+                      <Accordion.Item>
+                        <Accordion.Header>
+                          <p>{chapter.name}</p>
+                          {/* <input
                           className="form-control"
                           placeholder={chapter.name}
                         /> */}
-                        <Button
-                          variant="danger"
-                          onClick={() => handleDeleteChapter(index)}
-                        >
-                          ลบบท
-                        </Button>
-                      </Accordion.Header>
-                      <Accordion.Body>
-                        <Form.Group controlId={`chapterTitle_${index}`}>
-                          <Form.Label>หัวข้อ</Form.Label>
-                          <Form.Control
-                            required
-                            type="text"
-                            placeholder="Chapter Title"
-                            value={chapter.name} // Make sure to set the value to the current name
-                            onChange={(e) => {
-                              const newTitle = e.target.value;
-                              setChapters((prevChapters) =>
-                                prevChapters.map((chap, idx) =>
-                                  idx === index
-                                    ? { ...chap, name: newTitle }
-                                    : chap
-                                )
-                              );
-                            }}
-                          />
-                        </Form.Group>
-                        <Form.Group controlId={`chapterDescription_${index}`}>
-                          <Form.Label>รายละเอียด</Form.Label>
-                          <Form.Control
-                            required
-                            as="textarea"
-                            placeholder="Chapter Description"
-                            onChange={(e) => {
-                              const newDescription = e.target.value;
-                              setChapters((prevChapters) =>
-                                prevChapters.map((chap, idx) =>
-                                  idx === index
-                                    ? { ...chap, description: newDescription }
-                                    : chap
-                                )
-                              );
-                            }}
-                          />
-                        </Form.Group>
-                        <Form.Group controlId={`chapterDuration_${index}`}>
-                          <Form.Label>ความยาวทั้งบทเรียน (วินาที)</Form.Label>
-                          <Form.Control
-                            required
-                            type="text"
-                            placeholder="Chapter Video Duration"
-                            onChange={(e) => {
-                              const newDuration = e.target.value;
-                              setChapters((prevChapters) =>
-                                prevChapters.map((chap, idx) =>
-                                  idx === index
-                                    ? { ...chap, duration: newDuration }
-                                    : chap
-                                )
-                              );
-                            }}
-                          />
-                        </Form.Group>
-                        {chapter.subchapters.map((subchapter, subIndex) => (
-                          <div key={subIndex}>
-                            <Form.Group
-                              controlId={`subchapterTitle_${index}_${subIndex}`}
-                            >
-                              <Form.Label>หัวข้อ</Form.Label>
-                              <Form.Control
-                                required
-                                type="text"
-                                placeholder="Subchapter Title"
-                                value={subchapter.name}
-                                onChange={(e) => {
-                                  const newTitle = e.target.value;
-                                  setChapters((prevChapters) =>
-                                    prevChapters.map((chap, idx) =>
-                                      idx === index
-                                        ? {
+                          <Button
+                            variant="danger"
+                            onClick={() => handleDeleteChapter(index)}
+                          >
+                            ลบบท
+                          </Button>
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          <Form.Group controlId={`chapterTitle_${index}`}>
+                            <Form.Label>หัวข้อ</Form.Label>
+                            <Form.Control
+                              required
+                              type="text"
+                              placeholder="Chapter Title"
+                              value={chapter.name} // Make sure to set the value to the current name
+                              onChange={(e) => {
+                                const newTitle = e.target.value;
+                                setChapters((prevChapters) =>
+                                  prevChapters.map((chap, idx) =>
+                                    idx === index
+                                      ? { ...chap, name: newTitle }
+                                      : chap
+                                  )
+                                );
+                              }}
+                            />
+                          </Form.Group>
+                          <Form.Group controlId={`chapterDescription_${index}`}>
+                            <Form.Label>รายละเอียด</Form.Label>
+                            <Form.Control
+                              required
+                              as="textarea"
+                              placeholder="Chapter Description"
+                              onChange={(e) => {
+                                const newDescription = e.target.value;
+                                setChapters((prevChapters) =>
+                                  prevChapters.map((chap, idx) =>
+                                    idx === index
+                                      ? { ...chap, description: newDescription }
+                                      : chap
+                                  )
+                                );
+                              }}
+                            />
+                          </Form.Group>
+                          <Form.Group controlId={`chapterDuration_${index}`}>
+                            <Form.Label>ความยาวทั้งบทเรียน (วินาที)</Form.Label>
+                            <Form.Control
+                              required
+                              type="text"
+                              placeholder="Chapter Video Duration"
+                              onChange={(e) => {
+                                const newDuration = e.target.value;
+                                setChapters((prevChapters) =>
+                                  prevChapters.map((chap, idx) =>
+                                    idx === index
+                                      ? { ...chap, duration: newDuration }
+                                      : chap
+                                  )
+                                );
+                              }}
+                            />
+                          </Form.Group>
+                          {chapter.subchapters.map((subchapter, subIndex) => (
+                            <div key={subIndex}>
+                              <Form.Group
+                                controlId={`subchapterTitle_${index}_${subIndex}`}
+                              >
+                                <Form.Label>หัวข้อ</Form.Label>
+                                <Form.Control
+                                  required
+                                  type="text"
+                                  placeholder="Subchapter Title"
+                                  value={subchapter.name}
+                                  onChange={(e) => {
+                                    const newTitle = e.target.value;
+                                    setChapters((prevChapters) =>
+                                      prevChapters.map((chap, idx) =>
+                                        idx === index
+                                          ? {
                                             ...chap,
                                             subchapters: chap.subchapters.map(
                                               (subchap, sidx) =>
                                                 sidx === subIndex
                                                   ? {
-                                                      ...subchap,
-                                                      name: newTitle,
-                                                    }
+                                                    ...subchap,
+                                                    name: newTitle,
+                                                  }
                                                   : subchap
                                             ),
                                           }
-                                        : chap
-                                    )
-                                  );
-                                }}
-                              />
-                            </Form.Group>
-                            <Form.Group
-                              controlId={`subchapterDescription_${index}_${subIndex}`}
-                            >
-                              <Form.Label>รายละเอียด</Form.Label>
-                              <Form.Control
-                                required
-                                as="textarea"
-                                placeholder="Subchapter Description"
-                                value={subchapter.description}
-                                onChange={(e) => {
-                                  const newDescription = e.target.value;
-                                  setChapters((prevChapters) =>
-                                    prevChapters.map((chap, idx) =>
-                                      idx === index
-                                        ? {
+                                          : chap
+                                      )
+                                    );
+                                  }}
+                                />
+                              </Form.Group>
+                              <Form.Group
+                                controlId={`subchapterDescription_${index}_${subIndex}`}
+                              >
+                                <Form.Label>รายละเอียด</Form.Label>
+                                <Form.Control
+                                  required
+                                  as="textarea"
+                                  placeholder="Subchapter Description"
+                                  value={subchapter.description}
+                                  onChange={(e) => {
+                                    const newDescription = e.target.value;
+                                    setChapters((prevChapters) =>
+                                      prevChapters.map((chap, idx) =>
+                                        idx === index
+                                          ? {
                                             ...chap,
                                             subchapters: chap.subchapters.map(
                                               (subchap, sidx) =>
                                                 sidx === subIndex
                                                   ? {
-                                                      ...subchap,
-                                                      description:
-                                                        newDescription,
-                                                    }
+                                                    ...subchap,
+                                                    description:
+                                                      newDescription,
+                                                  }
                                                   : subchap
                                             ),
                                           }
-                                        : chap
-                                    )
-                                  );
-                                }}
-                              />
-                            </Form.Group>
-                            <Form.Group
-                              controlId={`subchapterDuration_${index}_${subIndex}`}
-                            >
-                              <Form.Label>ความยาววิดีโอ</Form.Label>
-                              <Form.Control
-                                required
-                                type="number"
-                                placeholder="Subchapter Video Duration"
-                                value={subchapter.duration}
-                                onChange={(e) => {
-                                  const newDuration = e.target.value;
-                                  setChapters((prevChapters) =>
-                                    prevChapters.map((chap, idx) =>
-                                      idx === index
-                                        ? {
+                                          : chap
+                                      )
+                                    );
+                                  }}
+                                />
+                              </Form.Group>
+                              <Form.Group
+                                controlId={`subchapterDuration_${index}_${subIndex}`}
+                              >
+                                <Form.Label>ความยาววิดีโอ</Form.Label>
+                                <Form.Control
+                                  required
+                                  type="number"
+                                  placeholder="Subchapter Video Duration"
+                                  value={subchapter.duration}
+                                  onChange={(e) => {
+                                    const newDuration = e.target.value;
+                                    setChapters((prevChapters) =>
+                                      prevChapters.map((chap, idx) =>
+                                        idx === index
+                                          ? {
                                             ...chap,
                                             subchapters: chap.subchapters.map(
                                               (subchap, sidx) =>
                                                 sidx === subIndex
                                                   ? {
-                                                      ...subchap,
-                                                      duration: newDuration,
-                                                    }
+                                                    ...subchap,
+                                                    duration: newDuration,
+                                                  }
                                                   : subchap
                                             ),
                                           }
-                                        : chap
-                                    )
-                                  );
-                                }}
-                              />
-                            </Form.Group>
-                            <Form.Group
-                              controlId={`subchapterVdo_${index}_${subIndex}`}
-                            >
-                              <Form.Label>Video</Form.Label>
-                              <Form.Control
-                                type="file"
-                                accept="video/*"
-                                onChange={(e) => {
-                                  const newVideo = e.target.files[0];
-                                  setChapters((prevChapters) =>
-                                    prevChapters.map((chap, idx) =>
-                                      idx === index
-                                        ? {
+                                          : chap
+                                      )
+                                    );
+                                  }}
+                                />
+                              </Form.Group>
+                              <Form.Group
+                                controlId={`subchapterVdo_${index}_${subIndex}`}
+                              >
+                                <Form.Label>Video</Form.Label>
+                                <Form.Control
+                                  type="file"
+                                  accept="video/*"
+                                  onChange={(e) => {
+                                    const newVideo = e.target.files[0];
+                                    setChapters((prevChapters) =>
+                                      prevChapters.map((chap, idx) =>
+                                        idx === index
+                                          ? {
                                             ...chap,
                                             subchapters: chap.subchapters.map(
                                               (subchap, sidx) =>
                                                 sidx === subIndex
                                                   ? {
-                                                      ...subchap,
-                                                      video: newVideo,
-                                                    }
+                                                    ...subchap,
+                                                    video: newVideo,
+                                                  }
                                                   : subchap
                                             ),
                                           }
-                                        : chap
-                                    )
-                                  );
-                                }}
-                              />
-                            </Form.Group>
-                            <Button
-                              variant="danger"
-                              onClick={() =>
-                                handleDeleteSubChapter(index, subIndex)
-                              }
-                            >
-                              ลบหัวข้อย่อย
-                            </Button>
-                          </div>
-                        ))}
+                                          : chap
+                                      )
+                                    );
+                                  }}
+                                />
+                              </Form.Group>
+                              <Button
+                                variant="danger"
+                                onClick={() =>
+                                  handleDeleteSubChapter(index, subIndex)
+                                }
+                              >
+                                ลบหัวข้อย่อย
+                              </Button>
+                            </div>
+                          ))}
 
-                        <Button
-                          variant="secondary"
-                          onClick={() => handleAddSubChapter(index)}
-                        >
-                          เพิ่มหัวข้อย่อย
-                        </Button>
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                ))}
-                <Button variant="secondary" onClick={handleAddChapter}>
-                  เพิ่มบท
-                </Button>
-              </Form>
-            </Row>
-            <Row>
-              <Button type="submit">เพิ่มคอร์ส</Button>
-            </Row>
-          </Form>
-        )}
-      </>
+                          <Button
+                            variant="secondary"
+                            onClick={() => handleAddSubChapter(index)}
+                          >
+                            เพิ่มหัวข้อย่อย
+                          </Button>
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    </Accordion>
+                  ))}
+                  <Button variant="secondary" onClick={handleAddChapter}>
+                    เพิ่มบท
+                  </Button>
+                </Form>
+              </Row>
+              <Row>
+                <Button type="submit">เพิ่มคอร์ส</Button>
+              </Row>
+            </Form>
+          )}
+          <Button
+        variant="danger"
+        onClick={deleteCourse}
+        >
+        ลบคอส
+      </Button>
+        </>       
+      )}
     </Container>
   );
 }
