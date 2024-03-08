@@ -141,6 +141,15 @@ export default function EditCoursePage() {
     }
   };
 
+  const deleteCourse = async () => {
+    try {
+      const deleteCourse1 = await ax.delete(`/courses/${courseId}`);
+      deleteCourse1();
+    } catch (err) {
+      console.error("Error fetching categories:", err);
+    }
+  };
+
   const handleCheckboxChange = (courseId) => {
     setSelectedCategoriesId((prevSelectedCoursesId) => {
       if (prevSelectedCoursesId.includes(courseId)) {
@@ -596,6 +605,12 @@ export default function EditCoursePage() {
           </Form>
         )}
       </>
+      <Button
+        variant="danger"
+        onClick={deleteCourse}
+        >
+        ลบคอส
+      </Button>
     </Container>
   );
 }
