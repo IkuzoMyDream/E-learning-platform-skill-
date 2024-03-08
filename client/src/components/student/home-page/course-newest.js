@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./home-card.module.css";
+import conf from "../../../utils/config/main";
+import config from "../../../config";
 
 export default function CourseNewest({ courses }) {
   const [newestCourses, setNewestCourses] = useState([]);
@@ -30,7 +32,7 @@ export default function CourseNewest({ courses }) {
                   <Card className={styles.home_card} key={course.id}>
                     <Card.Img
                       src={
-                        "http://localhost:1337" +
+                        config.serverAdminUrlPrefix +
                         course.picture.data[0].attributes.url
                       }
                       style={{ maxHeight: "150px" }}

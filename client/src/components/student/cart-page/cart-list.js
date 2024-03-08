@@ -3,6 +3,7 @@ import { Button, Container, Image, Table } from "react-bootstrap";
 import { BsXCircleFill } from "react-icons/bs";
 import ax from "../../../utils/config/ax";
 import conf from "../../../utils/config/main";
+import config from "../../../config";
 
 export default function CartList({
   carts,
@@ -58,7 +59,7 @@ export default function CartList({
                   {" "}
                   <Image
                     style={{ maxHeight: "50px", minWidth: "50px" }}
-                    src={"http://localhost:1337" + course.picture[0].url}
+                    src={config.serverAdminUrlPrefix + course.picture[0].url}
                   />
                 </td>
                 <td>{course.name}</td>

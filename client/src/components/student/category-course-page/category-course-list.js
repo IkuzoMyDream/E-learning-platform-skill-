@@ -1,5 +1,6 @@
 import { Container, Card, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import config from "../../../config";
 
 export default function CategoryCourseList({ courses }) {
   console.log(courses);
@@ -13,7 +14,7 @@ export default function CategoryCourseList({ courses }) {
                 <Card key={course.id}>
                   <Card.Img
                     src={
-                      "http://localhost:1337" +
+                      config.serverAdminUrlPrefix +
                       course.picture.data[0].attributes.url
                     }
                     style={{ maxHeight: "150px" }}

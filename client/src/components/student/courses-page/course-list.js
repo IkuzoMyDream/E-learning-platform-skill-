@@ -3,6 +3,7 @@ import { Container, Card, Row, Col, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 import styles from "./courses-card.module.css";
+import config from "../../../config";
 
 export default function CourseList({
   courses,
@@ -83,7 +84,7 @@ export default function CourseList({
                       <Card className={styles.courses_card} key={course.id}>
                         <Card.Img
                           src={
-                            "http://localhost:1337" +
+                            config.serverAdminUrlPrefix +
                             course.picture.data[0].attributes.url
                           }
                           style={{ maxHeight: "150px" }}

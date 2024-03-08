@@ -9,6 +9,7 @@ import EditInfomation from "../../components/student/profile-page/edit-infomatio
 import ShowInfomation from "../../components/student/profile-page/show-infomation";
 
 import { AuthContext } from "../../utils/auth/Auth.context";
+import config from "../../config";
 
 export default function ProfilePage() {
   const [userInfomation, setUserInfomation] = useState(null);
@@ -46,7 +47,7 @@ export default function ProfilePage() {
 
     setAvatarUrl(
       userInfomation?.avatar?.url
-        ? `http://localhost:1337${userInfomation?.avatar?.url}`
+        ? `${config.serverAdminUrlPrefix}${userInfomation?.avatar?.url}`
         : "/logo.jpg"
     );
     setFirstname(userInfomation?.firstname);

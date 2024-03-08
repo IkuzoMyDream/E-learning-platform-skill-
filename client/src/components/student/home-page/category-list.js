@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 
 import { Card, Container, Image } from "react-bootstrap";
 
-import styles  from './home-card.module.css';
+import styles from "./home-card.module.css";
+import config from "../../../config";
 
 export default function CategoryList() {
   const [categories, setCategories] = useState([]);
@@ -29,7 +30,9 @@ export default function CategoryList() {
 
   return (
     <Container className="my-5">
-      <h1 className="text-center" style={{color:"",}}>หมวดหมู่รายวิชา</h1>
+      <h1 className="text-center" style={{ color: "" }}>
+        หมวดหมู่รายวิชา
+      </h1>
       <div className="my-5 row">
         {categories.map((d) => (
           <div className="col-sm-3 " key={d.id}>
@@ -44,7 +47,8 @@ export default function CategoryList() {
               >
                 <Card.Img
                   src={
-                    "http://localhost:1337" + d.picture.data[0].attributes.url
+                    config.serverAdminUrlPrefix +
+                    d.picture.data[0].attributes.url
                   }
                   style={{
                     maxHeight: "100px",
