@@ -15,6 +15,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import ax from "../../../utils/config/ax";
 import conf from "../../../utils/config/main";
 import { useLocation } from "react-router-dom";
+import config from "../../../config";
 
 const initialState = {
   username: "",
@@ -135,7 +136,7 @@ export default function AdminNavbar() {
                 </NavDropdown.Item>
                 {/* <NavDropdown.Item> */}
                 <Link to="https://www.google.com/">
-                  <a href="http://localhost:1337/admin/" target="_blank">
+                  <a href={config.serverUrlPrefix} target="_blank">
                     ลบ/แก้ไขวิชาเรียน
                   </a>
                 </Link>

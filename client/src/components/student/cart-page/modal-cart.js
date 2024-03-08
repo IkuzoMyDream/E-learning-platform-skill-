@@ -1,4 +1,5 @@
 import { Button, Image, Table } from "react-bootstrap";
+import config from "../../../config";
 
 export default function ModalCart({
   setTransactionState,
@@ -25,7 +26,7 @@ export default function ModalCart({
                 <td>
                   <Image
                     style={{ maxHeight: "50px", minWidth: "50px" }}
-                    src={"http://localhost:1337" + course.picture[0].url}
+                    src={config.serverUrlPrefix + course.picture[0].url}
                   />
                 </td>
                 <td>{course.name}</td>

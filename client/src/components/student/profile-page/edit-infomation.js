@@ -10,6 +10,7 @@ import {
 import "./editinfo.css";
 import { useEffect, useState } from "react";
 import ax from "../../../utils/config/ax";
+import config from "../../../config";
 
 export default function EditInfomation({
   userInfomation,
@@ -31,7 +32,7 @@ export default function EditInfomation({
         formData.append("files", image, image.name);
 
         const uploadImgResponse = await ax.post(
-          "http://localhost:1337/api/upload/",
+          `${config.serverAdminUrlPrefix}/api/upload/`,
           formData
         );
         const pictureId = uploadImgResponse.data[0].id;
@@ -66,10 +67,10 @@ export default function EditInfomation({
 
   return (
     <>
-      <h1 style={{ marginBottom: "85px", }}>.</h1>
+      <h1 style={{ marginBottom: "85px" }}>.</h1>
       <Modal
         show={isShowConfirmedModal}
-      // onHide={() => setIsEditInfomation((prevState) => !prevState)}
+        // onHide={() => setIsEditInfomation((prevState) => !prevState)}
       >
         <Modal.Body>ท่านต้องการแก้ไขข้อมูลใช่หรือไม่?</Modal.Body>
         <Modal.Footer>

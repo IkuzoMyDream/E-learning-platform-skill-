@@ -5,6 +5,7 @@ import ax from "../../../utils/config/ax";
 import { Container } from "react-bootstrap";
 
 import { useMediaQuery } from "react-responsive";
+import config from "../../../config";
 
 export default function StudyPagePlayer({ state, material }) {
   const playerRef = React.useRef();
@@ -105,7 +106,6 @@ export default function StudyPagePlayer({ state, material }) {
     }
   }, [progression]);
 
-
   return (
     <>
       {material && isDesktopOrLaptop && (
@@ -123,7 +123,7 @@ export default function StudyPagePlayer({ state, material }) {
             // playing={true}
             // onReady={onReady}
             url={
-              "http://localhost:1337" +
+              config.serverAdminUrlPrefix +
               material.material.attributes.video.data[0].attributes.url
             }
             controls
@@ -163,7 +163,7 @@ export default function StudyPagePlayer({ state, material }) {
               // playing={true}
               // onReady={onReady}
               url={
-                "http://localhost:1337" +
+                config.serverAdminUrlPrefix +
                 material.material.attributes.video.data[0].attributes.url
               }
               controls

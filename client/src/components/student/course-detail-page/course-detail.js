@@ -6,6 +6,7 @@ import {
 } from "react-icons/bs";
 import TransactionButton from "./transaction-button";
 import Accordion from "react-bootstrap/Accordion";
+import config from "../../../config";
 
 export default function CourseDetail({ course, picturecourse }) {
   console.log(course);
@@ -43,7 +44,7 @@ export default function CourseDetail({ course, picturecourse }) {
         </Col>
         <Col>
           <Image
-            src={"http://localhost:1337" + picturecourse}
+            src={config.serverAdminUrlPrefix + picturecourse}
             class="rounded mx-auto d-block"
             alt="Responsive image"
             style={{
