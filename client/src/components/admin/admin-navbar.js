@@ -82,7 +82,7 @@ export default function AdminNavbar() {
             </Navbar.Brand>
             <Nav>
               <form
-                className="form d-flex"
+                className="form_forsearch d-flex"
                 onSubmit={handleSearch}
                 style={{ border: "0.1px solid blue" }}
               >

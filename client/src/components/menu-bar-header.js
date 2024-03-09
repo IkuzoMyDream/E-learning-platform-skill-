@@ -234,10 +234,10 @@ export default function MenuBarHeader() {
                           </svg>
                         </Dropdown.Toggle>
 
-                        <Dropdown.Menu className="dropdown-menu">
+                        <Dropdown.Menu className="dropdown_search-menu">
                           <Dropdown.Item
                             href=""
-                            className="dropdown-item"
+                            className="dropdown_search-item"
                             onClick={() => navigate("/profile")}
                           >
                             Profile

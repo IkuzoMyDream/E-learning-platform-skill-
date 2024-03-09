@@ -35,7 +35,7 @@ function SignUpPage() {
   return (
     <Container className="d-flex justify-content-center ">
       <Form className="form" onSubmit={handleSubmit}>
-        <p className="title">Register</p>
+        <p className="title_forsinguppagee">Register</p>
         <p className="message">Signup now and get full access to our app.</p>
         <div className="flex">
           <Form.Group controlId="formusername">

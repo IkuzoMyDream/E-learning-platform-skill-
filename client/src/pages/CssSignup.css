@@ -9,7 +9,7 @@
     position: relative;
   }
   
-  .title {
+  .title_forsinguppage {
     font-size: 28px;
     color: royalblue;
     font-weight: 600;
@@ -20,8 +20,8 @@
     padding-left: 30px;
   }
   
-  .title::before,
-  .title::after {
+  .title_forsinguppage::before,
+  .title_forsinguppage::after {
     position: absolute;
     content: "";
     height: 16px;
@@ -31,13 +31,13 @@
     background-color: royalblue;
   }
   
-  .title::before {
+  .title_forsinguppage::before {
     width: 18px;
     height: 18px;
     background-color: royalblue;
   }
   
-  .title::after {
+  .title_forsinguppage::after {
     width: 18px;
     height: 18px;
     animation: pulse 1s linear infinite;

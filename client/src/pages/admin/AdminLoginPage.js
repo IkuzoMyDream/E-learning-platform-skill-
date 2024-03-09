@@ -27,51 +27,45 @@ function AdminLoginPage() {
   };
 
   return (
-    <div>
+    <div className="black-container">
       <form className="AdminForm" name="loginForm" onSubmit={onSubmit}>
-        <p id="heading">Admin Login</p>
-        <div className="row">
-          <div className="col-sm-3 col-md-6">
-            <label htmlFor="username">email</label>
-          </div>
+        <p className="form-title">Admin Login</p>
+        <div className="input-container">
+          <input
+            type="text"
+            name="username"
+            className="form-control"
+            onChange={(e) =>
+              setState((prevState) => ({
+                ...prevState,
+                username: e.target.value,
+              }))
+            }
+            value={state.username}
+            placeholder="Admin Username"
+          />
+        </div>
 
-          <div className="col-sm-9 col-md-6">
-            <input
-              type="text"
-              name="username"
-              onChange={(e) =>
-                setState((prevState) => ({
-                  ...prevState,
-                  username: e.target.value,
-                }))
-              }
-              value={state.username}
-              placeholder="Admin Username"
-            />
-          </div>
+        <div className="input-container">
+          <input
+            type="password"
+            name="password"
+            className="form-control"
+            onChange={(e) =>
+              setState((prevState) => ({
+                ...prevState,
+                password: e.target.value,
+              }))
+            }
+            value={state.password}
+            placeholder="Password"
+          />
+        </div>
 
-          <div className="col-sm-3 col-md-6">
-            <label htmlFor="password">Password</label>
-          </div>
-          <div className="col-sm-9 col-md-6">
-            <input
-              type="password"
-              name="password"
-              onChange={(e) =>
-                setState((prevState) => ({
-                  ...prevState,
-                  password: e.target.value,
-                }))
-              }
-              value={state.password}
-              placeholder="Password"
-            />
-          </div>
-
-          <div className="col-sm-3 col-md-6"></div>
-          <div className="col-sm-9 col-md-6">
-            <input className="primary" type="submit" value="Login" />
-          </div>
+        <div className="input-container">
+          <button type="submit" className="submit">
+            Login
+          </button>
         </div>
 
         {isLoginPending && <div>Please enter to login</div>}
@@ -79,8 +73,8 @@ function AdminLoginPage() {
         {loginError && <div>{loginError.message}</div>}
       </form>
     </div>
-
   );
 }
+
 
 export default AdminLoginPage;
