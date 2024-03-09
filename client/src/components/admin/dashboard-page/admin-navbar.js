@@ -55,7 +55,7 @@ export default function AdminNavbar() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    navigate(`/course/${searchCourse}`);
+    navigate(`../../course/${searchCourse}`);
   };
 
   const onBrandClick = () => {
