@@ -149,7 +149,7 @@ export default function MenuBarHeader() {
                 <Offcanvas.Body>
                   <Nav className="justify-content-end flex-grow-1 pe-3">
                     <form
-                      className="form d-flex"
+                      className="form_forsearch d-flex"
                       onSubmit={handleSearch}
                       style={{ border: "0.1px solid blue" }}
                     >

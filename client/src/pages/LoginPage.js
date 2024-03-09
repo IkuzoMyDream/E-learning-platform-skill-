@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../utils/auth/Auth.context.js";
 import { Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import "./Csssignin.css";
+import "./CssLogin.css";
 
 const initialState = {
   username: "",
@@ -43,7 +43,7 @@ function LoginPage() {
     <Container className="d-flex justify-content-center align-items-center vh-100">
       <form onSubmit={onSubmit}>
         <div className="d-flex flex-column align-items-center">
-          <p className="form-title">Sign in to your account</p>
+          <p className="title" >Sign in to your account</p>
           <div className="input-container">
             <input
               type="email"

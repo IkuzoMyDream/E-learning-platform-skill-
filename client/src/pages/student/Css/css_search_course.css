@@ -1,13 +1,13 @@
 /* From uiverse.io by @satyamchaudharydev */
 /* removing default style of button */
 
-.form button {
+.form_forsearch button {
     border: none;
     background: none;
     color: #8b8ba7;
   }
   /* styling of whole input container */
-  .form {
+  .form_forsearch {
     --timing: 0.3s;
     --width-of-input: 200px;
     --height-of-input: 40px;
@@ -37,7 +37,7 @@
     border: none;
   }
   /* styling of animated border */
-  .form:before {
+  .form_forsearch:before {
     content: "";
     position: absolute;
     background: var(--border-color);
@@ -51,7 +51,7 @@
     transition: transform var(--timing) ease;
   }
   /* Hover on Input */
-  .form:focus-within {
+  .form_forsearch:focus-within {
     border-radius: var(--after-border-radius);
   }
   
@@ -59,7 +59,7 @@
     outline: none;
   }
   /* here is code of animated border */
-  .form:focus-within:before {
+  .form_forsearch:focus-within:before {
     transform: scale(1);
   }
   /* styling of close button */
@@ -76,7 +76,7 @@
     visibility: visible;
   }
   /* sizing svg icons */
-  .form svg {
+  .form_forsearch svg {
     width: 17px;
     margin-top: 3px;
   }
