@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Container, Form, Button, Modal } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import ax from "../utils/config/ax.js";
+// import axios from "../utils/config/axios.js";
 import "./CssSignup.css";
 import config from "../config.js";
+import axios from "axios";
 
 function SignUpPage() {
   const [username, setUsername] = useState("");
@@ -17,8 +18,9 @@ function SignUpPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await ax.post(`/users `, {
+      const response = await axios.post(`/users `, {
         username,
         firstname,
         lastname,
@@ -28,6 +30,7 @@ function SignUpPage() {
       });
       // Navigate to another page upon successful registration
       setShowModal(true);
+      navigate("/login");
     } catch (error) {
       console.error("Registration failed:", error);
     }

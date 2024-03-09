@@ -1,89 +1,74 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import axios from "axios"; // Import axios for mocking
-import RegisterPc from "../page/Register/RegisterPc";
+import axios from "axios";
 import SignUpPage from "../pages/SignUpPage";
 import { BrowserRouter as Router } from "react-router-dom";
 
-jest.mock("axios"); // Mock axios
+jest.mock("axios");
 
-describe("RegisterPc Component", () => {
-  test("renders RegisterPc component", () => {
+describe("SignUpPage Component", () => {
+  test("renders SignUpPage component", () => {
     render(
       <Router>
         <SignUpPage />
       </Router>
     );
 
-    // Ensure that all input fields are rendered
-    expect(screen.getByPlaceholderText("username")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("password")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("confirm password")).toBeInTheDocument();
-    expect(
-      screen.getByPlaceholderText("example@email.com")
-    ).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("firstname")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("lastname")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("location")).toBeInTheDocument();
-
-    // Ensure that buttons are rendered
-    expect(screen.getByText("ยืนยันการสมัคร")).toBeInTheDocument();
-    expect(screen.getByText("ย้อนกลับ")).toBeInTheDocument();
+    expect(screen.getByLabelText("username")).toBeInTheDocument();
+    expect(screen.getByLabelText("Firstname")).toBeInTheDocument();
+    expect(screen.getByLabelText("Lastname")).toBeInTheDocument();
+    expect(screen.getByLabelText("Email")).toBeInTheDocument();
+    expect(screen.getByLabelText("Password")).toBeInTheDocument();
+    expect(screen.getByLabelText("Confirm password")).toBeInTheDocument();
   });
 
   test("submitting the form with valid data", async () => {
-    axios.post.mockResolvedValueOnce({ data: { success: true } }); // Mock successful API response
+    axios.post.mockResolvedValueOnce({ data: { success: true } });
+
+    const mockNavigate = jest.fn();
+    jest.mock("react-router-dom", () => ({
+      ...jest.requireActual("react-router-dom"),
+      useNavigate: () => mockNavigate,
+    }));
 
     render(
       <Router>
-        <RegisterPc />
+        <SignUpPage />
       </Router>
     );
 
-    // Fill in the form fields
-    fireEvent.change(screen.getByPlaceholderText("username"), {
+    fireEvent.change(screen.getByLabelText("username"), {
       target: { value: "testuser" },
     });
-    fireEvent.change(screen.getByPlaceholderText("password"), {
-      target: { value: "testpassword" },
-    });
-    fireEvent.change(screen.getByPlaceholderText("confirm password"), {
-      target: { value: "testpassword" },
-    });
-    fireEvent.change(screen.getByPlaceholderText("example@email.com"), {
-      target: { value: "test@example.com" },
-    });
-    fireEvent.change(screen.getByPlaceholderText("firstname"), {
+    fireEvent.change(screen.getByLabelText("Firstname"), {
       target: { value: "John" },
     });
-    fireEvent.change(screen.getByPlaceholderText("lastname"), {
+    fireEvent.change(screen.getByLabelText("Lastname"), {
       target: { value: "Doe" },
     });
-    fireEvent.change(screen.getByPlaceholderText("location"), {
-      target: { value: "New York" },
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "test@example.com" },
+    });
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "password" },
+    });
+    fireEvent.change(screen.getByLabelText("Confirm password"), {
+      target: { value: "password" },
     });
 
-    // Submit the form
-    fireEvent.click(screen.getByText("ยืนยันการสมัคร"));
+    fireEvent.click(screen.getByText("Sign up"));
 
-    // Wait for the form submission to complete
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledWith(expect.any(String), {
         username: "testuser",
-        password: "testpassword",
-        email: "test@example.com",
         firstname: "John",
-        surname: "Doe",
-        location: "New York",
-        role: 3,
-        confirmed: true,
-        blocked: false,
+        lastname: "Doe",
+        email: "test@example.com",
+        password: "password",
+        role: 4,
       });
     });
 
-    // Ensure that the user is redirected after successful registration
-    expect(window.location.pathname).toBe("/Login");
+    expect(window.location.pathname).toBe("/login");
   });
-
-  // Add more test cases as needed for other scenarios
 });
