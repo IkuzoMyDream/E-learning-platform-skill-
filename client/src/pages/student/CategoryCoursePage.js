@@ -50,7 +50,7 @@ export default function CategoryCoursePage() {
     <>
       <Container
         style={{
-          height:"1200px",
+          height:"800px",
         }}
       >
         <h1

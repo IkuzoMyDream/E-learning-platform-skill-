@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Row, Accordion } from "react-bootstrap";
-
+import {
+  BsFillEnvelopeAtFill,
+  BsFillTelephoneFill,
+  BsPersonCircle,
+} from "react-icons/bs";
 import { useParams, useNavigate } from "react-router-dom";
-
 import ax from "../../../utils/config/ax";
 import conf from "../../../utils/config/main";
 import "./purchaseButton.css"
@@ -58,7 +61,7 @@ export default function CourseDetailBody({
   return (
     <>
       {chapters && course && (
-        <Card style={{ height: "800px", width: "auto", float: "center", backgroundColor: "white", }}>
+        <Card style={{ height: "450px", width: "auto", float: "center", backgroundColor: "white", }}>
           <Card.Body>
             <Row className="my-3">
               <Col>
@@ -157,6 +160,9 @@ export default function CourseDetailBody({
                     {categories?.map((category) => (
                       <p>-{category.name}</p>
                     ))}
+                    <h6><BsPersonCircle /> <span class="icon-text">{course.name_teacher}</span></h6>
+                    <h6><BsFillEnvelopeAtFill /> <span class="icon-text">{course.mail_teacher}</span></h6>
+                    <h6><BsFillTelephoneFill /> <span className="icon-text">{course.phone_number}</span></h6>
                   </div>
                 </Col>
               </Col>
