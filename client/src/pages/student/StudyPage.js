@@ -16,6 +16,8 @@ export default function StudyPage() {
   const [progresses, setProgresses] = useState(null);
   const { courseName } = useParams();
 
+  const [isEnroll, setIsEnroll] = useState(null);
+
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1224px)",
   });
@@ -23,22 +25,30 @@ export default function StudyPage() {
   const [isMaterialOffcanvasOpen, setIsMaterialOffcanvasOpen] =
     useState(isDesktopOrLaptop);
 
-  const isEnrollThisCourse = async () => {
-    try {
-      const response = await ax.get(
-        "/courses?populate[enrollers][filters][id][$eq]=" + state.user.id
-      );
-      console.log(response);
-    } catch (err) {
-    } finally {
-    }
-  };
+  // const isEnrollThisCourse = async () => {
+  //   try {
+  //     const response = await ax.get(
+  //       "/courses?populate[enrollers][filters][id][$eq]=" + state.user.id
+  //     );
+  //     console.log(response);
+  //   } catch (err) {
+  //   } finally {
+  //   }
+  // };
+
+  useEffect(() => {
+    console.log(isEnroll);
+  }, [isEnroll]);
 
   const fetchItem = async () => {
     try {
       const chaptersResponse = await ax.get(
         `${conf.getMaterialFilteredByCourseName}${courseName}`
       );
+      console.log(chaptersResponse);
+      // setIsEnroll(
+      //   chaptersResponse.data.data[0].attributes.enrollers.data.some()
+      // );
 
       const chaptersData =
         chaptersResponse.data.data[0].attributes.course_chapters.data;
@@ -104,7 +114,6 @@ export default function StudyPage() {
 
   useEffect(() => {
     fetchItem();
-    isEnrollThisCourse();
   }, []);
 
   useEffect(() => {

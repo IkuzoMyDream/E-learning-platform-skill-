@@ -314,7 +314,7 @@ export default function EditCoursePage() {
                     type="text"
                     placeholder="หัวข้อ"
                     value={name}
-                    required
+                    required  
                   />
                 </Col>
                 <Col>

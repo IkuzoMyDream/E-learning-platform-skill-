@@ -38,7 +38,7 @@ export default function StudyMaterialsOffcanvas({
   const { courseName } = useParams();
 
   useEffect(() => {
-    console.log(chapters);
+    // console.log(chapters);
     setCourseProgress(
       chapters.reduce((acc, chapter) => acc + chapter.duration, 0)
     );
@@ -60,7 +60,7 @@ export default function StudyMaterialsOffcanvas({
   }, [chapters]);
 
   useEffect(() => {
-    console.log(userProgress, courseProgress);
+    // console.log(userProgress, courseProgress);
   }, [courseProgress, userProgress]);
 
   return (
@@ -169,7 +169,7 @@ export default function StudyMaterialsOffcanvas({
                         key={material.material.id}
                         onClick={() => {
                           setSelectedMaterial(material);
-                          console.log(material);
+                          // console.log(material);
                         }}
                       >
                         {material.progress === 100 && <BsCheck />}

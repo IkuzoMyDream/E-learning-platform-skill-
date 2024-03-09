@@ -25,7 +25,7 @@ const conf = {
     "/carts?populate[owner][populate]=*&populate[course][filters][name][$eq]=",
   getMaterial: "/materials?populate=*",
   getMaterialFilteredByCourseName:
-    "/courses?populate[course_chapters][populate][course_materials][populate]=*&filters[name][$eq]=",
+    "/courses?populate[course_chapters][populate][course_materials][populate]=*&populate=enrollers&filters[name][$eq]=",
   getSearchcourse: "/courses?populate=*&filters[name][$eq]=",
 
   // post

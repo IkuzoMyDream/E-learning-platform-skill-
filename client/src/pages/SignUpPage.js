@@ -1,24 +1,25 @@
 import React, { useState } from "react";
-import { Container, Form, Button ,Modal} from "react-bootstrap";
-import { Link ,useNavigate} from "react-router-dom";
+import { Container, Form, Button, Modal } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import ax from "../utils/config/ax.js";
-import './CssSignup.css'
+import "./CssSignup.css";
+import config from "../config.js";
 
 function SignUpPage() {
-  const [username , setUsername] = useState("");
+  const [username, setUsername] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await ax.post("http://localhost:1337/api/users", {
-        username, 
+      const response = await ax.post(`/users `, {
+        username,
         firstname,
         lastname,
         password,
@@ -108,20 +109,23 @@ function SignUpPage() {
           Already have an account? <Link to="/login">Sign in</Link>
         </p>
         {/* Modal to show success message */}
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Success</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Your account has been successfully created.</Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={() => {
-            setShowModal(false);
-            navigate("/login");
-          }}>
-            OK
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Success</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Your account has been successfully created.</Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="primary"
+              onClick={() => {
+                setShowModal(false);
+                navigate("/login");
+              }}
+            >
+              OK
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Form>
     </Container>
   );

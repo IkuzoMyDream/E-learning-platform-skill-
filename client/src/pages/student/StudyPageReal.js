@@ -13,18 +13,33 @@ export default function StudyPage() {
   const [selectedMaterial, setSelectedMaterial] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [progression, setProgression] = useState(0);
-
+  const [isEnroll, setIsEnroll] = useState(false);
   const { courseName } = useParams();
 
   const [isReady, setIsReady] = useState(false);
 
   const playerRef = React.useRef();
 
+  const isEnrolled = async () => {
+    try {
+      const isEnrolledResponse = await ax.get("/courses?populate=enrollers");
+      console.log(isEnrolledResponse);
+    } catch (err) {
+      console.log(err);
+    } finally {
+    }
+  };
+
+  useEffect(() => {
+    isEnrolled();
+    // console.log(isEnroll);
+  }, []);
+
   const onReady = React.useCallback(() => {
     if (!isReady && selectedMaterial) {
       const timeToStart =
         (selectedMaterial.progress.progress / 100) * selectedMaterial.duration;
-      console.log(timeToStart);
+      // console.log(timeToStart);
       playerRef.current.seekTo(timeToStart, "seconds");
       setIsReady(true);
     }
@@ -171,7 +186,7 @@ export default function StudyPage() {
   }, []);
 
   useEffect(() => {
-    console.log(chapters);
+    // console.log(chapters);
   }, [chapters]);
 
   useEffect(() => {
@@ -186,7 +201,7 @@ export default function StudyPage() {
   }, [progression]);
 
   useEffect(() => {
-    console.log(selectedMaterial);
+    // console.log(selectedMaterial);
   }, [selectedMaterial]);
 
   return (
