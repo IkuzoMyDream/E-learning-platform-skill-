@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import ax from "../../utils/config/ax";
+//import ax from "../../utils/config/ax";
+import axios from "axios";
 import conf from "../../utils/config/main";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../utils/auth/Auth.context";
@@ -42,7 +43,7 @@ export default function StudyPage() {
 
   const fetchItem = async () => {
     try {
-      const chaptersResponse = await ax.get(
+      const chaptersResponse = await axios.get(
         `${conf.getMaterialFilteredByCourseName}${courseName}`
       );
       console.log(chaptersResponse);
@@ -53,7 +54,7 @@ export default function StudyPage() {
       const chaptersData =
         chaptersResponse.data.data[0].attributes.course_chapters.data;
 
-      const userLearningProgressesResponse = await ax.get(
+      const userLearningProgressesResponse = await axios.get(
         "/users/me?populate[learning_progresses][populate]=*"
       );
 
