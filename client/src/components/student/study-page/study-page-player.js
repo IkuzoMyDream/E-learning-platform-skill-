@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
-import ax from "../../../utils/config/ax";
+//import ax from "../../../utils/config/ax";
+import axios from "axios";
 import { Container } from "react-bootstrap";
 
 import { useMediaQuery } from "react-responsive";
@@ -30,7 +31,7 @@ export default function StudyPagePlayer({ state, material }) {
   const updateLearningProgress = async () => {
     if (material) {
       try {
-        var progress_response = await ax.get(
+        var progress_response = await axios.get(
           `/users/me?populate[learning_progresses][populate][material][filters][id][$eq]=${material.material.id}&populate[learning_progresses][populate]=course`
         );
       } catch (err) {
@@ -41,7 +42,7 @@ export default function StudyPagePlayer({ state, material }) {
         );
         if (!is_has_progress) {
           try {
-            var post_progress_response = await ax.post(`/progresses`, {
+            var post_progress_response = await axios.post(`/progresses`, {
               data: {
                 material: { connect: [{ id: material.material.id }] },
                 progress: 0,
@@ -68,7 +69,7 @@ export default function StudyPagePlayer({ state, material }) {
               material.progress <
               (progression / material.material.attributes.duration) * 100
             ) {
-              var put_progress_response = await ax.put(
+              var put_progress_response = await axios.put(
                 `/progresses/${is_has_progress.id}`,
                 {
                   data: {
