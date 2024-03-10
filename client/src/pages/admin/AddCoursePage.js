@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Accordion, Button, Col, Container, Form, Row } from "react-bootstrap";
-import ax from "../../utils/config/ax";
-
+//import axios from "../../utils/config/axios";
+//import axiosios from "axiosios";
+import axios from "axios";
 export default function AddCoursePage() {
   const [courseImg, setCourseImg] = useState(null);
   const [name, setName] = useState(null);
@@ -41,11 +42,11 @@ export default function AddCoursePage() {
     formCourseImg.append("files", courseImg, courseImg.name);
 
     try {
-      const uploadPictureResponse = await ax.post("/upload", formCourseImg);
-      const uploadPreviewVdoResponse = await ax.post("/upload", formPreviewVdo);
+      const uploadPictureResponse = await axios.post("/upload", formCourseImg);
+      const uploadPreviewVdoResponse = await axios.post("/upload", formPreviewVdo);
       const courseImgId = uploadPictureResponse.data[0].id;
       const previewVdoId = uploadPreviewVdoResponse.data[0].id;
-      const postCourseResponse = await ax.post("/courses", {
+      const postCourseResponse = await axios.post("/courses", {
         data: {
           name: name,
           description: description,
@@ -64,7 +65,7 @@ export default function AddCoursePage() {
       await Promise.all(
         chapters.map(async (chapter) => {
           // add chapters
-          const postChapterResponse = await ax.post("/course-chapters", {
+          const postChapterResponse = await axios.post("/course-chapters", {
             data: {
               chapter: chapter.chapter,
               description: chapter.description,
@@ -84,13 +85,13 @@ export default function AddCoursePage() {
               subchapter.video.name
             );
 
-            const uploadVideoResponse = await ax.post(
+            const uploadVideoResponse = await axios.post(
               "/upload",
               formMaterialVdo
             );
             const videoId = uploadVideoResponse.data[0].id;
 
-            await ax.post("/materials", {
+            await axios.post("/materials", {
               data: {
                 subchapter: subchapter.subchapter,
                 title: subchapter.name,
@@ -113,16 +114,16 @@ export default function AddCoursePage() {
 
   const fetchItems = async () => {
     try {
-      const response_categories = await ax.get("/categories");
+      // const response_categories = await axios.get("/categories");
 
-      setCategories(
-        response_categories.data.data.map((category) => {
-          return {
-            id: category.id,
-            ...category.attributes,
-          };
-        })
-      );
+      // setCategories(
+      //   response_categories.data.data.map((category) => {
+      //     return {
+      //       id: category.id,
+      //       ...category.attributes,
+      //     };
+      //   })
+      // );
     } catch (err) {
       console.error("Error fetching categories:", err);
     }
@@ -207,20 +208,23 @@ export default function AddCoursePage() {
   };
 
   return (
-    <Container>
-      <>
-        {categories && (
+   
+       
           <Form onSubmit={handleSubmit}>
             <Row>
               <Col>
+              <div>
                 <Form.Label>หัวข้อ</Form.Label>
                 <Form.Control
                   onChange={(e) => setName(e.target.value)}
                   type="text"
                   placeholder="หัวข้อ"
                   required
+                  alt="หัวข้อ"
                 />
+                </div>
               </Col>
+              
               <Col>
                 <Form.Label>รูปคอร์ส</Form.Label>
                 <Form.Control
@@ -228,6 +232,7 @@ export default function AddCoursePage() {
                   accept="image/*"
                   type="file"
                   label="Upload Course Picture"
+                  
                   onChange={(e) => setCourseImg(e.target.files[0])}
                 />
               </Col>
@@ -245,7 +250,7 @@ export default function AddCoursePage() {
               </Col>
             </Row>
             <Row>
-              <Col>
+              {/* <Col>
                 <Form.Label>หมวดหมู่</Form.Label>
                 <Form>
                   {categories.map((category) => (
@@ -258,31 +263,36 @@ export default function AddCoursePage() {
                     />
                   ))}
                 </Form>
-              </Col>
+              </Col> */}
               <Col>
-                <Form.Label>ราคา</Form.Label>
+                <Form.Label htmlFor="price">ราคา</Form.Label>
                 <Form.Control
                   required
                   type="number"
+                  id="price"
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </Col>
             </Row>
             <Row>
               <Col>
-                <Form.Label>ชื่อผู้สอน</Form.Label>
+                <Form.Label htmlFor="input-name">ชื่อผู้สอน</Form.Label>
                 <Form.Control
+                  id="input-name"
                   required
                   type="text"
                   onChange={(e) => setNameTeacher(e.target.value)}
+                  placeholder="ชื่อผู้สอน"
                 />
               </Col>
               <Col>
-                <Form.Label>อีเมลผู้สอน</Form.Label>
+                <Form.Label htmlFor="input-email">อีเมลผู้สอน</Form.Label>
                 <Form.Control
+                  id="input-email"
                   required
                   type="email"
                   onChange={(e) => setEmailTeacher(e.target.value)}
+                  placeholder="อีเมลผู้สอน"
                 />
               </Col>
             </Row>
@@ -536,8 +546,7 @@ export default function AddCoursePage() {
               <Button type="submit">เพิ่มคอร์ส</Button>
             </Row>
           </Form>
-        )}
-      </>
-    </Container>
-  );
+        )
+
+  ;
 }
