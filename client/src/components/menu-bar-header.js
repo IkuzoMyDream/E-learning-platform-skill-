@@ -25,7 +25,7 @@ const initialState = {
 };
 
 export default function MenuBarHeader() {
-  const { state: ContextState, login, logout } = useContext(AuthContext);
+  //const { state: ContextState, login, logout } = useContext(AuthContext);
   const [state, setState] = useState(initialState);
   const [searchCourse, setSearchCourse] = useState("");
 
@@ -69,7 +69,7 @@ export default function MenuBarHeader() {
   if (pathname !== "study" && !isPathIsLogin && !isAdminPath && !isSignupPath) {
     return (
       <div style={{ position: "flex" }}>
-        {!ContextState.isLoggedIn && (
+        {/* {!ContextState.isLoggedIn && ( */}
           <div>
             <Navbar
               style={{
@@ -121,14 +121,14 @@ export default function MenuBarHeader() {
               </Container>
             </Navbar>
           </div>
-        )}
+        {/* )} */}
         <div>
           <Navbar
             style={{
               borderBottom: "1px solid rgb(60, 71, 82)",
               background: "#A0BFE0",
               width: "100%",
-              marginTop: !ContextState.isLoggedIn ? "54.5px" : "0px",
+              // marginTop: !ContextState.isLoggedIn ? "54.5px" : "0px",
             }}
             expand="sm"
             className="z-3 position-fixed"
@@ -140,6 +140,7 @@ export default function MenuBarHeader() {
                   <Image
                     src="/logo-skillpp.png"
                     style={{ maxHeight: "60px" }}
+                    alt="SkillPP"
                   />
                 </Link>
               </Navbar.Brand>
@@ -195,17 +196,17 @@ export default function MenuBarHeader() {
                         </svg>
                       </button>
                     </form>
-                    {ContextState.isLoggedIn && (
+                    {/* {ContextState.isLoggedIn && ( */}
                       <Nav.Link onClick={() => navigate("/cart")}>
                         <BsCart3 />
                       </Nav.Link>
-                    )}
+                    {/* )} */}
 
                     <Nav.Link onClick={() => navigate("/course")}>
                       รายวิชา
                     </Nav.Link>
 
-                    {ContextState.isLoggedIn && (
+                    {/* {ContextState.isLoggedIn && ( */}
                       <Dropdown variant="inherit" className="z-3">
                         <Dropdown.Toggle
                           className="z-3"
@@ -215,7 +216,7 @@ export default function MenuBarHeader() {
                             border: "none",
                           }}
                         >
-                          {ContextState.user.username}
+                          {/* {ContextState.user.username} */}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -242,12 +243,12 @@ export default function MenuBarHeader() {
                           >
                             Profile
                           </Dropdown.Item>
-                          <Dropdown.Item href="" onClick={logout}>
+                          <Dropdown.Item href="" >
                             Log Out
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
-                    )}
+                    {/* )} */}
                   </Nav>
                 </Offcanvas.Body>
               </Navbar.Offcanvas>
